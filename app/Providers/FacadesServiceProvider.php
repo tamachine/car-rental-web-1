@@ -3,19 +3,19 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\HTMLLang;
 
-class AppServiceProvider extends ServiceProvider
+class FacadesServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->bind('getHTMLLang', function ($app, $parameters) {
-            $HTMLLang = new HTMLLang($parameters[0]);
-            return $HTMLLang->getHTMLLang();
+
+        $this->app->bind('Nave',function(){
+            return new \App\Apis\Nave\Api();
         });
+
     }
 
     /**

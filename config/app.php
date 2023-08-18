@@ -167,6 +167,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\FacadesServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
@@ -181,8 +183,8 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+    'aliases' => Facade::defaultAliases()->merge([        
+        'Nave' => App\Apis\Nave\ApiFacade::class,      
     ])->toArray(),
 
 ];
