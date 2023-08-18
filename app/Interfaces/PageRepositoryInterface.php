@@ -10,5 +10,5 @@ interface PageRepositoryInterface
     
     public function show($name);
 
-    public function seoConfigurations($name): SeoConfiguration;
+    public function seoConfiguration($name): SeoConfiguration;
 }

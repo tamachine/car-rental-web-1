@@ -25,14 +25,14 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
 
     public function index()
     {            
-        $this->shareSeoConfigurations();    
+        $this->shareSeoConfiguration();    
 
         return view('home.index', ['latestArticles' => $this->blogPostRepository->latest()]);
     }
 
-    public function getSeoConfigurations(): SeoConfiguration
+    public function getSeoConfiguration(): SeoConfiguration
     {
-        return $this->pageRepository->seoConfigurations(Route::currentRouteName());
+        return $this->pageRepository->seoConfiguration(Route::currentRouteName());
     }
 
     protected function footerImagePath() : string

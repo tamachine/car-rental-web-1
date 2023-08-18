@@ -5,11 +5,11 @@ namespace App\Repositories\Nave;
 use App\Interfaces\PageRepositoryInterface;
 use App\Models\SeoConfiguration;
 use App\Repositories\Nave\BaseRepository;
-use App\Traits\Nave\HasSeoConfigurations;
+use App\Traits\Nave\HasSeoConfiguration;
 
 class PageRepository extends BaseRepository implements PageRepositoryInterface {
     
-    use HasSeoConfigurations;
+    use HasSeoConfiguration;
 
     public function all(): array {
         $endpoint = 'pages';
@@ -23,9 +23,9 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface {
         return $this->processGet($endpoint);
     }
 
-    public function seoConfigurations($name): SeoConfiguration {
+    public function seoConfiguration($name): SeoConfiguration {
         $endpoint = 'pages/'.$name.'/seoconfigurations';        
 
-        return $this->processSeoConfigurations($this->processGet($endpoint));
+        return $this->processSeoConfiguration($this->processGet($endpoint));
     }
 }

@@ -6,7 +6,7 @@ use View;
 
 trait ExtendsWebLayout {
     
-    public function shareSeoConfigurations() {
-        View::share('seoConfigurations', $this->getSeoConfigurations());
+    public function shareSeoConfiguration() {
+        View::share('seoConfiguration', $this->getSeoConfiguration());
     }
 }
