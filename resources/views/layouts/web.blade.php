@@ -13,10 +13,10 @@
         <x-seo-tags :seoConfiguration="$seoConfiguration" />
         
         <x-seo-schemas :seoConfiguration="$seoConfiguration" />
-        {{-- TODO
+       
         <x-hreflang-tags />
         
-
+        {{-- TODO
         <!-- Favicon -->
 		<link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
