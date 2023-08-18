@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-    lang="{{ app('getHTMLLang', [$seoConfigurations])  }}"
+    lang="{{ app('getHTMLLang', [$seoConfiguration])  }}"
     x-data="{'showMobileNavBar': false, 'htmlOverflowHidden': false}"
     :class="htmlOverflowHidden || showMobileNavBar ? 'overflow-hidden' : ''"
     x-ref="html"
@@ -10,10 +10,10 @@
         <meta name="theme-color" content="#E11166" >
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        
+        <x-seo-tags :seoConfiguration="$seoConfiguration" />
         {{-- TODO
-        <x-seo-tags />
-
-        <x-seo-schemas />
+        <x-seo-schemas :seoConfigurations="$seoConfiguration" />
 
         <x-hreflang-tags />
         
