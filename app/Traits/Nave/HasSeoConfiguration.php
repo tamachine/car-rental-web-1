@@ -3,17 +3,32 @@
 namespace App\Traits\Nave;
 
 use App\Models\SeoConfiguration;
+use App\Models\SeoSchema;
 
 trait HasSeoConfiguration {
 
     public function processSeoConfiguration($data) {
-        $seoConfiguration = new SeoConfiguration();
+        $seoConfiguration = $this->mapArrayToObject($data, new SeoConfiguration());
 
-        foreach($data as $key => $value) {
-            $seoConfiguration->$key = $value;
+        $seoSchemas = [];
+
+        foreach($data['seoSchemas'] as $schema ) {
+            $seoSchema = $this->mapArrayToObject($schema, new SeoSchema());
+
+            $seoSchemas[] = $seoSchema;
         }
 
+        $seoConfiguration->seoSchemas = $seoSchemas;
+
         return $seoConfiguration;
+    }
+
+    protected function mapArrayToObject(array $array, object $object) {        
+        foreach($array as $key => $value) {
+            $object->$key = $value;                    
+        }
+
+        return $object;
     }
 
 }

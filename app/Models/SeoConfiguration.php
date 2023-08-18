@@ -10,4 +10,5 @@ class SeoConfiguration {
     public $nofollow;
     public $lang;
     public $canonical;
+    public $seoSchemas = [];
 }
