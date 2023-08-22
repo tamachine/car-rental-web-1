@@ -15,38 +15,30 @@
         <x-seo-schemas :seoConfiguration="$seoConfiguration" />
        
         <x-hreflang-tags />
-        
-       
-        <!-- Favicon -->
+                       
 		<link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
-        {{-- TODO
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+                
+        <link rel="stylesheet"  href="https://rsms.me/inter/inter.css"> {{-- fonts --}}
+        <link rel="preload"     href="/css/preload.css" as="style" />
+        <link rel="stylesheet"  href="/css/app.css" >
 
-        <!-- Styles -->
-        <link rel="preload" href="/css/preload.css" as="style" />
-        
-        --}}
-        <link href="/css/app.css" rel="stylesheet">
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ url(mix('js/app.js')) }}" defer></script>
+        <script src="{{ url(mix('js/scripts.js')) }}"></script>
+
         {{-- TODO
         <script src="{{ url(mix('js/swiper.js')) }}"></script>
-        <script src="{{ url(mix('js/app/scripts.js')) }}"></script>
-
         <script async src="//www.instagram.com/embed.js"></script>
         --}}
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <input type="hidden" id="app_locale" value="{{ App::getLocale() }}"> {{-- app locale --}}
 
-        {{-- app locale --}}
-        <input type="hidden" id="app_locale" value="{{ App::getLocale() }}">
-
-        {{-- TODO
         <x-nav-bar/>     
-        --}}   
+
     </head>
 
     {{--
@@ -56,25 +48,12 @@
     <body
         class="overflow-x-hidden relative"
         x-data="{'showOverlay': false}"
-        >
-
-        {{-- <div
-            id="overlay"
-            class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20"
-            x-show="showOverlay"
-            x-cloak
-            >
-            <div id="hide-overlay" class="hidden" x-on:click="showOverlay = false"></div> 
-        </div> --}}       
+        >      
 
         <div class="max-w-7xl mx-auto">
             @yield('body')
 
-            @livewireScripts
-            {{-- The livewire_app_url var is a fix for the issue: When a Livewire component makes a request after the page has been loaded, it changes the current locale to a different locale. --}}
-            <script>
-                window.livewire_app_url = "{{ \Illuminate\Support\Facades\Request::getSchemeAndHttpHost() }}/{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale() }}"
-            </script>
+            @livewireScripts                     
 
             {{-- TODO 
             @if (isset($footerImagePath))

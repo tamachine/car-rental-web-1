@@ -1,0 +1,28 @@
+.hero-blog-bullet  {
+    @apply 
+        p-4 w-7 h-7 
+        rounded-full
+        font-sans-medium  
+        bg-black text-white 
+        flex justify-center items-center 
+        cursor-pointer;
+}
+
+.hero-blog-bullet-active  {
+    @apply !bg-white !text-pink-red;
+}
+
+.swiper-navigation {
+    @apply h-[36px] flex flex-row justify-center md:justify-between gap-x-2;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    @apply relative inline-block w-auto h-fit m-0 after:hidden;
+    position: unset;
+}
+
+.swiper-button-prev img,
+.swiper-button-next img {
+    @apply w-[36px] h-[36px];
+}

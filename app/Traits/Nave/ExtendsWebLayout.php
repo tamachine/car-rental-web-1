@@ -2,11 +2,17 @@
 
 namespace App\Traits\Nave;
 
+use App\Interfaces\CarCategoryRepositoryInterface;
 use View; 
+use App\Helpers\Cache as CacheHelper;
+use Cache;
 
 trait ExtendsWebLayout {
-    
-    public function shareSeoConfiguration() {
-        View::share('seoConfiguration', $this->getSeoConfiguration());
-    }
+
+    protected function webLayoutViewParams() {        
+        return[
+            'seoConfiguration'  => $this->getSeoConfiguration(),
+            'footerImagePath'   => $this->footerImagePath(),            
+        ];        
+    }        
 }

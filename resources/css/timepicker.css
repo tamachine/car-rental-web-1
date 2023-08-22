@@ -1,0 +1,38 @@
+
+.range-input {
+    @apply relative w-full h-[21px] bg-transparent rounded-3xl focus:outline-none z-[1];
+    -webkit-appearance: none;
+    -webkit-box-shadow: inset 0px 1px 42x 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 1px 2px 0px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 1px 2px 0px rgba(0,0,0,0.25);
+}
+
+.range-input::-moz-range-progress {
+    @apply bg-transparent; 
+}
+
+
+/* Línea finita slide */
+.range-input::-webkit-slider-runnable-track {
+    @apply w-full h-0 cursor-pointer shadow-none bg-gray-primary rounded-none ;
+}
+.range-input::-moz-range-track {
+    @apply w-full h-0 cursor-pointer shadow-none bg-gray-primary rounded-none ;
+}
+
+/* Marcador */
+.range-input::-webkit-slider-thumb {
+    /* Si se cambia el ancho (w-[80px), cambiar también el ancho de .range-bullet en el CSS y los pixels fijos al calcular la posición left en js.   */
+    @apply relative top-0 shadow-none border-none w-[80px] h-[30px] rounded-3xl bg-pink-red cursor-pointer translate-y-[-50%] z-[4];
+    -webkit-appearance: none;
+}
+
+.range-input::-moz-range-thumb {
+    @apply relative shadow-none border-none w-[80px] h-[30px] rounded-3xl bg-pink-red cursor-pointer z-[2];
+    -moz-appearance: none;
+}
+
+.range-input::-moz-focus-outer {
+    @apply border-none;
+}
+

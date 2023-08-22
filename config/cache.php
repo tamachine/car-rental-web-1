@@ -37,6 +37,12 @@ return [
             'driver' => 'apc',
         ],
 
+        'api' => [
+            'driver' => 'file',
+            'path' => storage_path('framework/cache/data'),
+            'lock_path' => storage_path('framework/cache/data'),
+        ],        
+
         'array' => [
             'driver' => 'array',
             'serialize' => false,
@@ -78,6 +84,12 @@ return [
             'driver' => 'redis',
             'connection' => 'cache',
             'lock_connection' => 'default',
+        ],
+
+        'translations' => [
+            'driver' => 'file',
+            'path' => storage_path('framework/cache/data'),
+            'lock_path' => storage_path('framework/cache/data'),
         ],
 
         'dynamodb' => [

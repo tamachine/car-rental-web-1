@@ -1,0 +1,7 @@
+/*
+    Custom styles for tinymce strings
+*/
+
+.tiny-content a {    
+    @apply underline;    
+}

@@ -20,14 +20,12 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
 
     public function __construct(BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
         $this->blogPostRepository = $blogPostRepository;
-        $this->pageRepository     = $pageRepository;
+        $this->pageRepository     = $pageRepository;        
     }
 
     public function index()
-    {            
-        $this->shareSeoConfiguration();    
-
-        return view('home.index', ['latestArticles' => $this->blogPostRepository->latest()]);
+    {                    
+        return view('home.index', array_merge($this->webLayoutViewParams(),['latestArticles' => $this->blogPostRepository->latest()]));
     }
 
     public function getSeoConfiguration(): SeoConfiguration

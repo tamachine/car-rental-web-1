@@ -3,6 +3,7 @@
 namespace App\Repositories\Nave;
 
 use Nave;
+use Illuminate\Support\Facades\Cache;
 
 class BaseRepository {
    
@@ -20,5 +21,6 @@ class BaseRepository {
         }
 
         return [];   
-    }
+    }   
+    
 }
