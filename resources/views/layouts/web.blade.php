@@ -54,12 +54,10 @@
             @yield('body')
 
             @livewireScripts                     
-
-            {{-- TODO 
+            
             @if (isset($footerImagePath))
                 <x-footer imagePath="{{ $footerImagePath }}" />
-            @endif
-            --}}
+            @endif            
         </div>
 
         @stack('scripts')

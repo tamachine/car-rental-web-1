@@ -10,7 +10,7 @@ use App\Models\SeoConfiguration;
 use App\Traits\Nave\ExtendsWebLayout;
 use Illuminate\Support\Facades\Route;
 
-class HomeController extends Controller implements ExtendsWebLayoutInterface
+class LegalNoticeController extends Controller implements ExtendsWebLayoutInterface
 {
     use ExtendsWebLayout;
 
@@ -20,12 +20,12 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
 
     public function __construct(BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
         $this->blogPostRepository = $blogPostRepository;
-        $this->pageRepository     = $pageRepository;        
+        $this->pageRepository     = $pageRepository;
     }
 
     public function index()
-    {                    
-        return view('home.index', array_merge($this->webLayoutViewParams(),['latestArticles' => $this->blogPostRepository->latest()]));
+    {            
+        echo "legal"; die;
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,7 +35,7 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
 
     protected function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return '/images/footer/home.png';
     }
 
    

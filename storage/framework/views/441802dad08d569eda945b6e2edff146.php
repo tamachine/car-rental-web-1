@@ -106,8 +106,24 @@
             <?php echo $__env->yieldContent('body'); ?>
 
             <?php echo \Livewire\Livewire::scripts(); ?>                     
-
             
+            <?php if(isset($footerImagePath)): ?>
+                <?php if (isset($component)) { $__componentOriginal99051027c5120c83a2f9a5ae7c4c3cfa = $component; } ?>
+<?php $component = App\View\Components\Footer::resolve(['imagePath' => ''.e($footerImagePath).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('footer'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Footer::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal99051027c5120c83a2f9a5ae7c4c3cfa)): ?>
+<?php $component = $__componentOriginal99051027c5120c83a2f9a5ae7c4c3cfa; ?>
+<?php unset($__componentOriginal99051027c5120c83a2f9a5ae7c4c3cfa); ?>
+<?php endif; ?>
+            <?php endif; ?>            
         </div>
 
         <?php echo $__env->yieldPushContent('scripts'); ?>
