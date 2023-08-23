@@ -20,7 +20,7 @@ class CarCategoryRepository extends BaseRepository implements CarCategoryReposit
         $response = [];
 
         foreach($data as $carType) {
-            $response[] = ArrayHelper::mapArrayToObject($carType, new CarType());
+            $response[] = ArrayHelper::mapArrayToObject($carType, CarType::class);
         }
         
         return $response;

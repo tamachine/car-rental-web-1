@@ -4,7 +4,8 @@ namespace App\Helpers;
 
 class ArrayHelper {
 
-    public static function mapArrayToObject(array $array, object $object) {
+    public static function mapArrayToObject(array $array, string $className) {
+        $object = new $className();
         
         foreach($array as $key => $value) {
             $object->$key = $value;                    
