@@ -16,6 +16,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Interfaces\TranslationRepositoryInterface::class, \App\Repositories\Nave\TranslationRepository::class);     
         $this->app->bind(\App\Interfaces\ConfigRepositoryInterface::class, \App\Repositories\Nave\ConfigRepository::class);     
         $this->app->bind(\App\Interfaces\CarCategoryRepositoryInterface::class, \App\Repositories\Nave\CarCategoryRepository::class);     
+        $this->app->bind(\App\Interfaces\LocationRepositoryInterface::class, \App\Repositories\Nave\LocationRepository::class);     
     }
 
     /**
