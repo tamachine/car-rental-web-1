@@ -5,6 +5,9 @@ namespace App\Repositories\Nave;
 use App\Interfaces\LocationRepositoryInterface;
 use App\Repositories\Nave\BaseRepository;
 use App;
+use App\Helpers\ArrayHelper;
+use App\Models\Location;
+use App\Models\Image;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
@@ -13,7 +16,25 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
 
         $endpoint = 'locations';
         
-        return $this->processGet($endpoint, $params);
+        return $this->processLocationResponse($this->processGet($endpoint, $params));
     }
    
+    protected function processLocationResponse($data) {
+        $response = [];
+
+        foreach($data as $location) {
+            $locationObject = ArrayHelper::mapArrayToObject($location, Location::class);
+
+            $image = $location['getFeaturedImageModelImageInstance'];
+
+            if($image) {
+                $imageObject = ArrayHelper::mapArrayToObject($image, Image::class);
+                $locationObject->getFeaturedImageModelImageInstance = $imageObject;
+            }  
+            
+            $response[] = $locationObject;
+        }
+        
+        return $response;
+    }
 }
