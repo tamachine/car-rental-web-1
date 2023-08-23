@@ -5,10 +5,8 @@
    </div>
 
    {{-- SEARCHBAR --}}
-   <div class="searcher relative md:absolute md:bottom-[-20px] w-full mt-10 md:mt-0 z-30">
-      {{-- TODO
+   <div class="searcher relative md:absolute md:bottom-[-20px] w-full mt-10 md:mt-0 z-30">      
       <x-car-search-bar />
-      --}}
    </div>
    
    {{-- BACKGROUND IMAGE --}}
