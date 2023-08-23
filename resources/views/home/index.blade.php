@@ -12,6 +12,10 @@
         @include('home.partial.box1')
 
         @include('home.partial.cards-default')
+
+        @include('home.partial.box2')
+
+        @include('home.partial.cards-elongated')
     </div>
     
 @endsection
