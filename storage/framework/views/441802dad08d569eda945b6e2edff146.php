@@ -70,7 +70,9 @@
         <!-- Scripts -->
         <script src="<?php echo e(url(mix('js/app.js'))); ?>" defer></script>
         <script src="<?php echo e(url(mix('js/scripts.js'))); ?>"></script>
-
+        
+        <script src="<?php echo e(url(mix('js/swiper.js'))); ?>"></script>
+        <script async src="//www.instagram.com/embed.js"></script>
         
         <!-- CSRF Token -->
         <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
