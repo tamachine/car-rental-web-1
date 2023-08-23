@@ -185,7 +185,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([        
-        'Nave' => App\Apis\Nave\ApiFacade::class,      
+        'Nave' => App\Apis\Nave\ApiFacade::class,     
+        'CarSearchInitialValues' => App\Services\CarsSearch\CarSearchInitialValuesFacade::class, 
     ])->toArray(),
 
 ];

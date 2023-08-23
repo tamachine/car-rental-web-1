@@ -8,6 +8,7 @@ use App;
 use App\Helpers\ArrayHelper;
 use App\Models\Location;
 use App\Models\Image;
+use Illuminate\Support\Collection;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
@@ -18,6 +19,18 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
         
         return $this->processLocationResponse($this->processGet($endpoint, $params, self::CACHED));
     }
+
+    public function findByHashid($hashId, $locale = null): Location|null {
+        return collect($this->all($locale))->first(function ($location) use ($hashId) {
+            return $location->hashid == $hashId;
+        });
+    }
+
+    public function like($attribute, $value, $locale = null): Collection|null {
+        return collect($this->all($locale))->filter(function ($location) use ($attribute, $value) {
+            return str_contains($value, $location->$attribute);
+        })->values();
+    }   
    
     protected function processLocationResponse($data): array {
         $response = [];

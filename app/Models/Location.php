@@ -10,6 +10,6 @@ class Location {
     public $pickup_show_input;
     public $dropoff_show_input;
     public $pickup_input_require;
-    public $dropoff_input_require;
+    public $cardropoff_input_require;
     public $getFeaturedImageModelImageInstance;    
 }

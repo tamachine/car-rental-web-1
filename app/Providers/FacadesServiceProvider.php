@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\CarsSearch\InitialValues;
 
 class FacadesServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,10 @@ class FacadesServiceProvider extends ServiceProvider
 
         $this->app->bind('Nave',function(){
             return new \App\Apis\Nave\Api();
+        });
+
+        $this->app->bind('CarSearchInitialValues', function ($app) {            
+            return new InitialValues();
         });
 
     }
