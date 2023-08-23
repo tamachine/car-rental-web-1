@@ -11,15 +11,15 @@ use App\Models\Image;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
-    public function all($locale = null): array {     
+    public function all($locale = null): array {          
         $params['locale'] = $locale ? $locale : App::getLocale();
 
         $endpoint = 'locations';
         
-        return $this->processLocationResponse($this->processGet($endpoint, $params));
+        return $this->processLocationResponse($this->processGet($endpoint, $params, self::CACHED));
     }
    
-    protected function processLocationResponse($data) {
+    protected function processLocationResponse($data): array {
         $response = [];
 
         foreach($data as $location) {

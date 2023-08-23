@@ -26,6 +26,6 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface {
     public function seoConfiguration($name): SeoConfiguration {
         $endpoint = 'pages/'.$name.'/seoconfigurations';        
 
-        return $this->processSeoConfiguration($this->processGet($endpoint));
+        return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
     }
 }
