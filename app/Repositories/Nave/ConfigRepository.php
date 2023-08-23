@@ -10,15 +10,11 @@ class ConfigRepository extends BaseRepository implements ConfigRepositoryInterfa
     
     public function currencies(): array {
         $endpoint = 'config';
-
-        $response = Nave::get($endpoint);
-
-        return $this->processCurrenciesResponse($response);
+        
+        return $this->processCurrenciesResponse($this->processGet($endpoint));
     }   
     
-    protected function processCurrenciesResponse($response) {
-        
-        $response = $this->processResponse($response);
+    protected function processCurrenciesResponse($response) {                
 
         if(isset($response['currencies'])) {
             return $response['currencies']['data'];

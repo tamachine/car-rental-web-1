@@ -3,12 +3,15 @@
 namespace App\Repositories\Nave;
 
 use Nave;
-use Illuminate\Support\Facades\Cache;
+use App;
 
 class BaseRepository {
    
-    protected function processGet($endpoint) {
-        $response = Nave::get($endpoint);
+    protected function processGet($endpoint, $params = []) {
+
+        $params['locale'] ??= App::getLocale();
+
+        $response = Nave::get($endpoint, $params);
 
         return $this->processResponse($response);     
     }    
@@ -21,6 +24,6 @@ class BaseRepository {
         }
 
         return [];   
-    }   
+    }      
     
 }

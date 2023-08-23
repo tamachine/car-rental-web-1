@@ -17,10 +17,8 @@ class TranslationRepository extends BaseRepository implements TranslationReposit
         $locale ? $params['locale'] = $locale : null;        
 
         $endpoint = 'translations';
-
-        $response = Nave::get($endpoint, $params);
-
-        return $this->processResponse($response);
+                
+        return $this->processGet($endpoint, $params);
     }
    
 }

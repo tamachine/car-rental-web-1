@@ -13,9 +13,7 @@ class CarCategoryRepository extends BaseRepository implements CarCategoryReposit
     public function all(): array {       
         $endpoint = 'carcategories';
 
-        $response = Nave::get($endpoint);
-
-        return $this->processCarTypeResponse($this->processResponse($response));        
+        return $this->processCarTypeResponse($this->processGet($endpoint));        
     }
 
     protected function processCarTypeResponse($data) {

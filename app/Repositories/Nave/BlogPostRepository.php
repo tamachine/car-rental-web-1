@@ -9,18 +9,14 @@ use App\Repositories\Nave\BaseRepository;
 class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInterface {
     
     public function all(): array {
-        $endpoint = 'posts';
+        $endpoint = 'posts';        
 
-        $response = Nave::get($endpoint);
-
-        return $this->processResponse($response);
+        return $this->processGet($endpoint);
     }
 
     public function latest(): array {
-        $endpoint = 'posts';
-
-        $response = Nave::get($endpoint, ['latest' => 3]);
-
-        return $this->processResponse($response);    
+        $endpoint = 'posts';        
+        
+        return $this->processGet($endpoint, ['latest' => 3]);
     }
 }
