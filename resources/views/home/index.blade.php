@@ -10,6 +10,8 @@
         @include('home.partial.reviews')
 
         @include('home.partial.box1')
+
+        @include('home.partial.cards-default')
     </div>
     
 @endsection
