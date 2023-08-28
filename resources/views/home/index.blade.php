@@ -20,6 +20,12 @@
         @include('home.partial.deals')
 
         @include('home.partial.faqs')
+
+        <div class="lg:px-10">
+
+            @include('home.partial.why-iceland')
+            
+        </div>
     </div>
     
 @endsection
