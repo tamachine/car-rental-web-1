@@ -28,6 +28,8 @@
             @include('home.partial.feature1')
             
             @include('home.partial.feature2')
+
+            @include('home.partial.testimonials')
             
         </div>
     </div>
