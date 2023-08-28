@@ -24,6 +24,10 @@
         <div class="lg:px-10">
 
             @include('home.partial.why-iceland')
+
+            @include('home.partial.feature1')
+            
+            @include('home.partial.feature2')
             
         </div>
     </div>
