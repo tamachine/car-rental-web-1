@@ -43,6 +43,22 @@ class BaseRepository {
         return [];   
     }     
     
+    /**
+     * Map as objects all the items in param array as a 'className' instances
+     * @param array $array the data array response
+     * @param string $className The class name to be maped
+     * @return array $response
+     */
+    protected function processArrayToObject($array, $className) {
+        $response = [];
+
+        foreach($array as $value) {                        
+            $response[] = ArrayHelper::mapArrayToObject($value, $className); 
+        }
+        
+        return $response;
+    }
+
     protected function cacheKeyForEndpoint($endpoint, $params) {
         return $endpoint.http_build_query($params);
     }

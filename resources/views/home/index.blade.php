@@ -18,6 +18,8 @@
         @include('home.partial.cards-elongated')
 
         @include('home.partial.deals')
+
+        @include('home.partial.faqs')
     </div>
     
 @endsection
