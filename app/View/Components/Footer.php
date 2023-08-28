@@ -14,6 +14,8 @@ class Footer extends Component
      */
     public $imagePath;
 
+    public $webpImagePath;
+
     public $items;
 
     protected $hrefs;
@@ -25,9 +27,11 @@ class Footer extends Component
      *
      * @return void
      */
-    public function __construct($imagePath)    
+    public function __construct($imagePath, $webpImagePath = null)    
     {        
         $this->imagePath = $imagePath;
+
+        $this->webpImagePath = $webpImagePath;
 
         $this->setColumns();
 

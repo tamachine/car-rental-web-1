@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\HTMLLang;
+use App\Services\WebPSupportChecker;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('getHTMLLang', function ($app, $parameters) {
             $HTMLLang = new HTMLLang($parameters[0]);
             return $HTMLLang->getHTMLLang();
+        });
+
+        $this->app->singleton(WebPSupportChecker::class, function ($app) {
+            return new WebPSupportChecker();
         });
     }
 

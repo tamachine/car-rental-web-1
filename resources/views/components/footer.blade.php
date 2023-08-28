@@ -5,8 +5,8 @@
     <div
         before=""
         class="relative before:content-[attr(before)] pt-28 md:pt-0 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:z-0 md:before:bg-footer-image-pattern before:bg-footer-image-pattern-mobile w-fill-screen">
-           
-            <img src="{{ $imagePath }}" class="w-full h-[587px] md:h-auto object-cover" />
+                       
+            <x-webp-image :imagePath="$imagePath"  :webpImagePath="$webpImagePath" class="w-full h-[587px] md:h-auto object-cover" />
             
             <div class="absolute md:top-[5%] top-0 left-0 right-0 bottom-0 z-10 text-lg">
                 <div class="max-w-6xl mx-auto px-3 sm:px-8 md:px-14">

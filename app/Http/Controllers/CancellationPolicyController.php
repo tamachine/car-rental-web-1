@@ -33,7 +33,7 @@ class CancellationPolicyController extends Controller implements ExtendsWebLayou
         return $this->pageRepository->seoConfiguration(Route::currentRouteName());
     }
 
-    protected function footerImagePath() : string
+    public function footerImagePath() : string
     {       
         return '/images/footer/home.png';
     }

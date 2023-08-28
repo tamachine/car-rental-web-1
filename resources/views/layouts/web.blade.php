@@ -56,7 +56,7 @@
             @livewireScripts                     
             
             @if (isset($footerImagePath))
-                <x-footer imagePath="{{ $footerImagePath }}" />
+                <x-footer :imagePath="$footerImagePath" :webp-image-path="$footerWebpImagePath" />
             @endif            
         </div>
 

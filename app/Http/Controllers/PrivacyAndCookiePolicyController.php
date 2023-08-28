@@ -33,7 +33,7 @@ class PrivacyAndCookiePolicyController extends Controller implements ExtendsWebL
         return $this->pageRepository->seoConfiguration(Route::currentRouteName());
     }
 
-    protected function footerImagePath() : string
+    public function footerImagePath() : string
     {       
         return '/images/footer/home.png';
     }

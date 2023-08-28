@@ -35,8 +35,8 @@
                             :class="{ 'h-[75px]' : !sameLocation }" 
                             class="inline-block image-wrapper rounded-t-md overflow-hidden"
                             >      
-                            @if($location->getFeaturedImageModelImageInstance->url)                                              
-                            <img src="{{ $location->getFeaturedImageModelImageInstance->url }}" class="w-full scale-105 group-hover:scale-[120%] transition-transform duration-700 " />
+                            @if($location->getFeaturedImageModelImageInstance->url) 
+                            <x-webp-image :image-path="$location->getFeaturedImageModelImageInstance->url" :webp-image-path="$location->getFeaturedImageModelImageInstance->webp_url" class="w-full scale-105 group-hover:scale-[120%] transition-transform duration-700 " />                                             
                             @endif
                         </div>
                         

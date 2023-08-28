@@ -12,7 +12,7 @@
    {{-- BACKGROUND IMAGE --}}
    <div class="image-wrapper absolute bottom-0 md:top-0 md:bottom-auto md:left-0 w-full md:h-full z-0 mt-[-50px]
    before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-2/6 before:bg-gradient-to-b before:from-white before:to-transparent">
-      <img src="{{ asset('images/home/rent-car-reykjavik.jpg') }}" class="hidden md:inline-block" />
-      <img src="{{ asset('images/home/rent-car-reykjavik-mb.jpg') }}" class="md:hidden" />
+      <x-webp-image :image-path="asset('images/home/rent-car-reykjavik.jpg')" class="hidden md:inline-block" />
+      <x-webp-image :image-path="asset('images/home/rent-car-reykjavik-mb.jpg')" class="md:hidden" />      
    </div>
 </div>

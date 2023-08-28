@@ -33,9 +33,14 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
         return $this->pageRepository->seoConfiguration(Route::currentRouteName());
     }
 
-    protected function footerImagePath() : string
+    public function footerImagePath(): string
     {       
         return asset('/images/footer/home.png');
+    }
+
+    public function footerWebpImagePath(): string|null
+    {               
+        return asset('/images/footer/home.webp');
     }
 
    
