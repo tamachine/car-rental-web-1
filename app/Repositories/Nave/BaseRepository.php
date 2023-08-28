@@ -6,6 +6,7 @@ use Nave;
 use App;
 use Cache;
 use App\Helpers\Cache as CacheHelper;
+use App\Helpers\ArrayHelper;
 
 class BaseRepository {
 

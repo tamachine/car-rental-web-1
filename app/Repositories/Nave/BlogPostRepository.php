@@ -28,29 +28,13 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         foreach($data as $blogPost) {
             $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
 
-            $image = $blogPost['getFeaturedImageModelImageInstance'];
+            $blogPostObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
 
-            if($image) {
-                $imageObject = ArrayHelper::mapArrayToObject($image, Image::class);                
-            } else {
-                $imageObject = new Image();
-            }
-
-            $blogPostObject->getFeaturedImageModelImageInstance = $imageObject;
-
-            $image_hover = $blogPost['getFeaturedImageHoverModelImageInstance'];
-
-            if($image_hover) {
-                $imageObject = ArrayHelper::mapArrayToObject($image_hover, Image::class);                
-            } else {
-                $imageObject = new Image();
-            }
-
-            $blogPostObject->getFeaturedImageHoverModelImageInstance = $imageObject;
+            $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
             
             $response[] = $blogPostObject;
         }
         
         return $response;
-    }
+    }    
 }
