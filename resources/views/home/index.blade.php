@@ -30,6 +30,10 @@
             @include('home.partial.feature2')
 
             @include('home.partial.testimonials')
+
+            <div class="pt-22 md:pt-56">
+                @include('home.partial.location-map')
+            </div>
             
         </div>
     </div>
