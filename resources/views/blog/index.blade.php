@@ -6,6 +6,8 @@
 
         @include('blog.partial.index.hero')
 
+        @include('blog.partial.index.filters')
+
         
     </div>  
     
