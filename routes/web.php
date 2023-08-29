@@ -27,6 +27,9 @@ Route::group(
     Route::get(LaravelLocalization::transRoute('routes.faq'), [\App\Http\Controllers\FaqController::class, 'index'])->name('faq');   
     Route::get(LaravelLocalization::transRoute('routes.blog'), [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');   
 
+    /* blog */
+    Route::get(LaravelLocalization::transRoute('routes.blog/search'), [\App\Http\Controllers\BlogSearchStringController::class, 'index'])->name('blog.search.string');       
+
     /* Privacy and terms */
     Route::get(LaravelLocalization::transRoute('routes.terms-and-conditions'), [\App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms'); 
     Route::get(LaravelLocalization::transRoute('routes.cancellation-policy'), [\App\Http\Controllers\CancellationPolicyController::class, 'index'])->name('cancellation'); 
