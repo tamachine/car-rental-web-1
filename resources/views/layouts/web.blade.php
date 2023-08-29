@@ -28,10 +28,9 @@
         <script src="{{ url(mix('js/app.js')) }}" defer></script>
         <script src="{{ url(mix('js/scripts.js')) }}"></script>
 
-        {{-- TODO
         <script src="{{ url(mix('js/swiper.js')) }}"></script>
         <script async src="//www.instagram.com/embed.js"></script>
-        --}}
+
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
