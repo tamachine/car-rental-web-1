@@ -11,6 +11,8 @@
         @include('blog.partial.index.latest')
 
         @include('blog.partial.index.top10')
+
+        @include('blog.partial.index.image')
     </div>  
     
 @endsection
