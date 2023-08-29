@@ -29,6 +29,7 @@ Route::group(
 
     /* blog */
     Route::get(LaravelLocalization::transRoute('routes.blog/search'), [\App\Http\Controllers\BlogSearchStringController::class, 'index'])->name('blog.search.string');       
+    Route::get(LaravelLocalization::transRoute('routes.blog/all'), [\App\Http\Controllers\BlogSearchAllController::class, 'index'])->name('blog.search.all');           
 
     /* Privacy and terms */
     Route::get(LaravelLocalization::transRoute('routes.terms-and-conditions'), [\App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms'); 

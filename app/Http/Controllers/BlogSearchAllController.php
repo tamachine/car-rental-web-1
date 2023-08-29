@@ -10,11 +10,10 @@ use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Models\SeoConfiguration;
 use App\Traits\Nave\ExtendsWebLayout;
 use Illuminate\Support\Facades\Route;
-
 /**
  * TODO
  */
-class BlogSearchStringController extends Controller implements ExtendsWebLayoutInterface
+class BlogSearchAllController extends Controller implements ExtendsWebLayoutInterface
 {
     use ExtendsWebLayout;
 
@@ -32,7 +31,7 @@ class BlogSearchStringController extends Controller implements ExtendsWebLayoutI
 
     public function index()
     {        
-        echo "blog search string";                  
+        echo "blog search all";                  
     }
 
     public function getSeoConfiguration(): SeoConfiguration
