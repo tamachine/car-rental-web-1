@@ -1,0 +1,1 @@
+<x-posts-summary :blog-posts="$latest" :title="__('blog.latest')" :view-all-href="route('blog.search.all')" />

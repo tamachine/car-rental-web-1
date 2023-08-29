@@ -8,7 +8,7 @@
 
         @include('blog.partial.index.filters')
 
-        
+        @include('blog.partial.index.latest')
     </div>  
     
 @endsection
