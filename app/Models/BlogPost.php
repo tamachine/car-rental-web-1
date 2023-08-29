@@ -14,9 +14,12 @@ class BlogPost {
     public $show_date;
     public $featured_image_path;
     public $featured_image_hover_path;
+    public $featured_image_url;
+    public $featured_image_hover_url;
     public $getFeaturedImageModelImageInstance;
     public $getFeaturedImageHoverModelImageInstance;
     public $author;
     public $category;
     public $url = '#'; //TODO
+    public $tags;
 }
