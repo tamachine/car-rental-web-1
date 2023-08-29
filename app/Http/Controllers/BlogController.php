@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\BlogTagRepositoryInterface;
 use App\Interfaces\BlogPostRepositoryInterface;
 use App\Interfaces\PageRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
@@ -14,18 +15,33 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
 {
     use ExtendsWebLayout;
 
+    protected $blogTagRepository;
+
     protected $blogPostRepository;
 
     protected $pageRepository;
-
-    public function __construct(BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
-        $this->blogPostRepository = $blogPostRepository;
-        $this->pageRepository     = $pageRepository;
+    
+    public function __construct(BlogTagRepositoryInterface $blogTagRepository, BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
+        $this->blogTagRepository  = $blogTagRepository;       
+        $this->blogPostRepository = $blogPostRepository;    
+        $this->pageRepository = $pageRepository;    
     }
 
     public function index()
-    {            
-        echo "blog"; die;
+    {                  
+        return view(
+            'blog.index', 
+            array_merge(
+                $this->webLayoutViewParams(),
+                [
+                    'tags'   => $this->blogTagRepository->all(),
+                    'latest' => $this->blogPostRepository->latest(4),
+                    'hero'   => $this->blogPostRepository->hero(),
+                    'categoriesWithPosts' => null, //TODO
+                    'breadcrumbs' => getBreadcrumb(['home', 'blog']),                
+                ]
+            )
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -36,6 +52,11 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
     public function footerImagePath() : string
     {       
         return '/images/footer/home.png';
+    }
+
+    public function footerWebpImagePath() : string
+    {       
+        return '/images/footer/home.webp';
     }
 
    
