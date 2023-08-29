@@ -24,14 +24,8 @@ class FaqRepository extends BaseRepository implements FaqRepositoryInterface {
 
         foreach($data as $faq) {
             $faqObject = ArrayHelper::mapArrayToObject($faq, Faq::class);     
-
-            $faqCategories = [];
-
-            foreach($faqObject->faqCategories as $faqCategory) {
-                $faqCategories[] = ArrayHelper::mapArrayToObject($faqCategory, FaqCategory::class);   
-            }
-
-            $faqObject->faqCategories = $faqCategories;
+            
+            $faqObject->faqCategories = $this->processArrayToObject($faqObject->faqCategories, FaqCategory::class);
             
             $response[] = $faqObject;
         }

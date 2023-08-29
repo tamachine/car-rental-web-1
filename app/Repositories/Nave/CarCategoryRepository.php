@@ -13,17 +13,7 @@ class CarCategoryRepository extends BaseRepository implements CarCategoryReposit
     public function all(): array {       
         $endpoint = 'carcategories';
 
-        return $this->processCarTypeResponse($this->processGet($endpoint));        
-    }
-
-    protected function processCarTypeResponse($data) {
-        $response = [];
-
-        foreach($data as $carType) {
-            $response[] = ArrayHelper::mapArrayToObject($carType, CarType::class);
-        }
-        
-        return $response;
-    }
+        return $this->processArrayToObject($this->processGet($endpoint), CarType::class);        
+    }   
    
 }

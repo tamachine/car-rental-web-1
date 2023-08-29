@@ -37,10 +37,8 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
 
         foreach($data as $location) {
             $locationObject = ArrayHelper::mapArrayToObject($location, Location::class);     
-
-            $imageObject = ArrayHelper::mapArrayToObject($location['getFeaturedImageModelImageInstance'], Image::class);   
-
-            $locationObject->getFeaturedImageModelImageInstance = $imageObject;
+            
+            $locationObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($location['getFeaturedImageModelImageInstance'], Image::class);   
             
             $response[] = $locationObject;
         }
