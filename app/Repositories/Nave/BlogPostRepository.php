@@ -3,20 +3,13 @@
 namespace App\Repositories\Nave;
 
 use App\Interfaces\BlogPostRepositoryInterface;
-use App\Helpers\ArrayHelper;
 use App\Models\BlogPost;
-use App\Models\Image;
-use App\Models\BlogAuthor;
-use App\Models\BlogCategory;
 use App\Repositories\Nave\BaseRepository;
-use App\Traits\Nave\HasSeoConfiguration;
 use App\Models\SeoConfiguration;
 use Illuminate\Support\Collection;
 
 class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInterface {
     
-    use HasSeoConfiguration;
-
     public function all(): array {
         $endpoint = 'posts';        
 
@@ -43,22 +36,5 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         $endpoint = 'posts/'.$blogPostSlug.'/seoconfigurations/'. $pageRouteName;        
 
         return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
-    }
-
-    protected function processBlogPostResponse($data): array {
-        $response = [];
-
-        foreach($data as $blogPost) {
-            $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
-
-            $blogPostObject->author = ArrayHelper::mapArrayToObject($blogPost['author'], BlogAuthor::class); 
-            $blogPostObject->category = ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
-            $blogPostObject->getFeaturedImageModelImageInstance      = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
-            $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
-            
-            $response[] = $blogPostObject;
-        }
-        
-        return $response;
-    }    
+    }   
 }

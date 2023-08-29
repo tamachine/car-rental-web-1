@@ -7,8 +7,11 @@ use App;
 use Cache;
 use App\Helpers\Cache as CacheHelper;
 use App\Helpers\ArrayHelper;
+use App\Traits\Nave\HasObjectResponses;
 
 class BaseRepository {
+
+    use HasObjectResponses;
 
     const CACHED = 1;
    
@@ -61,6 +64,6 @@ class BaseRepository {
 
     protected function cacheKeyForEndpoint($endpoint, $params) {
         return $endpoint.http_build_query($params);
-    }
+    }    
     
 }
