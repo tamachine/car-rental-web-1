@@ -6,6 +6,8 @@ use App\Interfaces\BlogPostRepositoryInterface;
 use App\Helpers\ArrayHelper;
 use App\Models\BlogPost;
 use App\Models\Image;
+use App\Models\BlogAuthor;
+use App\Models\BlogCategory;
 use App\Repositories\Nave\BaseRepository;
 use App\Traits\Nave\HasSeoConfiguration;
 use App\Models\SeoConfiguration;
@@ -18,22 +20,22 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
     public function all(): array {
         $endpoint = 'posts';        
 
-        return $this->processArrayToObject($this->processGet($endpoint, [], self::CACHED), BlogPost::class);
+        return $this->processBlogPostResponse($this->processGet($endpoint, [], self::CACHED), BlogPost::class);                    
     }
 
     public function latest($take = 3): Collection {
         return collect($this->all())->take($take);        
     }
 
-    public function hero(): Collection {
+    public function hero(): Collection {        
         return collect($this->all())->filter(function($post) {
-            return ($post->hero);
+            return $post->hero;
         }); 
     }
 
     public function top(): Collection {
         return collect($this->all())->filter(function($post) {
-            return ($post->top);
+            return $post->top;
         }); 
     }
 
@@ -49,6 +51,8 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         foreach($data as $blogPost) {
             $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
 
+            $blogPostObject->author = ArrayHelper::mapArrayToObject($blogPost['author'], BlogAuthor::class); 
+            $blogPostObject->category = ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
             $blogPostObject->getFeaturedImageModelImageInstance      = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
             $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
             
