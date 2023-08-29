@@ -37,6 +37,7 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
                     'tags'   => $this->blogTagRepository->all(),
                     'latest' => $this->blogPostRepository->latest(4),
                     'hero'   => $this->blogPostRepository->hero(),
+                    'top'    => $this->blogPostRepository->top(),
                     'categoriesWithPosts' => null, //TODO
                     'breadcrumbs' => getBreadcrumb(['home', 'blog']),                
                 ]

@@ -9,6 +9,8 @@
         @include('blog.partial.index.filters')
 
         @include('blog.partial.index.latest')
+
+        @include('blog.partial.index.top10')
     </div>  
     
 @endsection
