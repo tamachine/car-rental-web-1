@@ -51,12 +51,12 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return '/images/footer/blog.png';
     }
 
     public function footerWebpImagePath() : string
     {       
-        return '/images/footer/home.webp';
+        return '/images/footer/blog.webp';
     }
 
    
