@@ -13,6 +13,8 @@
         @include('blog.partial.index.top10')
 
         @include('blog.partial.index.image')
+
+        @include('blog.partial.index.postsByCategory')
     </div>  
     
 @endsection

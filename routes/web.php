@@ -30,7 +30,8 @@ Route::group(
     /* blog */
     Route::get(LaravelLocalization::transRoute('routes.blog/search'), [\App\Http\Controllers\BlogSearchStringController::class, 'index'])->name('blog.search.string');       
     Route::get(LaravelLocalization::transRoute('routes.blog/all'), [\App\Http\Controllers\BlogSearchAllController::class, 'index'])->name('blog.search.all');  
-    Route::get(LaravelLocalization::transRoute('routes.blog/top-10'), [\App\Http\Controllers\BlogSearchTop10Controller::class, 'index'])->name('blog.search.top-10');       
+    Route::get(LaravelLocalization::transRoute('routes.blog/top-10'), [\App\Http\Controllers\BlogSearchTop10Controller::class, 'index'])->name('blog.search.top-10');     
+    Route::get(LaravelLocalization::transRoute('routes.blog/category/{blog_category_slug}'), [\App\Http\Controllers\BlogSearchCategoryController::class, 'index'])->name('blog.search.category');         
 
     /* Privacy and terms */
     Route::get(LaravelLocalization::transRoute('routes.terms-and-conditions'), [\App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms'); 

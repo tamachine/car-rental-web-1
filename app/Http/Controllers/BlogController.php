@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\BlogCategoryRepositoryInterface;
 use App\Interfaces\BlogTagRepositoryInterface;
 use App\Interfaces\BlogPostRepositoryInterface;
 use App\Interfaces\PageRepositoryInterface;
@@ -19,16 +20,16 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
 
     protected $blogPostRepository;
 
-    protected $pageRepository;
+    protected $pageRepository;   
     
-    public function __construct(BlogTagRepositoryInterface $blogTagRepository, BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
+    public function __construct(BlogTagRepositoryInterface $blogTagRepository, BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {              
         $this->blogTagRepository  = $blogTagRepository;       
         $this->blogPostRepository = $blogPostRepository;    
-        $this->pageRepository = $pageRepository;    
+        $this->pageRepository     = $pageRepository;    
     }
 
     public function index()
-    {                  
+    {                       
         return view(
             'blog.index', 
             array_merge(
@@ -37,8 +38,7 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
                     'tags'   => $this->blogTagRepository->all(),
                     'latest' => $this->blogPostRepository->latest(4),
                     'hero'   => $this->blogPostRepository->hero(),
-                    'top'    => $this->blogPostRepository->top(),
-                    'categoriesWithPosts' => null, //TODO
+                    'top'    => $this->blogPostRepository->top(),                    
                     'breadcrumbs' => getBreadcrumb(['home', 'blog']),                
                 ]
             )
