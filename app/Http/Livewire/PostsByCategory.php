@@ -11,7 +11,7 @@ class PostsByCategory extends Component
 {
     use WithPagination;
 
-    const CATEGORIES_PER_PAGE = 1;
+    const CATEGORIES_PER_PAGE = 2;
 
     protected $blogCategoryRepository;
 
