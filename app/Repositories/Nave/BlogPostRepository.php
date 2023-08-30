@@ -16,7 +16,7 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
     public function all(): array {
         $endpoint = 'posts';        
 
-        return $this->processBlogPostResponse($this->processGet($endpoint, [], self::CACHED), BlogPost::class);                    
+        return $this->processBlogPostResponse($this->processGet($endpoint, [], self::CACHED));                    
     }
 
     public function latest($take = 3): Collection {

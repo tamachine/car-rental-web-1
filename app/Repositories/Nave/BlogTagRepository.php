@@ -4,7 +4,6 @@ namespace App\Repositories\Nave;
 
 use App\Interfaces\BlogTagRepositoryInterface;
 use App\Repositories\Nave\BaseRepository;
-use App\Models\BlogTag;
 use App\Traits\Nave\HasObjectResponses;
 
 class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInterface {
@@ -14,6 +13,6 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
     public function all(bool $postsPublisehd = true): array {
         $endpoint = 'posttags';        
 
-        return $this->processBlogTagResponse($this->processGet($endpoint, ['postsPublished' => $postsPublisehd], self::CACHED), BlogTag::class);        
+        return $this->processBlogTagResponse($this->processGet($endpoint, ['postsPublished' => $postsPublisehd], self::CACHED));        
     }    
 }
