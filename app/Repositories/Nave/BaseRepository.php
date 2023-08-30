@@ -16,7 +16,7 @@ class BaseRepository {
     const CACHED = 1;
    
     /**
-     * returns the Nave::get response
+     * returns the Nave::sendHttpRequest('get' ...) response
      * @param string $endpoint
      * @param array $params
      * @param int $options CACHED to get cached results
@@ -27,14 +27,27 @@ class BaseRepository {
 
         if($options && self::CACHED) {
             $response = Cache::store(CacheHelper::API_STORE)->remember($this->cacheKeyForEndpoint($endpoint, $params), CacheHelper::DEFAULT_TIME, function() use($endpoint, $params) {
-                return Nave::get($endpoint, $params);
+                return Nave::sendHttpRequest('get', $endpoint, $params);
             });
         } else {
-            $response = Nave::get($endpoint, $params);
+            $response = Nave::sendHttpRequest('get', $endpoint, $params);
         }
 
         return $this->processResponse($response);     
-    }    
+    }   
+    
+    /**
+     * returns the Nave::sendHttpRequest('put' ...) response
+     * @param string $endpoint
+     * @param array $params     
+     */
+    protected function processPut($endpoint, $params = []) {               
+        $response = Nave::sendHttpRequest('put', $endpoint, $params);
+        
+        if(isset($response['success'])) {
+            return $response['success'];
+        }  
+    }  
 
     protected function processResponse($response) {
         if(isset($response['success'])) {

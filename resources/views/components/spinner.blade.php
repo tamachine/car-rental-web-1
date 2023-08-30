@@ -1,0 +1,1 @@
+<img {{ $attributes }} class="mx-auto" src="{{ asset('images/icons/spinner.svg') }}" />

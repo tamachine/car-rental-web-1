@@ -16,12 +16,12 @@ class Api
     public function __construct() {
         $this->token = config('nave.token');
         $this->url   = config('nave.url');
-    }
+    }   
 
-    public function get($endpoint, $params = []) {        
+    public function sendHttpRequest($method, $endpoint, $params = []) {        
                                
         try {
-            $this->response = Http::withToken($this->token)->get($this->url.$endpoint, $params);  
+            $this->response = Http::withToken($this->token)->{$method}($this->url.$endpoint, $params);  
 
             if ($this->response->successful()) {
                 return $this->response->json();

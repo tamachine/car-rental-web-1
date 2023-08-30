@@ -15,6 +15,8 @@
         @include('blog.partial.index.image')
 
         @include('blog.partial.index.postsByCategory')
+
+        @include('blog.partial.index.newsletter')
     </div>  
     
 @endsection
