@@ -5,9 +5,12 @@ namespace App\Repositories\Nave;
 use App\Interfaces\PageRepositoryInterface;
 use App\Models\SeoConfiguration;
 use App\Repositories\Nave\BaseRepository;
+use App\Traits\Nave\HasObjectResponses;
 
 class PageRepository extends BaseRepository implements PageRepositoryInterface {
         
+    use HasObjectResponses;
+    
     public function all(): array {
         $endpoint = 'pages';
 

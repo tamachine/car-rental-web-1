@@ -8,10 +8,13 @@ use App;
 use App\Helpers\ArrayHelper;
 use App\Models\Location;
 use App\Models\Image;
+use App\Traits\Nave\HasObjectResponses;
 use Illuminate\Support\Collection;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
+    use HasObjectResponses;
+
     public function all($locale = null): array {          
         $params['locale'] = $locale ? $locale : App::getLocale();
 

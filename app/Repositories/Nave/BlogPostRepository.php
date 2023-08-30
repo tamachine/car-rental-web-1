@@ -6,9 +6,12 @@ use App\Interfaces\BlogPostRepositoryInterface;
 use App\Models\BlogPost;
 use App\Repositories\Nave\BaseRepository;
 use App\Models\SeoConfiguration;
+use App\Traits\Nave\HasObjectResponses;
 use Illuminate\Support\Collection;
 
 class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInterface {
+    
+    use HasObjectResponses;
     
     public function all(): array {
         $endpoint = 'posts';        

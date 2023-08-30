@@ -20,7 +20,7 @@ use App\Helpers\ArrayHelper;
  */
 trait HasObjectResponses {
 
-    protected function processBlogTagResponse($data): array {
+    public function processBlogTagResponse($data): array {
         $response = [];
 
         foreach($data as $blogTag) {
@@ -34,7 +34,7 @@ trait HasObjectResponses {
         return $response;
     }    
 
-    protected function processBlogPostResponse($data): array {
+    public function processBlogPostResponse($data): array {
         $response = [];
 
         foreach($data as $blogPost) {
@@ -68,7 +68,7 @@ trait HasObjectResponses {
         return $seoConfiguration;
     }
 
-    protected function processFaqResponse($data): array {
+    public function processFaqResponse($data): array {
         $response = [];
 
         foreach($data as $faq) {
@@ -80,5 +80,14 @@ trait HasObjectResponses {
         }
         
         return $response;
+    }
+
+    public function processCurrenciesResponse($response) {                
+
+        if(isset($response['currencies'])) {
+            return $response['currencies']['data'];
+        }
+
+        return [];
     }
 }
