@@ -15,8 +15,9 @@ class NewsletterSubmit extends Component
 
     public $containerClass;
     public $inputClass;
-    public $buttonClass;
-    public $mobileButtonClass;
+    public $buttonClass;    
+    public $buttonText;
+    public $modalId;
     
     public function render()
     {
@@ -34,7 +35,7 @@ class NewsletterSubmit extends Component
         $newsletterUserRepository->submitted($this->newsletter_email);
 
         $this->reset('newsletter_email');
-        
-        $this->emit('openModal');        
+                 
+        $this->emit('openModal:'.$this->modalId);  
     }
 }

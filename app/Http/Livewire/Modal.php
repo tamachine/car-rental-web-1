@@ -14,8 +14,13 @@ class Modal extends Component
     public $modalTitle;
 
     public $modalText;
-    
-    protected $listeners = ['openModal' => 'openModal'];
+
+    public $modalId;    
+
+    protected function getListeners()
+    {
+        return ['openModal:' . $this->modalId => 'openModal'];
+    }
 
     public function closeModal()
     {

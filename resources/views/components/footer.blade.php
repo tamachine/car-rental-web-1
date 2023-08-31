@@ -19,15 +19,27 @@
     </div>
     <div class="bg-[#070000] w-fill-screen">
         <div class="max-w-6xl mx-auto px-1 md:py-3">
-            <div class="bg-[#1C1C1C] flex flex-col gap-5 md:gap-0 md:flex-row flex-between items-center text-[#8c8c8c] rounded-xl px-3 sm:px-8 md:px-9 py-7">
+            <div class="relative bg-[#1C1C1C] flex flex-col gap-5 md:gap-0 md:flex-row flex-between items-center text-[#8c8c8c] rounded-xl px-3 sm:px-8 md:px-9 py-7">
+                
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                    <x-wire-spinner /> 
+                </div>
+
+                <livewire:modal wire:key="modalFooter" modalId="modalFooter" :modal-title="__('newsletter.email_sent-title')" :modal-text="__('newsletter.email_sent-text')" />
+
                 <div class="flex-1 flex flex-col w-full">
                     <div class="font-fredoka-medium font-medium text-2xl text-white">{!! __('footer.newsletter-title') !!}</div>
                     <div class="text-[#8c8c8c] md:text-base text-sm">{!! __('footer.newsletter-text') !!}</div>
                 </div>
-                <form class="flex-1 w-full flex rounded-[10px] border border-gray-secondary/50 px-3 py-1.5">
-                    <input class="text-white bg-transparent w-full p-0 border-none placeholder:text-[#7E838F] placeholder:text-base focus:border-none focus:ring-0" type="text" placeholder="{!! __('footer.newsletter-input-placeholder') !!}" />
-                    <button type="submit" class="btn btn-red px-7 md:px-6 py-3 md:py-3 text-sm font-sans-medium font-medium rounded-md">{!! __('footer.newsletter-form-submit') !!}</button>
-                </form>
+
+                <livewire:newsletter-submit 
+                    wire:key="newsletter-submit-footer"
+                    containerClass="flex-1 w-full flex rounded-[10px] border border-gray-secondary/50 px-3 py-1.5" 
+                    inputClass="text-white bg-transparent w-full p-0 border-none placeholder:text-[#7E838F] placeholder:text-base focus:border-none focus:ring-0"
+                    buttonClass="btn btn-red px-7 md:px-6 py-3 md:py-3 text-sm font-sans-medium font-medium rounded-md"
+                    buttonText="{!! __('footer.newsletter-form-submit') !!}"
+                    modalId="modalFooter"
+                />                
             </div>
 
             <div class="

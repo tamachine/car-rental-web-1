@@ -29,7 +29,7 @@ class BlogController extends Controller implements ExtendsWebLayoutInterface
     }
 
     public function index()
-    {                       
+    {              
         return view(
             'blog.index', 
             array_merge(
