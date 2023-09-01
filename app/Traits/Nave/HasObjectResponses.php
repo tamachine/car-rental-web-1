@@ -38,18 +38,23 @@ trait HasObjectResponses {
         $response = [];
 
         foreach($data as $blogPost) {
-            $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
-
-            $blogPostObject->author = ArrayHelper::mapArrayToObject($blogPost['author'], BlogAuthor::class); 
-            $blogPostObject->category = ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
-            $blogPostObject->tags = $this->processBlogTagResponse($blogPost['tags'], BlogTag::class);
-            $blogPostObject->getFeaturedImageModelImageInstance      = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
-            $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
-            
-            $response[] = $blogPostObject;
+            $response[] = $this->processSingleBlogPostResponse($blogPost);
         }
         
         return $response;
+    }    
+
+    public function processSingleBlogPostResponse(array $blogPost): BlogPost {
+       
+        $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
+
+        $blogPostObject->author = ArrayHelper::mapArrayToObject($blogPost['author'], BlogAuthor::class); 
+        $blogPostObject->category = ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
+        $blogPostObject->tags = $this->processBlogTagResponse($blogPost['tags'], BlogTag::class);
+        $blogPostObject->getFeaturedImageModelImageInstance      = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
+        $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
+        
+        return $blogPostObject;       
     }    
 
     public function processSeoConfiguration($data) {

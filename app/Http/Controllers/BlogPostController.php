@@ -33,8 +33,20 @@ class BlogPostController extends Controller implements ExtendsWebLayoutInterface
             abort(404);
         }
 
-        dd($this->blogPost);
-        return view('blog.show', $this->webLayoutViewParams());        
+        return $this->postView();        
+    }
+
+    protected function postView() {        
+        return view(
+            'blog.show',
+            array_merge(
+                $this->webLayoutViewParams(),
+                [
+                    'post' => $this->blogPost,
+                    'breadcrumbs' => getBreadcrumb(['home', 'blog', $this->blogPost->title]),    
+                    'related' => $this->blogPost->related_posts                         
+                ])
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration

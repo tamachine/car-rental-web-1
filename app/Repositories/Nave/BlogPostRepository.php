@@ -27,7 +27,7 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
 
         if(empty($data)) return null;
 
-        return ArrayHelper::mapArrayToObject($this->processGet($endpoint, [], self::CACHED), BlogPost::class);        
+        return $this->processSingleBlogPostResponse($this->processGet($endpoint, [], self::CACHED));        
     }
 
     public function latest($take = 3): Collection {

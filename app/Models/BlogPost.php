@@ -23,4 +23,5 @@ class BlogPost {
     public $category;
     public $url = '#'; //TODO
     public $tags;
+    public $related_posts;
 }
