@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ App::getLocale()  }}">
+<html 
+    lang="{{ App::getLocale()  }}"
+    x-data="{'showMobileNavBar': false, 'htmlOverflowHidden': false}"
+    :class="htmlOverflowHidden || showMobileNavBar ? 'overflow-hidden' : ''"
+    x-ref="html"
+    >
     <head>
         <meta charset="utf-8">
         <meta name="theme-color" content="#E11166" >
