@@ -7,6 +7,6 @@
 
         @include('blog.partial.show.image')
        
-        
+        @include('blog.partial.show.title')
     </div>
 @endsection
