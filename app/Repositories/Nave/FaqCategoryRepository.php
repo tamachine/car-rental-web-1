@@ -13,6 +13,6 @@ class FaqCategoryRepository extends BaseRepository implements FaqCategoryReposit
 
         $params['all'] = $all;
         
-        return $this->processArrayToObject($this->processGet($endpoint, $params), FaqCategory::class);
+        return $this->processArrayToObjects($this->processGet($endpoint, $params), FaqCategory::class);
     }      
 }

@@ -14,7 +14,7 @@ class CarCategoryRepository extends BaseRepository implements CarCategoryReposit
     public function all(): array {       
         $endpoint = 'carcategories';
 
-        return $this->processArrayToObject($this->processGet($endpoint), CarType::class);        
+        return $this->processArrayToObjects($this->processGet($endpoint), CarType::class);        
     }   
    
 }

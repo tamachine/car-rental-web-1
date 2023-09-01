@@ -2,12 +2,15 @@
 
 namespace App\Interfaces;
 
+use App\Models\BlogPost;
 use App\Models\SeoConfiguration;
 use Illuminate\Support\Collection;
 
 interface BlogPostRepositoryInterface 
 {
     public function all(): array;   
+
+    public function findBySlug($slug): BlogPost|null;  
     
     public function latest($take = 3): Collection; 
 

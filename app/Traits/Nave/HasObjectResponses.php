@@ -74,7 +74,7 @@ trait HasObjectResponses {
         foreach($data as $faq) {
             $faqObject = ArrayHelper::mapArrayToObject($faq, Faq::class);     
             
-            $faqObject->faqCategories = $this->processArrayToObject($faqObject->faqCategories, FaqCategory::class);
+            $faqObject->faqCategories = $this->processArrayToObjects($faqObject->faqCategories, FaqCategory::class);
             
             $response[] = $faqObject;
         }

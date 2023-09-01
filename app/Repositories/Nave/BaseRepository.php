@@ -65,7 +65,7 @@ class BaseRepository {
      * @param string $className The class name to be maped
      * @return array $response
      */
-    protected function processArrayToObject($array, $className) {
+    protected function processArrayToObjects($array, $className) {
         $response = [];
 
         foreach($array as $value) {                        

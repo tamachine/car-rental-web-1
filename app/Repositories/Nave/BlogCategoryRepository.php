@@ -14,7 +14,7 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
     public function all(bool $postsPublisehd = true): array {
         $endpoint = 'postcategories';        
 
-        return $this->processArrayToObject($this->processGet($endpoint, ['postsPublished' => true], self::CACHED), BlogCategory::class);                    
+        return $this->processArrayToObjects($this->processGet($endpoint, ['postsPublished' => true], self::CACHED), BlogCategory::class);                    
     }
 
     public function posts(string $category_hashid): array {

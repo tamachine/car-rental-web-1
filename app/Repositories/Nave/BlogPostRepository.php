@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Nave;
 
+use App\Helpers\ArrayHelper;
 use App\Interfaces\BlogPostRepositoryInterface;
 use App\Models\BlogPost;
 use App\Repositories\Nave\BaseRepository;
@@ -17,6 +18,16 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         $endpoint = 'posts';        
 
         return $this->processBlogPostResponse($this->processGet($endpoint, [], self::CACHED));                    
+    }
+
+    public function findBySlug($slug): BlogPost|null {
+        $endpoint = 'posts/'.$slug;
+
+        $data = $this->processGet($endpoint, [], self::CACHED);
+
+        if(empty($data)) return null;
+
+        return ArrayHelper::mapArrayToObject($this->processGet($endpoint, [], self::CACHED), BlogPost::class);        
     }
 
     public function latest($take = 3): Collection {

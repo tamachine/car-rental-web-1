@@ -27,7 +27,8 @@ Route::group(
     Route::get(LaravelLocalization::transRoute('routes.faq'), [\App\Http\Controllers\FaqController::class, 'index'])->name('faq');   
     Route::get(LaravelLocalization::transRoute('routes.blog'), [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');   
 
-    /* blog */
+    /* blog */    
+    Route::get(LaravelLocalization::transRoute('routes.blog/post/{blog_post_slug}'), [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog.show');       
     Route::get(LaravelLocalization::transRoute('routes.blog/search'), [\App\Http\Controllers\BlogSearchStringController::class, 'index'])->name('blog.search.string');       
     Route::get(LaravelLocalization::transRoute('routes.blog/all'), [\App\Http\Controllers\BlogSearchAllController::class, 'index'])->name('blog.search.all');  
     Route::get(LaravelLocalization::transRoute('routes.blog/top-10'), [\App\Http\Controllers\BlogSearchTop10Controller::class, 'index'])->name('blog.search.top-10');     

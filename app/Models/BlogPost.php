@@ -4,6 +4,7 @@ namespace App\Models;
 
 class BlogPost {
     public $hashid;
+    public $slug;
     public $title;
     public $published_at;
     public $summary;
