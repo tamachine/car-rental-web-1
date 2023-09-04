@@ -21,7 +21,13 @@ class BlogPost {
     public $getFeaturedImageHoverModelImageInstance;
     public $author;
     public $category;
-    public $url = '#'; //TODO
+    public $url;
     public $tags;
     public $related_posts;
+    public $prev_post;
+    public $next_post;
+
+    public function setUrl($value) {
+        $this->url = $value;
+    }
 }

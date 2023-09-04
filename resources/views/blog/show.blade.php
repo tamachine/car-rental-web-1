@@ -8,5 +8,9 @@
         @include('blog.partial.show.image')
        
         @include('blog.partial.show.title')
+
+        @include('blog.partial.show.content')
+
+        @include('blog.partial.show.pagination')
     </div>
 @endsection
