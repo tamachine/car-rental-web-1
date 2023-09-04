@@ -12,5 +12,7 @@
         @include('blog.partial.show.content')
 
         @include('blog.partial.show.pagination')
+
+        @include('blog.partial.show.newsletter')
     </div>
 @endsection
