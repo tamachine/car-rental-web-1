@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\BlogCategoryRepositoryInterface;
-use App\Interfaces\BlogTagRepositoryInterface;
 use App\Interfaces\BlogPostRepositoryInterface;
-use App\Interfaces\PageRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Models\BlogPost;
 use App\Models\SeoConfiguration;
