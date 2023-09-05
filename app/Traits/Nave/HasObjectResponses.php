@@ -49,7 +49,7 @@ trait HasObjectResponses {
         $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
 
         if(isset($blogPost['author'])) $blogPostObject->author =        $this->processSingleBlogAuthorResponse($blogPost['author']);
-        if(isset($blogPost['category'])) $blogPostObject->category =    ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
+        if(isset($blogPost['category'])) $blogPostObject->category =    $this->processSingleBlogCategoryResponse($blogPost['category']);
         if(isset($blogPost['tags'])) $blogPostObject->tags =            $this->processBlogTagResponse($blogPost['tags'], BlogTag::class);
         if(isset($blogPost['getFeaturedImageModelImageInstance']))      $blogPostObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
         if(isset($blogPost['getFeaturedImageHoverModelImageInstance'])) $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
@@ -68,6 +68,14 @@ trait HasObjectResponses {
         $blogAuthor->setUrl(route('blog.search.author', ['blog_author_slug' => $blogAuthor->slug]));
       
         return $blogAuthor;    
+    }
+
+    public function processSingleBlogCategoryResponse(array $blogCategory): BlogCategory {
+        $blogCategory = ArrayHelper::mapArrayToObject($blogCategory, BlogCategory::class); 
+
+        $blogCategory->setUrl(route('blog.search.category', ['blog_category_slug' => $blogCategory->slug]));
+      
+        return $blogCategory;    
     }
 
     public function processSeoConfiguration($data) {

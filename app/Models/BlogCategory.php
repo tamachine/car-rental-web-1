@@ -20,4 +20,8 @@ class BlogCategory {
     public function postsPublished(): Collection {
         return collect($this->blogCategoryRepository->posts($this->hashid));
     }
+
+    public function setUrl($value) {
+        $this->url = $value;
+    }
 }
