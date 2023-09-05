@@ -3,10 +3,10 @@
         type="search" 
         id="blog_search"
         name="blog_search"
-        wire:model.debounce.200ms="search"
+        wire:model.debounce.300ms="search"
         wire:key="blog_search"
         placeholder="{{ __('blog-search.input') }}"
-        class="border-none rounded-lg w-full focus:ring-0 focus:outline-transparent focus:border-0 focus:shadow-none text-base md:text-lg px-5"
+        class="border-none rounded-lg w-full focus:ring-0 focus:outline-transparent focus:border-0 focus:shadow-none text-base md:text-lg px-3 py-2"
         @keydown.enter="{{ $onclick ? 'handleClick' : '' }}"
         />
     <button                 

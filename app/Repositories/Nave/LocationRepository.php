@@ -8,12 +8,16 @@ use App;
 use App\Helpers\ArrayHelper;
 use App\Models\Location;
 use App\Models\Image;
+use App\Traits\Nave\SearchInAll;
 use App\Traits\Nave\HasObjectResponses;
-use Illuminate\Support\Collection;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
     use HasObjectResponses;
+
+    use SearchInAll {
+        findByHashid as protected findByHashidFromSearchInAll;
+    }
 
     public function all($locale = null): array {          
         $params['locale'] = $locale ? $locale : App::getLocale();
@@ -21,19 +25,11 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
         $endpoint = 'locations';
         
         return $this->processLocationResponse($this->processGet($endpoint, $params, self::CACHED));
-    }
+    }      
 
     public function findByHashid($hashId, $locale = null): Location|null {
-        return collect($this->all($locale))->first(function ($location) use ($hashId) {
-            return $location->hashid == $hashId;
-        });
+        return $this->findByHashidFromSearchInAll($hashId, $locale);
     }
-
-    public function like($attribute, $value, $locale = null): Collection|null {
-        return collect($this->all($locale))->filter(function ($location) use ($attribute, $value) {
-            return str_contains($value, $location->$attribute);
-        })->values();
-    }   
    
     protected function processLocationResponse($data): array {
         $response = [];

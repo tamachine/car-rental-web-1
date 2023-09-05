@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 interface BlogPostRepositoryInterface 
 {
-    public function all(): array;   
+    public function all(string $search = null, string $tag_hashid = null): array;   
 
     public function findBySlug($slug): BlogPost|null;  
     
@@ -18,5 +18,5 @@ interface BlogPostRepositoryInterface
 
     public function top(): Collection; 
     
-    public function seoConfiguration($blogPostSlug, $pageRouteName): SeoConfiguration;
+    public function seoConfiguration($blogPostSlug, $pageRouteName): SeoConfiguration;    
 }

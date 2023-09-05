@@ -32,7 +32,7 @@ class BlogSearchStringController extends Controller implements ExtendsWebLayoutI
 
     public function index()
     {        
-        echo "blog search string";                  
+        return view('blog.search.string', $this->webLayoutViewParams());                
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -42,12 +42,12 @@ class BlogSearchStringController extends Controller implements ExtendsWebLayoutI
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return asset('/images/footer/blog.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return '/images/footer/home.webp';
+        return asset('/images/footer/blog.webp');
     }
 
    

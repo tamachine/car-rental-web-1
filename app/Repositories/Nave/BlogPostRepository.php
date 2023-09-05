@@ -14,10 +14,15 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
     
     use HasObjectResponses;
     
-    public function all(): array {
-        $endpoint = 'posts';        
+    public function all(string $search = null, string $tag_hashid = null): array {
+        $endpoint = 'posts';  
+        
+        $params = [];
+        
+        if(isset($search))      $params['search'] = $search;
+        if(isset($tag_hashid))  $params['tag_hash_id'] = $tag_hashid;
 
-        return $this->processBlogPostResponse($this->processGet($endpoint, [], self::CACHED));                    
+        return $this->processBlogPostResponse($this->processGet($endpoint, $params, self::CACHED));                    
     }
 
     public function findBySlug($slug): BlogPost|null {
@@ -50,5 +55,5 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         $endpoint = 'posts/'.$blogPostSlug.'/seoconfigurations/'. $pageRouteName;        
 
         return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
-    }   
+    }    
 }

@@ -14,5 +14,7 @@
         @include('blog.partial.show.pagination')
 
         @include('blog.partial.show.newsletter')
+
+        @include('blog.partial.show.related')
     </div>
 @endsection
