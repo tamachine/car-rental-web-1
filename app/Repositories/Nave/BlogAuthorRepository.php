@@ -33,7 +33,7 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
         return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
     }   
 
-    public function posts(string $author_hashid, string $search = null, string $tag_hash_id = null): array {
+    public function posts(string $author_hashid, string|null $search = null, string|null $tag_hash_id = null): array {
         $endpoint = 'posts';  
 
         $params['author_hashid'] = $author_hashid;
