@@ -26,7 +26,7 @@ class BlogSearchAuthorController extends Controller implements ExtendsWebLayoutI
     {               
         $this->blogAuthor = $this->findOrfail($this->blogAuthorRepository->findBySlug($blog_author_slug));
 
-        echo $this->blogAuthor->slug; die;
+        return view('blog.search.author', array_merge(['author' => $this->blogAuthor], $this->webLayoutViewParams()));   
     }
 
     public function getSeoConfiguration(): SeoConfiguration

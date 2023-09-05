@@ -63,7 +63,11 @@ trait HasObjectResponses {
     }    
 
     public function processSingleBlogAuthorResponse(array $blogAuthor): BlogAuthor {
-        return ArrayHelper::mapArrayToObject($blogAuthor, BlogAuthor::class); 
+        $blogAuthor = ArrayHelper::mapArrayToObject($blogAuthor, BlogAuthor::class); 
+
+        $blogAuthor->setUrl(route('blog.search.author', ['blog_author_slug' => $blogAuthor->slug]));
+      
+        return $blogAuthor;    
     }
 
     public function processSeoConfiguration($data) {

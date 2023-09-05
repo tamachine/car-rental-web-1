@@ -10,4 +10,12 @@ class BlogAuthor {
     public $photo;
     public $url;
     public $slug;
+
+    public function setUrl($value) {
+        $this->url = $value;
+    }
+
+    public function toJson() {
+        return json_encode($this);
+    }
 }

@@ -8,10 +8,13 @@ use App\Models\BlogAuthor;
 use App\Models\SeoConfiguration;
 use App\Repositories\Nave\BaseRepository;
 use App\Traits\Nave\HasObjectResponses;
+use App\Traits\Nave\SearchInAll;
 
 class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositoryInterface {
     
-    use HasObjectResponses;    
+    use HasObjectResponses;   
+    
+    use SearchInAll;
     
     public function findBySlug($slug): BlogAuthor|null {
         $endpoint = 'postauthors/'.$slug;
@@ -25,9 +28,25 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
     }
 
     public function seoConfiguration($blogAuthorSlug, $pageRouteName): SeoConfiguration { 
-        $endpoint = 'posts/'.$blogAuthorSlug.'/seoconfigurations/'. $pageRouteName;        
+        $endpoint = 'postauthors/'.$blogAuthorSlug.'/seoconfigurations/'. $pageRouteName;        
 
         return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
     }   
+
+    public function posts(string $author_hashid, string $search = null, string $tag_hash_id = null): array {
+        $endpoint = 'posts';  
+
+        $params['author_hashid'] = $author_hashid;
+
+        if(isset($search)) {
+            $params['search'] = $search;
+        }
+
+        if(isset($tag_hash_id)) {
+            $params['tag_hash_id'] = $tag_hash_id;
+        }
+
+        return $this->processBlogPostResponse($this->processGet($endpoint, $params, self::CACHED));
+    }
    
 }

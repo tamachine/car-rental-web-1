@@ -34,7 +34,12 @@ trait BlogSearchTrait
      /**
      * @var Collection
      */
-    protected $posts;    
+    protected $posts;  
+    
+    /**
+     * @var BlogPostRepositoryInterface
+     */
+    protected $blogPostRepository;
 
     /**
      * Method to be called in the view when the tag button is clicked
@@ -77,18 +82,26 @@ trait BlogSearchTrait
     }
 
     /**
+     * Returns the query search for the post that has to be shown
+     */
+    protected function search() {        
+        return $this->blogPostRepository->all($this->search, $this->tagHashid);
+    }    
+
+    /**
      * render the view for the filtered posts
      */
     public function render(BlogTagRepositoryInterface $blogTagRepository, Paginator $paginator, BlogPostRepositoryInterface $blogPostRepository)
     {
         $this->title    = $this->getTitle();  
         $this->subtitle = $this->getSubtitle();  
+        $this->blogPostRepository = $blogPostRepository;
        
         return view(
             'livewire.blog-search-string', 
             [           
                 'tags'        => $blogTagRepository->all(),
-                'posts'       => $paginator->paginate($blogPostRepository->all($this->search, $this->tagHashid), $this->page-1, 6),        
+                'posts'       => $paginator->paginate($this->search(), $this->page-1, 6),        
                 'breadcrumbs' => getBreadcrumb(['home', 'blog', $this->getBreadcrumb()]),   
                 'urlForPagination'   => $this->getUrlForPagination()                        
             ]               
