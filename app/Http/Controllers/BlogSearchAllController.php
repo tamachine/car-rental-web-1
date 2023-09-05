@@ -41,12 +41,12 @@ class BlogSearchAllController extends Controller implements ExtendsWebLayoutInte
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return asset('/images/footer/home.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return '/images/footer/home.webp';
+        return asset('/images/footer/home.webp');
     }
 
    

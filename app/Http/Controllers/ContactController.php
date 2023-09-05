@@ -35,8 +35,11 @@ class ContactController extends Controller implements ExtendsWebLayoutInterface
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return asset('/images/footer/home.png');
     }
 
-   
+    public function footerWebpImagePath() : string
+    {       
+        return asset('/images/footer/home.webp');
+    }
 }

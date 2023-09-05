@@ -41,12 +41,12 @@ class BlogSearchTop10Controller extends Controller implements ExtendsWebLayoutIn
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return asset('/images/footer/home.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return '/images/footer/home.webp';
+        return asset('/images/footer/home.webp');
     }
 
    

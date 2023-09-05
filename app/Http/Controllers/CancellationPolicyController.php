@@ -35,8 +35,11 @@ class CancellationPolicyController extends Controller implements ExtendsWebLayou
 
     public function footerImagePath() : string
     {       
-        return '/images/footer/home.png';
+        return asset('/images/footer/home.png');
     }
 
-   
+    public function footerWebpImagePath() : string
+    {       
+        return asset('/images/footer/home.webp');
+    }
 }
