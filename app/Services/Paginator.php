@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 
 class Paginator
 {
+
     /**
      * Paginate an array or a collection.
      *
@@ -28,4 +29,5 @@ class Paginator
             $options
         );
     }
+
 }

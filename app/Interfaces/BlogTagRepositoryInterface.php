@@ -11,6 +11,8 @@ interface BlogTagRepositoryInterface
 
     public function findByHashid($hashId, $locale = null): BlogTag|null;
 
+    public function findBySlug($slug): BlogTag|null;  
+
     public function like($attribute, $value, $locale = null): Collection|null;
         
 }

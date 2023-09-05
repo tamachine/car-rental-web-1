@@ -25,4 +25,14 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
     public function findByHashid($hashId, $locale = null): BlogTag|null {
         return $this->findByHashidFromSearchInAll($hashId, $locale);
     }
+
+    public function findBySlug($slug): BlogTag|null {
+        $endpoint = 'posttags/'.$slug;
+
+        $data = $this->processGet($endpoint, [], self::CACHED);
+
+        if(empty($data)) return null;
+
+        return $this->processSingleBlogTagResponse($this->processGet($endpoint, [], self::CACHED));        
+    }
 }

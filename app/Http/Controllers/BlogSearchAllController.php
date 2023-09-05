@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\BlogTagRepositoryInterface;
-use App\Interfaces\BlogPostRepositoryInterface;
 use App\Interfaces\PageRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Models\SeoConfiguration;
@@ -17,21 +15,15 @@ class BlogSearchAllController extends Controller implements ExtendsWebLayoutInte
 {
     use ExtendsWebLayout;
 
-    protected $blogTagRepository;
-
-    protected $blogPostRepository;
-
     protected $pageRepository;
     
-    public function __construct(BlogTagRepositoryInterface $blogTagRepository, BlogPostRepositoryInterface $blogPostRepository, PageRepositoryInterface $pageRepository) {
-        $this->blogTagRepository  = $blogTagRepository;       
-        $this->blogPostRepository = $blogPostRepository;    
-        $this->pageRepository = $pageRepository;    
+    public function __construct(PageRepositoryInterface $pageRepository) {                     
+        $this->pageRepository = $pageRepository;             
     }
 
     public function index()
     {        
-        echo "blog search all";                  
+        return view('blog.search.all', $this->webLayoutViewParams());                  
     }
 
     public function getSeoConfiguration(): SeoConfiguration

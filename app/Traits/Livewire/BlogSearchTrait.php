@@ -41,10 +41,18 @@ trait BlogSearchTrait
      */
     protected $blogPostRepository;
 
+    //reset the page pagination when a new search is made
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     /**
      * Method to be called in the view when the tag button is clicked
      */
-    public function searchByTag($hashid, BlogTagRepositoryInterface $blogTagRepository) {        
+    public function searchByTag($hashid, BlogTagRepositoryInterface $blogTagRepository) {    
+        $this->resetPage(); //reset the page pagination when a new search is made
+
         if($this->tagHashid == $hashid) {
             $this->tagHashid = null;
         } else {
@@ -95,8 +103,8 @@ trait BlogSearchTrait
     {
         $this->title    = $this->getTitle();  
         $this->subtitle = $this->getSubtitle();  
-        $this->blogPostRepository = $blogPostRepository;
-       
+        $this->blogPostRepository = $blogPostRepository;        
+
         return view(
             'livewire.blog-search-string', 
             [           

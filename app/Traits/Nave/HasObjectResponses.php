@@ -24,15 +24,19 @@ trait HasObjectResponses {
         $response = [];
 
         foreach($data as $blogTag) {
-            $blogTagObject = ArrayHelper::mapArrayToObject($blogTag, BlogTag::class);
-
-            $blogTagObject->color = ArrayHelper::mapArrayToObject($blogTag['color'], BlogTagColor::class); 
-            
-            $response[] = $blogTagObject;
+            $response[] = $this->processSingleBlogTagResponse($blogTag);
         }
         
         return $response;
-    }    
+    }   
+    
+    public function processSingleBlogTagResponse(array $blogTag): BlogTag {
+        $blogTagObject = ArrayHelper::mapArrayToObject($blogTag, BlogTag::class);
+
+        $blogTagObject->color = ArrayHelper::mapArrayToObject($blogTag['color'], BlogTagColor::class); 
+        
+        return $blogTagObject;       
+    }
 
     public function processBlogPostResponse($data): array {
         $response = [];

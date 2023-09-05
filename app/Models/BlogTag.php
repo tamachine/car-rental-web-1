@@ -7,4 +7,8 @@ class BlogTag {
     public $name;
     public $slug;    
     public $color;
+
+    public function toJson() {
+        return json_encode($this);
+    }
 }
