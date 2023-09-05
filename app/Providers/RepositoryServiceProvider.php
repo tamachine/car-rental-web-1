@@ -11,6 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(\App\Interfaces\BlogAuthorRepositoryInterface::class, \App\Repositories\Nave\BlogAuthorRepository::class);                    
         $this->app->bind(\App\Interfaces\BlogCategoryRepositoryInterface::class, \App\Repositories\Nave\BlogCategoryRepository::class);                    
         $this->app->bind(\App\Interfaces\BlogTagRepositoryInterface::class, \App\Repositories\Nave\BlogTagRepository::class);                    
         $this->app->bind(\App\Interfaces\BlogPostRepositoryInterface::class, \App\Repositories\Nave\BlogPostRepository::class);                    

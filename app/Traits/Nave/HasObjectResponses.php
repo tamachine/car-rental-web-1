@@ -48,19 +48,23 @@ trait HasObjectResponses {
        
         $blogPostObject = ArrayHelper::mapArrayToObject($blogPost, BlogPost::class);
 
-        $blogPostObject->author = ArrayHelper::mapArrayToObject($blogPost['author'], BlogAuthor::class); 
-        $blogPostObject->category = ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
-        $blogPostObject->tags = $this->processBlogTagResponse($blogPost['tags'], BlogTag::class);
-        $blogPostObject->getFeaturedImageModelImageInstance      = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
-        $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
-        if(isset($blogPost['prev_post'])) $blogPostObject->prev_post = $this->processSingleBlogPostResponse($blogPost['prev_post']);
-        if(isset($blogPost['next_post'])) $blogPostObject->next_post = $this->processSingleBlogPostResponse($blogPost['next_post']);
+        if(isset($blogPost['author'])) $blogPostObject->author =        $this->processSingleBlogAuthorResponse($blogPost['author']);
+        if(isset($blogPost['category'])) $blogPostObject->category =    ArrayHelper::mapArrayToObject($blogPost['category'], BlogCategory::class);
+        if(isset($blogPost['tags'])) $blogPostObject->tags =            $this->processBlogTagResponse($blogPost['tags'], BlogTag::class);
+        if(isset($blogPost['getFeaturedImageModelImageInstance']))      $blogPostObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageModelImageInstance'], Image::class); 
+        if(isset($blogPost['getFeaturedImageHoverModelImageInstance'])) $blogPostObject->getFeaturedImageHoverModelImageInstance = ArrayHelper::mapArrayToObject($blogPost['getFeaturedImageHoverModelImageInstance'], Image::class);
+        if(isset($blogPost['prev_post'])) $blogPostObject->prev_post =  $this->processSingleBlogPostResponse($blogPost['prev_post']);
+        if(isset($blogPost['next_post'])) $blogPostObject->next_post =  $this->processSingleBlogPostResponse($blogPost['next_post']);
         if(isset($blogPost['related_posts'])) $blogPostObject->related_posts = $this->processBlogPostResponse($blogPost['related_posts']);
 
         $blogPostObject->setUrl(route('blog.show', ['blog_post_slug' => $blogPostObject->slug]));
       
         return $blogPostObject;       
     }    
+
+    public function processSingleBlogAuthorResponse(array $blogAuthor): BlogAuthor {
+        return ArrayHelper::mapArrayToObject($blogAuthor, BlogAuthor::class); 
+    }
 
     public function processSeoConfiguration($data) {
         $seoConfiguration = ArrayHelper::mapArrayToObject($data, SeoConfiguration::class);

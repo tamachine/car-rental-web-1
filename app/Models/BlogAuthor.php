@@ -9,4 +9,5 @@ class BlogAuthor {
     public $short_bio;
     public $photo;
     public $url;
+    public $slug;
 }
