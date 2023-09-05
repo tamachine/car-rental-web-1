@@ -38,7 +38,7 @@ class BlogSearchAuthor extends Component
      * Returns the query search for the post that has to be shown
      */
     protected function search() {      
-        $blogAuthorRepository = app(BlogAuthorRepository::class);            
+        $blogAuthorRepository = app(BlogAuthorRepositoryInterface::class);            
               
         return $blogAuthorRepository->posts($this->getBlogAuthorObject()->hashid, $this->search, $this->tagHashid); 
     }
