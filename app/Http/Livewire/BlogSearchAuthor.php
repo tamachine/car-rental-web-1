@@ -7,7 +7,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Http\Request;
 use App\Traits\Livewire\BlogSearchTrait;
-use App\Repositories\Nave\BlogAuthorRepository;
 
 class BlogSearchAuthor extends Component
 {
