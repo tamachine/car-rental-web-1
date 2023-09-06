@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Nave;
 
-use App\Helpers\ArrayHelper;
 use App\Interfaces\BlogAuthorRepositoryInterface;
 use App\Models\BlogAuthor;
 use App\Models\SeoConfiguration;
@@ -16,6 +15,12 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
     
     use SearchInAll;
     
+    public function all(): array {
+        $endpoint = 'postauthors';        
+
+        return $this->processArrayToObjects($this->processGet($endpoint, [], self::CACHED), BlogAuthor::class);                    
+    }
+
     public function findBySlug($slug): BlogAuthor|null {
         $endpoint = 'postauthors/'.$slug;
 

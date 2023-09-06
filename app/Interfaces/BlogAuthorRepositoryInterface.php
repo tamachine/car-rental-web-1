@@ -7,6 +7,8 @@ use App\Models\SeoConfiguration;
 
 interface BlogAuthorRepositoryInterface 
 {
+    public function all(): array;
+
     public function findBySlug($slug): BlogAuthor|null;  
         
     public function seoConfiguration($blogAuthorSlug, $pageRouteName): SeoConfiguration;    
