@@ -41,7 +41,7 @@ Create the assets
 
 ## Cron
 
-There is a scheduled commands to refresh cache
+There is a scheduled command to refresh cache
 
 For local environment use: https://laravel.com/docs/9.x/scheduling#running-the-scheduler-locally
 
