@@ -16,7 +16,7 @@ interface BlogPostRepositoryInterface
 
     public function hero(): Collection; 
 
-    public function top(): Collection; 
+    public function top(string $search = null, string $tag_hashid = null): Collection; 
     
     public function seoConfiguration($blogPostSlug, $pageRouteName): SeoConfiguration;    
 }
