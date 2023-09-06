@@ -8,9 +8,7 @@ use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Models\SeoConfiguration;
 use App\Traits\Nave\ExtendsWebLayout;
 use Illuminate\Support\Facades\Route;
-/**
- * TODO
- */
+
 class BlogSearchAllController extends Controller implements ExtendsWebLayoutInterface
 {
     use ExtendsWebLayout;
