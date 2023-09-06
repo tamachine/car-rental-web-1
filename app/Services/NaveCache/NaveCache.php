@@ -9,7 +9,7 @@ use ReflectionClass;
 use Illuminate\Support\Facades\Log;
 
 /**
- * This class refresh the nave API cache meaning that stores all the endpoint responses in cache so they are available from the client side.
+ * This class loads the nave API cache meaning that stores all the endpoint responses in cache so they are available from the client side.
  * As the endpoint calls are already stored in cache if they are not available, we only need to call all of the available endpoints.
  * This will not store things such searchs by string or caren calls.
  * 

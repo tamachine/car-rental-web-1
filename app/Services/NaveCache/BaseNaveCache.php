@@ -7,18 +7,27 @@ use App\Helpers\RouteHelper;
 use App\Interfaces\BlogTagRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * this class has a serie of common methods that the repositories call
+ */
 abstract class BaseNaveCache {
 
     protected $all;    
 
-    abstract public function getRepository();
+    abstract public function getRepository();  //it has to return the repository class to be used 
     
+    /**
+     * Set all the element comming from the repository
+     */
     protected function setAll() {
         $this->log('calling all');
         
         $this->all = $this->getRepository()->all();
     }
 
+    /**
+     * Calls the findBySlug method for all the elements of the repository
+     */
     protected function findBySlug() {
         $this->log('calling findBySlug');
 
@@ -27,6 +36,9 @@ abstract class BaseNaveCache {
         }
     }
 
+    /**
+     * Calls the seoConfiguration method for all the elements of the repository and all the application routes
+     */
     protected function seoConfiguration() {        
         $this->log('calling seoConfiguration');
 
@@ -37,6 +49,9 @@ abstract class BaseNaveCache {
         }        
     }
 
+     /**
+     * Calls the posts method for all the elements of the repository and the blog tags
+     */
     protected function posts() {
         $this->log('calling posts');
         
@@ -49,6 +64,9 @@ abstract class BaseNaveCache {
         }
     }
 
+    /**
+     * Log information in the Cache::LOG_CHANNEL channel
+     */
     protected function log($message) {
         Log::channel(Cache::LOG_CHANNEL)->info($message . ' for ' . $this->getRepository()::class);
     }
