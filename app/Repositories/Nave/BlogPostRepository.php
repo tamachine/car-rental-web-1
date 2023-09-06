@@ -45,8 +45,8 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         }); 
     }
 
-    public function top(): Collection {
-        return collect($this->all())->filter(function($post) {
+    public function top(string $search = null, string $tag_hashid = null): Collection {
+        return collect($this->all($search, $tag_hashid))->filter(function($post) {
             return $post->top;
         }); 
     }
