@@ -82,18 +82,22 @@ trait HasObjectResponses {
         return $blogCategory;    
     }
 
-    public function processSeoConfiguration($data) {
-        $seoConfiguration = ArrayHelper::mapArrayToObject($data, SeoConfiguration::class);
-
+    public function processSeoSchemaResponse(array $data): array {
         $seoSchemas = [];
 
-        foreach($data['seoSchemas'] as $schema ) {
+        foreach($data as $schema ) {
             $seoSchema = ArrayHelper::mapArrayToObject($schema, SeoSchema::class);
 
             $seoSchemas[] = $seoSchema;
-        }
+        }   
+        
+        return $seoSchemas;
+    }
 
-        $seoConfiguration->seoSchemas = $seoSchemas;
+    public function processSeoConfiguration($data) {
+        $seoConfiguration = ArrayHelper::mapArrayToObject($data, SeoConfiguration::class);
+
+        if(isset($data['seoSchemas'])) $seoConfiguration->seoSchemas = $this->processSeoSchemaResponse($data['seoSchemas']);
 
         return $seoConfiguration;
     }
