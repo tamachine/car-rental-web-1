@@ -25,9 +25,7 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
     }
 
     public function index()
-    {                    
-        $cache = new NaveCache();
-        $cache->run();die;
+    {                            
         return view('home.index', array_merge($this->webLayoutViewParams(),['latestArticles' => $this->blogPostRepository->latest()]));
     }
 
