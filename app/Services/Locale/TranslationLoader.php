@@ -20,7 +20,7 @@ class TranslationLoader extends FileLoader
      */
     public function load($locale, $group, $namespace = null)
     {       
-        return Cache::store(CacheHelper::TRANSLATIONS_STORE)->remember($this->getCacheKey($group, $locale), CacheHelper::DEFAULT_TIME, function () use ($locale, $group) {    
+        return Cache::remember($this->getCacheKey($group, $locale), CacheHelper::DEFAULT_TIME, function () use ($locale, $group) {    
             $translations = app(TranslationRepositoryInterface::class);            
             
             $translations = $translations->all($group, $locale);
