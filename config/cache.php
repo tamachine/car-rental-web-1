@@ -84,13 +84,7 @@ return [
             'driver' => 'redis',
             'connection' => 'cache',
             'lock_connection' => 'default',
-        ],
-
-        'translations' => [
-            'driver' => 'file',
-            'path' => storage_path('framework/cache/data'),
-            'lock_path' => storage_path('framework/cache/data'),
-        ],
+        ],        
 
         'dynamodb' => [
             'driver' => 'dynamodb',
