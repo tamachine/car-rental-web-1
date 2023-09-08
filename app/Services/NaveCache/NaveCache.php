@@ -36,6 +36,24 @@ class NaveCache {
     }
 
     /**
+     * Clear the cache the same way php artisan cache:clear      
+     */
+    public function clearCache() {
+        Log::channel(Cache::LOG_CHANNEL)->info('Clearing cache');
+
+        //Instead of using the artisan command, we clear the cache manually because there are issues with Homestead througing the error 'Text file bus'y when trying to delete shared folders
+        shell_exec('rm -rf ' . base_path('storage/framework/cache/data/*'));
+    }
+
+    /**
+     * Clear the cache and then run
+     */
+    public function clearAndRun() {    
+        $this->clearCache();         
+        $this->run();
+    }
+
+    /**
      * Set the property classes to the classes that implement NaveCacheInterface
      */
     public function setClassesImplementingNaveCacheInterface(string $namespace = 'App\Services\NaveCache') {        
@@ -63,5 +81,7 @@ class NaveCache {
         }
             
     }
+
+    
     
 }
