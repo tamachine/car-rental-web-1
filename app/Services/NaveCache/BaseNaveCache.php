@@ -5,6 +5,7 @@ namespace App\Services\NaveCache;
 use App\Helpers\Cache;
 use App\Helpers\RouteHelper;
 use App\Interfaces\BlogTagRepositoryInterface;
+use App\Interfaces\PageRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -42,9 +43,12 @@ abstract class BaseNaveCache {
     protected function seoConfiguration() {        
         $this->log('calling seoConfiguration');
 
-        foreach(RouteHelper::getAllRouteNames() as $routeName) {
+        $pageRepository = app(PageRepositoryInterface::class); 
+
+        foreach($pageRepository->all() as $page) {
+            $this->log('calling seoConfiguration for '. $page->route_name);
             foreach($this->all as $blogAuthor) {
-                $this->getRepository()->seoConfiguration($blogAuthor->slug, $routeName);
+                $this->getRepository()->seoConfiguration($blogAuthor->slug, $page->route_name);
             }
         }        
     }
