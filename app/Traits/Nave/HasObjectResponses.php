@@ -14,6 +14,7 @@ use App\Models\Faq;
 use App\Models\FaqCategory;
 
 use App\Helpers\ArrayHelper;
+use App\Models\Page;
 
 /**
  * Trait to have all the processObjectResponses together so we can use them in different locations
@@ -47,6 +48,21 @@ trait HasObjectResponses {
         
         return $response;
     }    
+
+    public function processPageResponse($data): array {
+        $response = [];
+
+        foreach($data as $page) {
+            $response[] = $this->processSinglePageResponse($page);
+        }
+        
+        return $response;
+    } 
+    
+    public function processSinglePageResponse(array $page): Page {
+        return ArrayHelper::mapArrayToObject($page, Page::class);         
+    }
+
 
     public function processSingleBlogPostResponse(array $blogPost): BlogPost {
        

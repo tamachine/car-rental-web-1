@@ -14,13 +14,13 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface {
     public function all(): array {
         $endpoint = 'pages';
 
-        return $this->processGet($endpoint);
+        return $this->processPageResponse($this->processGet($endpoint, [], self::CACHED));
     }
 
     public function show($name) {
         $endpoint = 'pages/'.$name;
 
-        return $this->processGet($endpoint);
+        return $this->processSinglePageResponse($this->processGet($endpoint, [], self::CACHED));
     }
 
     public function seoConfiguration($name): SeoConfiguration {
