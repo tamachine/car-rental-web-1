@@ -5,10 +5,9 @@ namespace App\Services\Locale;
 use Cache;
 use Illuminate\Translation\FileLoader;
 use App\Interfaces\TranslationRepositoryInterface;
-use App\Helpers\Cache as CacheHelper;
 
 class TranslationLoader extends FileLoader
-{
+{    
     /**
      * Load the messages for the given locale.
      *
@@ -19,24 +18,18 @@ class TranslationLoader extends FileLoader
      * @return array
      */
     public function load($locale, $group, $namespace = null)
-    {       
-        return Cache::remember($this->getCacheKey($group, $locale), CacheHelper::DEFAULT_TIME, function () use ($locale, $group) {    
-            $translations = app(TranslationRepositoryInterface::class);            
-            
-            $translations = $translations->all($group, $locale);
+    {              
+        $translations = app(TranslationRepositoryInterface::class);            
+        
+        $translations = $translations->all($group, $locale); //this method save translations in cache
 
-            $output = [];
+        $output = [];
 
-            foreach($translations as $data) {                
-                $output[$data['group']][$data['key']] = $data['text'];
-            }
+        foreach($translations as $translation) {                
+            $output[$translation->group][$translation->key] = $translation->text;
+        }
 
-            return $output[$group] ?? $output;
-        });          
-    }
-
-    protected function getCacheKey(string $group, string $locale): string
-    {
-        return "api.translation-loader.{$group}.{$locale}";
+        return $output[$group] ?? $output;
+   
     }
 }
