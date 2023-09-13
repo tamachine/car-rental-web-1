@@ -13,17 +13,32 @@ class BaseRepository {
 
     use HasObjectResponses;
 
-    const CACHED = 1;
+    //options for processGet
+    const CACHED = 1;    
+
+    //set to true if the cache must be clear for the processGet method
+    protected $refreshCache = false; 
+
+    /**
+     * Set refreshCache to true in order to clear the corresponding endpoint cache before return the data
+     */
+    public function setRefreshCache($value) {
+        $this->refreshCache = $value;
+    }
    
     /**
      * returns the Nave::sendHttpRequest('get' ...) response
      * @param string $endpoint
      * @param array $params
-     * @param int $options CACHED to get cached results
+     * @param int $options self::CACHED to get cached results
      */
     protected function processGet($endpoint, $params = [], $options = 0) {
 
         $params['locale'] ??= App::getLocale();
+
+        if($this->refreshCache) {
+            Cache::store(CacheHelper::API_STORE)->forget($this->cacheKeyForEndpoint($endpoint, $params));            
+        }
 
         if($options && self::CACHED) {
             $response = Cache::store(CacheHelper::API_STORE)->remember($this->cacheKeyForEndpoint($endpoint, $params), CacheHelper::DEFAULT_TIME, function() use($endpoint, $params) {

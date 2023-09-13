@@ -13,7 +13,10 @@ class NaveCache extends Command implements Isolatable
      *
      * @var string
      */
-    protected $signature = 'nave:cache {--clear :  will delete all the current cache first so all the result endpoints will be first deleted and then loaded}';
+    protected $signature = 
+        'nave:cache 
+        {--clear :  will delete all the current cache first so all the result endpoints will be first deleted and then loaded}
+        ';
 
     /**
      * The console command description.

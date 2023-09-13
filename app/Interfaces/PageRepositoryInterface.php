@@ -6,7 +6,7 @@ use App\Models\SeoConfiguration;
 
 interface PageRepositoryInterface 
 {
-    public function all(): array;  
+    public function all(string $class_name = null): array;  
     
     public function show($name);
 

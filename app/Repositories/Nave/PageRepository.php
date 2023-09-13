@@ -11,10 +11,14 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface {
         
     use HasObjectResponses;
     
-    public function all(): array {
+    public function all(string $class_name = null): array {
         $endpoint = 'pages';
 
-        return $this->processPageResponse($this->processGet($endpoint, [], self::CACHED));
+        $params = [];
+        
+        if(isset($class_name)) $params['class_name'] = $class_name;
+
+        return $this->processPageResponse($this->processGet($endpoint, $params, self::CACHED));
     }
 
     public function show($name) {

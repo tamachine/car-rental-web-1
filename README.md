@@ -39,9 +39,19 @@ Create the assets
 
     npm run development
 
+## Cache
+
+There is a command to load/refresh the endpoints cache.
+
+You can pre-load all the cache running:
+
+    php artisan nave:cache --clear
+
+The flag --clear will remove the current cache if exists
+
 ## Cron
 
-There is a scheduled command to refresh cache
+There is a scheduled command to refresh cache every 2 hours
 
 For local environment use: https://laravel.com/docs/9.x/scheduling#running-the-scheduler-locally
 

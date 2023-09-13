@@ -14,7 +14,7 @@ class ConfigRepository extends BaseRepository implements ConfigRepositoryInterfa
     public function currencies(): array {
         $endpoint = 'config';
         
-        return $this->processCurrenciesResponse($this->processGet($endpoint));
+        return $this->processCurrenciesResponse($this->processGet($endpoint, [], self::CACHED));
     }   
     
 }
