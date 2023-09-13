@@ -30,18 +30,5 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
     public function findByHashid($hashId, $locale = null): Location|null {
         return $this->findByHashidFromSearchInAll($hashId, $locale);
     }
-   
-    protected function processLocationResponse($data): array {
-        $response = [];
-
-        foreach($data as $location) {
-            $locationObject = ArrayHelper::mapArrayToObject($location, Location::class);     
-            
-            $locationObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($location['getFeaturedImageModelImageInstance'], Image::class);   
-            
-            $response[] = $locationObject;
-        }
-        
-        return $response;
-    }
+    
 }
