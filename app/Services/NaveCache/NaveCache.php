@@ -2,54 +2,62 @@
 
 namespace App\Services\NaveCache;
 
-use App\Helpers\Cache;
+use App\Helpers\Cache as CacheHelper;
 use App\Interfaces\NaveCacheInterface;
 use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 use Illuminate\Support\Facades\Log;
+use Cache;
 
 /**
  * This class loads the nave API cache meaning that stores all the endpoint responses in cache so they are available from the client side.
  * As the endpoint calls are already stored in cache if they are not available, we only need to call all of the available endpoints.
  * This will not store things such searchs by string or caren calls.
  * 
- * It calls the run() method for all the classes that implement NaveCacheInterface
  */
 class NaveCache {
 
     protected $classes = [];
 
-    public function __construct() {
+    protected $clearCache = false;
+
+    public function __construct() {        
         $this->setClassesImplementingNaveCacheInterface();        
     }
 
+    public function getClasses() {
+        return $this->classes;
+    }
+
+    public function setClasses(array $value) {
+        $this->classes = $value;
+    }
+
     /**
-     * Calls the run method for all the classes that implement NaveCacheInterface
+     * Calls the run() method for all the classes that implement NaveCacheInterface
      */
     public function run() {
         foreach($this->classes as $class) {
-            Log::channel(Cache::LOG_CHANNEL)->info('running NaveCache for ' .  $class);
+            Log::channel(CacheHelper::LOG_CHANNEL)->info('running NaveCache for ' .  $class);
 
             $instance = app($class);
+            $instance->setRefreshCache($this->clearCache);
             $instance->run();
         }
     }
 
     /**
-     * Clear the cache the same way php artisan cache:clear      
+     * Sets the clear cache property in order to clear the current cache before calling the endpoints or not
      */
-    public function clearCache() {
-        Log::channel(Cache::LOG_CHANNEL)->info('Clearing cache');
-
-        //Instead of using the artisan command, we clear the cache manually because there are issues with Homestead througing the error 'Text file bus'y when trying to delete shared folders
-        shell_exec('rm -rf ' . base_path('storage/framework/cache/data/*'));
+    public function setClearCache($value) {
+        $this->clearCache = $value;
     }
 
     /**
      * Clear the cache and then run
      */
     public function clearAndRun() {    
-        $this->clearCache();         
+        $this->setClearCache(true);         
         $this->run();
     }
 
@@ -80,8 +88,5 @@ class NaveCache {
             }
         }
             
-    }
-
-    
-    
+    }    
 }
