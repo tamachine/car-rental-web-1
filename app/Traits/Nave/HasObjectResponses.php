@@ -14,6 +14,7 @@ use App\Models\Faq;
 use App\Models\FaqCategory;
 
 use App\Helpers\ArrayHelper;
+use App\Models\Location;
 use App\Models\Page;
 
 /**
@@ -139,5 +140,19 @@ trait HasObjectResponses {
         }
 
         return [];
+    }
+
+    protected function processLocationResponse($data): array {
+        $response = [];
+
+        foreach($data as $location) {
+            $locationObject = ArrayHelper::mapArrayToObject($location, Location::class);     
+            
+            $locationObject->getFeaturedImageModelImageInstance = ArrayHelper::mapArrayToObject($location['getFeaturedImageModelImageInstance'], Image::class);   
+            
+            $response[] = $locationObject;
+        }
+        
+        return $response;
     }
 }
