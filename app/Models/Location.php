@@ -22,10 +22,10 @@ class Location {
     /**
      * overrides processSingleResponse from Hasresponses trait
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $locationObject = self::traitProcessSingleResponse($instanceData);     
             
-        if(isset($instanceData['getFeaturedImageModelImageInstance'])) $locationObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']);   
+        $locationObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']);   
             
         return $locationObject;
     }
