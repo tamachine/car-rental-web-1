@@ -4,8 +4,8 @@ namespace App\Repositories\Nave;
 
 use App\Interfaces\TranslationRepositoryInterface;
 use App\Repositories\Nave\BaseRepository;
-use Nave; 
 use App;
+use App\Models\Translation;
 use App\Traits\Nave\HasObjectResponses;
 
 class TranslationRepository extends BaseRepository implements TranslationRepositoryInterface {
@@ -21,7 +21,7 @@ class TranslationRepository extends BaseRepository implements TranslationReposit
 
         $endpoint = 'translations';
                 
-        return $this->processGet($endpoint, $params);
+        return Translation::processResponse($this->processGet($endpoint, $params, self::CACHED));
     }
    
 }
