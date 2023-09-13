@@ -6,12 +6,9 @@ use App\Interfaces\BlogPostRepositoryInterface;
 use App\Models\BlogPost;
 use App\Repositories\Nave\BaseRepository;
 use App\Models\SeoConfiguration;
-use App\Traits\Nave\HasObjectResponses;
 use Illuminate\Support\Collection;
 
 class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInterface {
-    
-    use HasObjectResponses;
     
     public function all(string $search = null, string $tag_hashid = null): array {
         $endpoint = 'posts';  
@@ -21,7 +18,7 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
         if(isset($search))      $params['search'] = $search;
         if(isset($tag_hashid))  $params['tag_hash_id'] = $tag_hashid;
 
-        return $this->processBlogPostResponse($this->processGet($endpoint, $params, self::CACHED));                    
+        return BlogPost::processResponse($this->processGet($endpoint, $params, self::CACHED));                    
     }
 
     public function findBySlug($slug): BlogPost|null {
@@ -31,7 +28,7 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
 
         if(empty($data)) return null;
 
-        return $this->processSingleBlogPostResponse($this->processGet($endpoint, [], self::CACHED));        
+        return BlogPost::processSingleResponse($this->processGet($endpoint, [], self::CACHED));        
     }
 
     public function latest($take = 3): Collection {
@@ -53,6 +50,6 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
     public function seoConfiguration($blogPostSlug, $pageRouteName): SeoConfiguration { 
         $endpoint = 'posts/'.$blogPostSlug.'/seoconfigurations/'. $pageRouteName;        
 
-        return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
+        return SeoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }    
 }

@@ -7,11 +7,8 @@ use App;
 use Cache;
 use App\Helpers\Cache as CacheHelper;
 use App\Helpers\ArrayHelper;
-use App\Traits\Nave\HasObjectResponses;
 
 class BaseRepository {
-
-    use HasObjectResponses;
 
     //options for processGet
     const CACHED = 1;    

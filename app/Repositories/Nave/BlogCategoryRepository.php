@@ -4,15 +4,13 @@ namespace App\Repositories\Nave;
 
 use App\Interfaces\BlogCategoryRepositoryInterface;
 use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use App\Models\SeoConfiguration;
 use App\Repositories\Nave\BaseRepository;
-use App\Traits\Nave\HasObjectResponses;
 use App\Traits\Nave\SearchInAll;
 
 class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepositoryInterface {
     
-    use HasObjectResponses;
-
     use SearchInAll;
 
     public function all(bool $postsPublisehd = true): array {
@@ -34,7 +32,7 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
             $params['tag_hash_id'] = $tag_hash_id;
         }
 
-        return $this->processBlogPostResponse($this->processGet($endpoint,  $params, self::CACHED));
+        return BlogPost::processResponse($this->processGet($endpoint,  $params, self::CACHED));
     }
 
     public function findBySlug($slug): BlogCategory|null {
@@ -44,13 +42,13 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
 
         if(empty($data)) return null;
 
-        return $this->processSingleBlogCategoryResponse($this->processGet($endpoint, [], self::CACHED));
+        return BlogCategory::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
 
     }
 
     public function seoConfiguration($blogCategorySlug, $pageRouteName): SeoConfiguration { 
         $endpoint = 'postcategories/'.$blogCategorySlug.'/seoconfigurations/'. $pageRouteName;        
 
-        return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
+        return seoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }  
 }

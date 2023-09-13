@@ -2,7 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Nave\HasResponses;
+
 class BlogAuthor {
+
+    use HasResponses {
+        processSingleResponse as public traitProcessSingleResponse;
+    }
+
     public $hashid;
     public $name;
     public $bio;
@@ -17,5 +24,16 @@ class BlogAuthor {
 
     public function toJson() {
         return json_encode($this);
+    }
+
+    /**
+     * override processSingleResponse from HasResponses
+     */
+    public static function processSingleResponse(array $instanceData): object {
+        $blogAuthor = self::traitProcessSingleResponse($instanceData); 
+
+        $blogAuthor->setUrl(route('blog.search.author', ['blog_author_slug' => $blogAuthor->slug]));
+      
+        return $blogAuthor;    
     }
 }

@@ -6,11 +6,8 @@ use App\Interfaces\TranslationRepositoryInterface;
 use App\Repositories\Nave\BaseRepository;
 use App;
 use App\Models\Translation;
-use App\Traits\Nave\HasObjectResponses;
 
 class TranslationRepository extends BaseRepository implements TranslationRepositoryInterface {
-    
-    use HasObjectResponses;
     
     public function all($group = null, $locale = null): array {       
         $locale ??= App::getLocale();

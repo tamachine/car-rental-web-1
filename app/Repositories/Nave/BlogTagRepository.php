@@ -6,12 +6,9 @@ use App\Interfaces\BlogTagRepositoryInterface;
 use App\Models\BlogTag;
 use App\Repositories\Nave\BaseRepository;
 use App\Traits\Nave\SearchInAll;
-use App\Traits\Nave\HasObjectResponses;
 
 class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInterface {
     
-    use HasObjectResponses;
-
     use SearchInAll {
         findByHashid as protected findByHashidFromSearchInAll;
     }
@@ -19,7 +16,7 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
     public function all(bool|null $postsPublisehd = true): array {
         $endpoint = 'posttags';        
 
-        return $this->processBlogTagResponse($this->processGet($endpoint, ['postsPublished' => $postsPublisehd], self::CACHED));        
+        return BlogTag::processResponse($this->processGet($endpoint, ['postsPublished' => $postsPublisehd], self::CACHED));        
     }    
 
     public function findByHashid($hashId, $locale = null): BlogTag|null {
@@ -33,6 +30,6 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
 
         if(empty($data)) return null;
 
-        return $this->processSingleBlogTagResponse($this->processGet($endpoint, [], self::CACHED));        
+        return BlogTag::processSingleResponse($this->processGet($endpoint, [], self::CACHED));        
     }
 }

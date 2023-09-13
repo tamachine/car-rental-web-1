@@ -5,16 +5,11 @@ namespace App\Repositories\Nave;
 use App\Interfaces\LocationRepositoryInterface;
 use App\Repositories\Nave\BaseRepository;
 use App;
-use App\Helpers\ArrayHelper;
 use App\Models\Location;
-use App\Models\Image;
 use App\Traits\Nave\SearchInAll;
-use App\Traits\Nave\HasObjectResponses;
 
 class LocationRepository extends BaseRepository implements LocationRepositoryInterface {
     
-    use HasObjectResponses;
-
     use SearchInAll {
         findByHashid as protected findByHashidFromSearchInAll;
     }
@@ -24,7 +19,7 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
 
         $endpoint = 'locations';
         
-        return $this->processLocationResponse($this->processGet($endpoint, $params, self::CACHED));
+        return Location::processResponse($this->processGet($endpoint, $params, self::CACHED));
     }      
 
     public function findByHashid($hashId, $locale = null): Location|null {

@@ -4,15 +4,13 @@ namespace App\Repositories\Nave;
 
 use App\Interfaces\BlogAuthorRepositoryInterface;
 use App\Models\BlogAuthor;
+use App\Models\BlogPost;
 use App\Models\SeoConfiguration;
 use App\Repositories\Nave\BaseRepository;
-use App\Traits\Nave\HasObjectResponses;
 use App\Traits\Nave\SearchInAll;
 
 class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositoryInterface {
-    
-    use HasObjectResponses;   
-    
+      
     use SearchInAll;
     
     public function all(): array {
@@ -28,14 +26,14 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
 
         if(empty($data)) return null;
 
-        return $this->processSingleBlogAuthorResponse($this->processGet($endpoint, [], self::CACHED));
+        return BlogAuthor::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
 
     }
 
     public function seoConfiguration($blogAuthorSlug, $pageRouteName): SeoConfiguration { 
         $endpoint = 'postauthors/'.$blogAuthorSlug.'/seoconfigurations/'. $pageRouteName;        
 
-        return $this->processSeoConfiguration($this->processGet($endpoint, [], self::CACHED));
+        return SeoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }   
 
     public function posts(string $author_hashid, string|null $search = null, string|null $tag_hash_id = null): array {
@@ -51,7 +49,7 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
             $params['tag_hash_id'] = $tag_hash_id;
         }
 
-        return $this->processBlogPostResponse($this->processGet($endpoint, $params, self::CACHED));
+        return BlogPost::processResponse($this->processGet($endpoint, $params, self::CACHED));
     }
    
 }
