@@ -27,7 +27,7 @@ class Faq {
     /**
      * overrides processSingleResponse from HasResponses
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $faqObject = self::traitProcessSingleResponse($instanceData);     
             
         $faqObject->faqCategories = FaqCategory::processResponse($faqObject->faqCategories);

@@ -23,7 +23,7 @@ class BlogTag {
      /**
      * override method from HasResponses trait
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $blogTagObject = self::traitProcessSingleResponse($instanceData);
 
         $blogTagObject->color = ArrayHelper::mapArrayToObject($instanceData['color'], BlogTagColor::class); 

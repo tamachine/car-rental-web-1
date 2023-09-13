@@ -28,7 +28,7 @@ trait HasResponses {
      * @var array $instanceData the array item that the api nave sends
      * @return object an object instance of the current model
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         return ArrayHelper::mapArrayToObject($instanceData, self::class);         
     }
 

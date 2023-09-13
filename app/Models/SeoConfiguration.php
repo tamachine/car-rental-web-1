@@ -22,7 +22,7 @@ class SeoConfiguration {
     /**
      * overrides processSingleResponse from HasResponses trait
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $seoConfiguration = self::traitProcessSingleResponse($instanceData);
 
         if(isset($data['seoSchemas'])) $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);

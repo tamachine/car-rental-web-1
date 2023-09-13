@@ -35,7 +35,7 @@ class BlogCategory {
         return json_encode($this);
     }
     
-    public static function processSingleResponse(array $instanceData): object { 
+    public static function processSingleResponse(array|null $instanceData): object { 
         $blogCategory = self::traitProcessSingleResponse($instanceData); 
 
         $blogCategory->setUrl(route('blog.search.category', ['blog_category_slug' => $blogCategory->slug]));

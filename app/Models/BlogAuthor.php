@@ -29,7 +29,7 @@ class BlogAuthor {
     /**
      * override processSingleResponse from HasResponses
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $blogAuthor = self::traitProcessSingleResponse($instanceData); 
 
         $blogAuthor->setUrl(route('blog.search.author', ['blog_author_slug' => $blogAuthor->slug]));

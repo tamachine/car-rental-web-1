@@ -41,7 +41,7 @@ class BlogPost {
     /**
      * Overrides processSingleResponse from HasResponse trait
      */
-    public static function processSingleResponse(array $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object {
         $blogPostObject = self::traitProcessSingleResponse($instanceData);
 
         if(isset($instanceData['author'])) $blogPostObject->author =        BlogAuthor::processSingleResponse($instanceData['author']);
