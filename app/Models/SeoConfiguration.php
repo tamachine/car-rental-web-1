@@ -25,7 +25,7 @@ class SeoConfiguration {
     public static function processSingleResponse(array|null $instanceData): object {
         $seoConfiguration = self::traitProcessSingleResponse($instanceData);
 
-        if(isset($data['seoSchemas'])) $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
+        $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
 
         return $seoConfiguration;
     }
