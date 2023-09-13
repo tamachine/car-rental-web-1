@@ -30,11 +30,11 @@ class NaveCache extends Command implements Isolatable
      */
     public function handle(NaveCacheService $naveCache)
     {
-        $this->info('Nace cache is being refreshed. This can last more than 10 minutes. You can check the logs in '. config('logging.channels.nave_cache.path'));
-        $this->comment('tail -f '. config('logging.channels.nave_cache.path'));
+        $this->info('Nave cache is being refreshed. This can last more than 10 minutes');
+        $this->comment('Check logs: tail -f '. config('logging.channels.nave_cache.path'));
 
         $this->option('clear') ? $naveCache->clearAndRun() : $naveCache->run();
 
-        $this->info('Nace cache is completly refreshed');
+        $this->info('Nave cache is completly refreshed');
     }
 }
