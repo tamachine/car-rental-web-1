@@ -25,7 +25,9 @@ class CancellationPolicyController extends Controller implements ExtendsWebLayou
 
     public function index()
     {            
-        echo "cancellation"; die;
+        return view(
+            'cancellation.index', $this->webLayoutViewParams()         
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +37,11 @@ class CancellationPolicyController extends Controller implements ExtendsWebLayou
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/terms.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/terms.webp');
     }
 }
