@@ -5,10 +5,10 @@
     </div>
     <div class="grid grid-cols-2 gap-2 justify-between relative md:flex-1 -mt-16 md:mt-0">     
         <div class="image-wrapper rounded-2xl w-full">            
-            <x-webp-image :image-path="asset('images/home/testimonials-left.png')" />
+            <x-webp-image :image-path="asset('images/home/testimonials-left.png')" :webp-image-path="asset('images/home/testimonials-left.webp')"/>
         </div>
         <div class="image-wrapper rounded-2xl w-full">
-            <x-webp-image :image-path="asset('images/home/testimonials-right.png')" />            
+            <x-webp-image :image-path="asset('images/home/testimonials-right.png')" :webp-image-path="asset('images/home/testimonials-right.webp')"/>            
         </div>   
     </div>
     <div class="md:flex-1 md:flex md:flex-col md:justify-end md:items-end md:mt-[180px]">
