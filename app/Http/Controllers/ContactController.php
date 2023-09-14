@@ -25,7 +25,14 @@ class ContactController extends Controller implements ExtendsWebLayoutInterface
 
     public function index()
     {            
-        echo "contact"; die;
+        return view(
+            'contact.index',
+             array_merge( $this->webLayoutViewParams(),
+                [
+                    'breadcrumbs'   => getBreadcrumb(['home', 'contact']),
+                ]
+            )
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +42,11 @@ class ContactController extends Controller implements ExtendsWebLayoutInterface
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/contact.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/contact.webp');
     }
 }
