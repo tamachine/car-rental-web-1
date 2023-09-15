@@ -24,8 +24,8 @@ class AboutController extends Controller implements ExtendsWebLayoutInterface
     }
 
     public function index()
-    {            
-        echo "about"; die;
+    {           
+        return view('about.index', $this->webLayoutViewParams());
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +35,11 @@ class AboutController extends Controller implements ExtendsWebLayoutInterface
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/about.jpg');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/about.webp');
     }
 }
