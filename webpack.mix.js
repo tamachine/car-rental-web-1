@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-
+require("laravel-mix-tailwind");
 
 
 /*
@@ -27,7 +27,7 @@ mix
     .postCss('resources/css/easepick.css', 'public/css') //it is needed here to avoid overriding css classes when using easepick
     //.sass('resources/sass/admin.scss', 'public/css')
     //.sass('resources/sass/print.scss', 'public/css')
-    //.tailwind("./tailwind.config.js")
+    .tailwind("./tailwind.config.js")
     .copy("resources/fonts", "public/fonts")
     .sourceMaps();
 
