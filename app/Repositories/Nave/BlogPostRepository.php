@@ -52,4 +52,18 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
 
         return SeoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }    
+
+    public function preview($token, $blogPostSlug): BlogPost|null {        
+        $endpoint = "postpreview/". $blogPostSlug . "/token/" . $token . "/verify";
+
+        $data = $this->processGet($endpoint, []);
+
+        if(isset($data['valid'])) {
+            if($data['valid']) {
+                return BlogPost::processSingleResponse($data['post']);
+            }            
+        }
+
+        return null;
+    }
 }
