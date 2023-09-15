@@ -14,6 +14,7 @@ class BlogPost {
     public $slug;
     public $title;
     public $published_at;
+    public $published;
     public $summary;
     public $content;
     public $updated_at;
