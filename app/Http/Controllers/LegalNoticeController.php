@@ -25,7 +25,9 @@ class LegalNoticeController extends Controller implements ExtendsWebLayoutInterf
 
     public function index()
     {            
-        echo "legal"; die;
+        return view(
+            'legal.index', $this->webLayoutViewParams()          
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +37,11 @@ class LegalNoticeController extends Controller implements ExtendsWebLayoutInterf
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/terms.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/terms.webp');
     }
 }

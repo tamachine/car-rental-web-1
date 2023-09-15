@@ -9,7 +9,7 @@
 
     <x-wire-spinner /> 
 
-    <div class="flex flex-col gap-14"  wire:loading.remove>
+    <div class="flex flex-col gap-14">
               
         @foreach($posts as $post)                        
             <x-posts-summary.featured-post :blogPost="$post"/>

@@ -19,4 +19,6 @@ interface BlogPostRepositoryInterface
     public function top(string $search = null, string $tag_hashid = null): Collection; 
     
     public function seoConfiguration($blogPostSlug, $pageRouteName): SeoConfiguration;    
+
+    public function preview($token, $blogPostSlug): BlogPost|null;
 }

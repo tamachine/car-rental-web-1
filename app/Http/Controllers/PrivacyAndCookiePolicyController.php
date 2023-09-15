@@ -25,7 +25,7 @@ class PrivacyAndCookiePolicyController extends Controller implements ExtendsWebL
 
     public function index()
     {            
-        echo "privacy"; die;
+        return view('privacy.index', $this->webLayoutViewParams());
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +35,11 @@ class PrivacyAndCookiePolicyController extends Controller implements ExtendsWebL
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/terms.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/terms.webp');
     }
 }
