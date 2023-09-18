@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\ContactFormSubmitted;
 use Livewire\Component;
 use App\Traits\Livewire\ModalTrait;
-use Illuminate\Support\Facades\Mail;
+use App\Interfaces\ContactFormRepositoryInterface;
 
 class ContactForm extends Component
 {
@@ -64,11 +63,11 @@ class ContactForm extends Component
         return view('livewire.contact-form');
     }
 
-    public function send()
+    public function send(ContactFormRepositoryInterface $contactFormRepository)
     {
         $this->dispatchBrowserEvent('validationError');
 
-        $this->validate([
+        $params = $this->validate([
             'name'      => ['required'],
             'email'     => ['required', 'email'],
             'subject'   => ['required'],
@@ -76,20 +75,11 @@ class ContactForm extends Component
             'message'   => ['required'],
         ]);
 
-        $request = collect();
-        $request->put('name', $this->name);
-        $request->put('email', $this->email);
-        $request->put('subject', $this->subject);
-        $request->put('type', __('contact.enquiry_' . $this->type));
-        $request->put('message', $this->message);
+        $contactFormRepository->send($params);
 
-        Mail::to(config('settings.email.contact'))->send(new ContactFormSubmitted($request));
-
-        $this->name = "";
-        $this->email = "";
-        $this->subject = "";
+        $this->reset(['name', 'email', 'subject','message']);
+      
         $this->type = "general";
-        $this->message = "";
 
         $this->showModal = true;
     }
