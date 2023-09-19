@@ -14,13 +14,13 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
     use SearchInAll;
     
     public function all(): array {
-        $endpoint = 'postauthors';        
+        $endpoint = 'post-authors';        
 
         return $this->processArrayToObjects($this->processGet($endpoint, [], self::CACHED), BlogAuthor::class);                    
     }
 
     public function findBySlug($slug): BlogAuthor|null {
-        $endpoint = 'postauthors/'.$slug;
+        $endpoint = 'post-authors/'.$slug;
 
         $data = $this->processGet($endpoint, [], self::CACHED);
 
@@ -31,7 +31,7 @@ class BlogAuthorRepository extends BaseRepository implements BlogAuthorRepositor
     }
 
     public function seoConfiguration($blogAuthorSlug, $pageRouteName): SeoConfiguration { 
-        $endpoint = 'postauthors/'.$blogAuthorSlug.'/seoconfigurations/'. $pageRouteName;        
+        $endpoint = 'post-authors/'.$blogAuthorSlug.'/seoconfigurations/'. $pageRouteName;        
 
         return SeoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }   

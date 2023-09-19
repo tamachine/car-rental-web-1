@@ -16,6 +16,8 @@ class NaveCache extends Command implements Isolatable
     protected $signature = 
         'nave:cache 
         {--clear :  will delete all the current cache first so all the result endpoints will be first deleted and then loaded}
+        {--class=* : pass the NaveCache class that must be re-cached}
+        {--show-classes :  will show the available classes and the script will not run}
         ';
 
     /**
@@ -30,10 +32,15 @@ class NaveCache extends Command implements Isolatable
      */
     public function handle(NaveCacheService $naveCache)
     {
-        $this->info('Nave cache is being refreshed. This can last more than 10 minutes');
+        $this->info('Nave cache is being refreshed. This can last more than 10 minutes');        
         $this->comment('Check logs: tail -f '. config('logging.channels.nave_cache.path'));
-
-        $this->option('clear') ? $naveCache->clearAndRun() : $naveCache->run();
+        
+        if($this->option('show-classes')) {
+            dd($naveCache->getClasses());
+        } else {
+            if (count($this->option('class')) > 0 ) $naveCache->filterClasses($this->option('class'));
+            $this->option('clear') ? $naveCache->clearAndRun() : $naveCache->run();
+        }        
 
         $this->info('Nave cache is completly refreshed');
     }

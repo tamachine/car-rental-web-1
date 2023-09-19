@@ -11,7 +11,8 @@ use App\Helpers\ArrayHelper;
 class BaseRepository {
 
     //options for processGet
-    const CACHED = 1;    
+    const CACHED = 1;    // cached endpoint for the default time CacheHelper::DEFAULT_TIME
+    const SHORT_TIME_CACHED = 2;  // cached endpoint for short time CacheHelper::SHORT_TIME
 
     //set to true if the cache must be clear for the processGet method
     protected $refreshCache = false; 
@@ -37,8 +38,10 @@ class BaseRepository {
             Cache::store(CacheHelper::API_STORE)->forget($this->cacheKeyForEndpoint($endpoint, $params));            
         }
 
-        if($options && self::CACHED) {
-            $response = Cache::store(CacheHelper::API_STORE)->remember($this->cacheKeyForEndpoint($endpoint, $params), CacheHelper::DEFAULT_TIME, function() use($endpoint, $params) {
+        if(($options & self::CACHED) || ($options & self::SHORT_TIME_CACHED)) {
+            $cacheTime = ($options & self::CACHED) ? CacheHelper::DEFAULT_TIME : CacheHelper::SHORT_TIME;
+            
+            $response = Cache::store(CacheHelper::API_STORE)->remember($this->cacheKeyForEndpoint($endpoint, $params), $cacheTime, function() use($endpoint, $params) {
                 return Nave::sendHttpRequest('get', $endpoint, $params);
             });
         } else {
@@ -87,8 +90,8 @@ class BaseRepository {
         return $response;
     }
 
-    protected function cacheKeyForEndpoint($endpoint, $params) {
-        return $endpoint.http_build_query($params);
+    protected function cacheKeyForEndpoint($endpoint, $params) {        
+        return $endpoint.http_build_query(ArrayHelper::flattenParams($params));
     }    
-    
+
 }

@@ -74,4 +74,5 @@ class Currency
             self::setSession($code);
         }
     }
+    
 }

@@ -25,11 +25,21 @@ class InitialValues
         $this->setLocations();
     }
 
-    /** Return the dates that the bar must use
-     * @return array ['from' => 'd-m-y H:m', 'to' => 'd-m-Y H:m']  
+    /** Return the Carbon dates that the bar must use
+     * @return array ['from' => 'Carbon\Carbon date', 'to' => 'Carbon\Carbon date']  
      */
     public function getDates() {
         return $this->dates;
+    }
+
+    /** Return the formatted dates that the bar must use
+     * @return array ['from' => 'd-m-y H:m', 'to' => 'd-m-Y H:m']  
+     */
+    public function getDatesFormatted() {
+        $formattedDates['from'] = $this->dates['from']?->format('Y-m-d g:i A');
+        $formattedDates['to']   = $this->dates['to']?->format('Y-m-d g:i A');
+
+        return $formattedDates;
     }
 
     /** Return the locations that the bar must use

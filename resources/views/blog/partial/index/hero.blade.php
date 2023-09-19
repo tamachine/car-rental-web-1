@@ -54,10 +54,8 @@
                                     {!! $post->title !!}
                                 </h1>
 
-                                <div class="font-sans text-xs md:hidden swiper-no-swiping">    
-                                    {{-- TODO                                   
-                                    <x-blog-post-by :blogPost="$post" />
-                                    --}}
+                                <div class="font-sans text-xs md:hidden swiper-no-swiping">                                                                      
+                                    <x-blog-post-by :blogPost="$post" />                                    
                                 </div>
 
                                 <div class="font-sans-medium swiper-no-swiping">
