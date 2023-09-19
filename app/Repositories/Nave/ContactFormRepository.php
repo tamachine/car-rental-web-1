@@ -12,7 +12,7 @@ class ContactFormRepository extends BaseRepository implements ContactFormReposit
      */
     public function send($params): bool {
         
-        $endpoint = 'contactform/submitted';
+        $endpoint = 'contact-form/submitted';
         
         return $this->processPut($endpoint, $params);
     }      
