@@ -2,9 +2,9 @@
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <x-wire-spinner /> 
     </div>
-    @if($showModal)
-        <x-modal :title="__('contact.message_sent-title')" :text="__('contact.message_sent-text')"/>    
-    @endif
+    
+    <livewire:modal wire:key="modalContactForm" modalId="modalContactForm" :modal-title="__('contact.message_sent-title')" :modal-text="__('contact.message_sent-text')" />     
+    
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">        
         @foreach(['name', 'email', 'subject'] as $input)
             <div class="w-full">

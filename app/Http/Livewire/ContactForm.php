@@ -3,13 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Traits\Livewire\ModalTrait;
 use App\Interfaces\ContactFormRepositoryInterface;
 
 class ContactForm extends Component
 {
-    use ModalTrait;
-    
     /*
     ***************************************************************
     ** PROPERTIES
@@ -46,6 +43,8 @@ class ContactForm extends Component
      */
     public $submitButtonCentered;
 
+    public $modalId;
+
     /*
     ***************************************************************
     ** METHODS
@@ -81,7 +80,7 @@ class ContactForm extends Component
       
         $this->type = "general";
 
-        $this->showModal = true;
+        $this->emit('openModal:'.$this->modalId); 
     }
   
 }
