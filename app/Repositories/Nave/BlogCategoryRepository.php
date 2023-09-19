@@ -14,7 +14,7 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
     use SearchInAll;
 
     public function all(bool $postsPublisehd = true): array {
-        $endpoint = 'postcategories';        
+        $endpoint = 'post-categories';        
 
         return $this->processArrayToObjects($this->processGet($endpoint, ['postsPublished' => true], self::CACHED), BlogCategory::class);                    
     }
@@ -36,7 +36,7 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
     }
 
     public function findBySlug($slug): BlogCategory|null {
-        $endpoint = 'postcategories/'.$slug;
+        $endpoint = 'post-categories/'.$slug;
 
         $data = $this->processGet($endpoint, [], self::CACHED);
 
@@ -47,7 +47,7 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
     }
 
     public function seoConfiguration($blogCategorySlug, $pageRouteName): SeoConfiguration { 
-        $endpoint = 'postcategories/'.$blogCategorySlug.'/seoconfigurations/'. $pageRouteName;        
+        $endpoint = 'post-categories/'.$blogCategorySlug.'/seoconfigurations/'. $pageRouteName;        
 
         return seoConfiguration::processSingleResponse($this->processGet($endpoint, [], self::CACHED));
     }  

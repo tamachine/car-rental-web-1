@@ -82,7 +82,7 @@
                             @foreach($carCategories as $carType)
                             <div>
                                 <img src="{{ $carType->imagePath }}" class="mx-auto" />
-                                <span>{{ $carType->getTextTranslated() }}</span>
+                                <span>{{ $carType->text }}</span>
                             </div>
                             @endforeach
                         @endif

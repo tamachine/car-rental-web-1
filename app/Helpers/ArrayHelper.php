@@ -23,4 +23,24 @@ class ArrayHelper {
         
         return $object;
     }    
+
+    /**
+     * Flattens a multi-dimensional array into a single-dimensional array using dot notation.
+     *
+     * @param  array  $params  The array to be flattened.
+     * @param  string $prefix  The prefix for the flattened key (used for recursion).
+     * @return array  The flattened array.
+     */
+    public static function flattenParams($params, $prefix = '') {
+        $flattened = [];
+        
+        foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                $flattened += self::flattenParams($value, $prefix . $key . '.');
+            } else {
+                $flattened[$prefix . $key] = $value;
+            }
+        }
+        return $flattened;
+    }
 }

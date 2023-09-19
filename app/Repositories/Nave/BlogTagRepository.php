@@ -14,7 +14,7 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
     }
 
     public function all(bool|null $postsPublisehd = true): array {
-        $endpoint = 'posttags';        
+        $endpoint = 'post-tags';        
 
         return BlogTag::processResponse($this->processGet($endpoint, ['postsPublished' => $postsPublisehd], self::CACHED));        
     }    
@@ -24,7 +24,7 @@ class BlogTagRepository extends BaseRepository implements BlogTagRepositoryInter
     }
 
     public function findBySlug($slug): BlogTag|null {
-        $endpoint = 'posttags/'.$slug;
+        $endpoint = 'post-tags/'.$slug;
 
         $data = $this->processGet($endpoint, [], self::CACHED);
 

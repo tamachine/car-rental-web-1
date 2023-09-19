@@ -18,6 +18,7 @@ class Location {
     public $pickup_input_require;
     public $cardropoff_input_require;
     public $getFeaturedImageModelImageInstance;  
+    public $caren_settings;
 
     /**
      * overrides processSingleResponse from Hasresponses trait

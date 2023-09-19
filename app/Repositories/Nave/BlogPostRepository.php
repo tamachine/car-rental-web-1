@@ -54,7 +54,7 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
     }    
 
     public function preview($token, $blogPostSlug): BlogPost|null {        
-        $endpoint = "postpreview/". $blogPostSlug . "/token/" . $token . "/verify";
+        $endpoint = "post-preview/". $blogPostSlug . "/token/" . $token . "/verify";
 
         $data = $this->processGet($endpoint, []);
 
