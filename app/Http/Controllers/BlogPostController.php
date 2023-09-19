@@ -33,6 +33,21 @@ class BlogPostController extends Controller implements ExtendsWebLayoutInterface
         return $this->postView();        
     }
 
+    public function preview(string $blog_post_slug) {
+
+        if(request()->has('token')) {
+            $this->blogPost = $this->blogPostRepository->preview(request()->input('token'), $blog_post_slug);
+
+            if($this->blogPost) {                
+                $this->blogPost->published_at = now();
+
+                return $this->postView(); 
+            }
+        }
+
+        abort(404);
+    }
+
     protected function postView() {        
         return view(
             'blog.show',
