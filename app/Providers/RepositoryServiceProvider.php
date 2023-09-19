@@ -20,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Interfaces\CarFiltersRepositoryInterface::class, \App\Repositories\Nave\CarFiltersRepository::class);     
         $this->app->bind(\App\Interfaces\CarenLocationRepositoryInterface::class, \App\Repositories\Nave\CarenLocationRepository::class);     
         $this->app->bind(\App\Interfaces\ConfigRepositoryInterface::class, \App\Repositories\Nave\ConfigRepository::class);             
+        $this->app->bind(\App\Interfaces\ContactFormRepositoryInterface::class, \App\Repositories\Nave\ContactFormRepository::class);             
         $this->app->bind(\App\Interfaces\CurrencyRatesRepositoryInterface::class, \App\Repositories\Nave\CurrencyRatesRepository::class);             
         $this->app->bind(\App\Interfaces\FaqRepositoryInterface::class, \App\Repositories\Nave\FaqRepository::class);        
         $this->app->bind(\App\Interfaces\FaqCategoryRepositoryInterface::class, \App\Repositories\Nave\FaqCategoryRepository::class);      
@@ -28,6 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Interfaces\PageRepositoryInterface::class, \App\Repositories\Nave\PageRepository::class);     
         $this->app->bind(\App\Interfaces\TranslationRepositoryInterface::class, \App\Repositories\Nave\TranslationRepository::class);     
         $this->app->bind(\App\Interfaces\TranslationGroupRepositoryInterface::class, \App\Repositories\Nave\TranslationGroupRepository::class);     
+
     }
 
     /**

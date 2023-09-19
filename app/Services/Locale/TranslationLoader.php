@@ -19,6 +19,7 @@ class TranslationLoader extends FileLoader
      */
     public function load($locale, $group, $namespace = null)
     {              
+        
         $translations = app(TranslationRepositoryInterface::class);            
         
         $translations = $translations->all($group, $locale); //this method save translations in cache
@@ -29,7 +30,10 @@ class TranslationLoader extends FileLoader
             $output[$translation->group][$translation->key] = $translation->text;
         }
 
-        return $output[$group] ?? $output;
-   
+        $fileTranslations = parent::load($locale, $group, $namespace);
+
+        $output = array_merge($fileTranslations, $output);
+
+        return $output[$group] ?? $output;   
     }
 }
