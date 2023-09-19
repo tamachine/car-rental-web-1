@@ -29,14 +29,21 @@ class NaveCache {
         return $this->classes;
     }
 
-    public function setClasses(array $value) {
-        $this->classes = $value;
+    public function filterClasses(array $classes) {
+        $this->classes = array_filter($this->classes, function($value) use ($classes) {
+            foreach ($classes as $search) {
+                if (strpos($value, $search) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     /**
      * Calls the run() method for all the classes that implement NaveCacheInterface
      */
-    public function run() {
+    public function run() {        
         foreach($this->classes as $class) {
             Log::channel(CacheHelper::LOG_CHANNEL)->info('running NaveCache for ' .  $class);
 
