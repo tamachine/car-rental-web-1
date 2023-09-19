@@ -5,9 +5,7 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Cache;
-use App\Helpers\Cache as CacheHelper;
-use App\Interfaces\CarCategoryRepositoryInterface;
+use App\Interfaces\CarFiltersRepositoryInterface;
 
 class NavBar extends Component
 {
@@ -21,11 +19,8 @@ class NavBar extends Component
     }
 
     protected function carCategories() {        
-        return Cache::store(CacheHelper::API_STORE)->remember('car-categories', CacheHelper::DEFAULT_TIME ,function () {    
-            $carCategoryRepository = app(CarCategoryRepositoryInterface::class);                 
+        $carCategoryRepository = app(CarFiltersRepositoryInterface::class);                 
 
-            return $carCategoryRepository->all();
-
-        });
+        return $carCategoryRepository->types();
     }
 }

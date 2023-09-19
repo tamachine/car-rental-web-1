@@ -11,7 +11,7 @@ class NewsletterUserRepository extends BaseRepository implements NewsletterUserR
      * Submit a newsletter user form
      */
     public function submitted($email): bool {
-        $endpoint = 'newsletteruser/submitted';
+        $endpoint = 'newsletter-user/submitted';
 
         $params['email'] = $email;
         

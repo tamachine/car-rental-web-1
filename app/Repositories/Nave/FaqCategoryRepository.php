@@ -9,7 +9,7 @@ use App\Models\FaqCategory;
 class FaqCategoryRepository extends BaseRepository implements FaqCategoryRepositoryInterface {
     
     public function all($all = false): array {
-        $endpoint = 'faqcategories';
+        $endpoint = 'faq-categories';
 
         $params['all'] = $all;
         

@@ -9,7 +9,7 @@ use App\Models\TranslationGroup;
 class TranslationGroupRepository extends BaseRepository implements TranslationGroupRepositoryInterface {
     
     public function all(): array {                      
-        $endpoint = 'translationgroups';
+        $endpoint = 'translation-groups';
                 
         return TranslationGroup::processResponse($this->processGet($endpoint, [], self::CACHED));
     }
