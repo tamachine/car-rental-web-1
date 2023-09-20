@@ -19,8 +19,8 @@ class NavBar extends Component
     }
 
     protected function carCategories() {        
-        $carCategoryRepository = app(CarFiltersRepositoryInterface::class);                 
+        $carFiltersRepository = app(CarFiltersRepositoryInterface::class);                 
 
-        return $carCategoryRepository->types();
+        return $carFiltersRepository->types();
     }
 }
