@@ -62,6 +62,8 @@ class LocationInitialValues
 
             if($location->count() > 0) {
                 $this->locations[$locationType] = $location->first()->hashid;
+            } else {
+                $this->locations[$locationType] = $this->locationRepository->all()[0]->hashid;
             }
         }
     }    
