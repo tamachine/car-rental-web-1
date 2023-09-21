@@ -30,7 +30,8 @@
         },
         "files": [         
             "app/Helpers/View.php",
-            "app/Helpers/Session.php"
+            "app/Helpers/Session.php",
+            "app/Helpers/Booking.php"
         ]
     },
     "autoload-dev": {
