@@ -44,3 +44,35 @@ use App\Interfaces\LocationRepositoryInterface;
         request()->session()->put('booking_data', $data);        
     }
 }
+
+if (!function_exists('checkSessionInsurances')) {
+    /**
+     * Inruances screen: We must have dates, locations and a car selected
+     *
+     * @return bool
+     */
+    function checkSessionInsurances()
+    {
+        if(!request()->session()->has('booking_data')) {
+            return false;
+        }
+
+        $data = request()->session()->get('booking_data');
+
+        if (!isset($data['from'])
+            || !isset($data['to'])
+            || !isset($data['pickup'])
+            || !isset($data['dropoff'])
+            || !isset($data['car'])
+        ) {
+            return false;
+        }
+
+        unset($data['insurances']);
+        unset($data['extras']);
+
+        request()->session()->put('booking_data', $data);
+
+        return true;
+    }
+}

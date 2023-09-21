@@ -23,6 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Interfaces\CurrencyRatesRepositoryInterface::class, \App\Repositories\Nave\CurrencyRatesRepository::class);             
         $this->app->bind(\App\Interfaces\FaqRepositoryInterface::class, \App\Repositories\Nave\FaqRepository::class);        
         $this->app->bind(\App\Interfaces\FaqCategoryRepositoryInterface::class, \App\Repositories\Nave\FaqCategoryRepository::class);      
+        $this->app->bind(\App\Interfaces\InsuranceFeatureRepositoryInterface::class, \App\Repositories\Nave\InsuranceFeatureRepository::class);      
         $this->app->bind(\App\Interfaces\LocationRepositoryInterface::class, \App\Repositories\Nave\LocationRepository::class);     
         $this->app->bind(\App\Interfaces\NewsletterUserRepositoryInterface::class, \App\Repositories\Nave\NewsletterUserRepository::class);             
         $this->app->bind(\App\Interfaces\PageRepositoryInterface::class, \App\Repositories\Nave\PageRepository::class);     
