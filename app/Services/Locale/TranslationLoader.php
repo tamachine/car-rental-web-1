@@ -27,7 +27,7 @@ class TranslationLoader extends FileLoader
         $output = [];
 
         foreach($translations as $translation) {                
-            $output[$translation->group][$translation->key] = $translation->text;
+            $output[$translation->group][$translation->key] = strval($translation->text);
         }
 
         $fileTranslations = parent::load($locale, $group, $namespace);
