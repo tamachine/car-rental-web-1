@@ -63,6 +63,6 @@ class BlogPost implements LocalizedUrlRoutable {
 
     public function getLocalizedRouteKey($locale)
     {
-        return $this->translatedSlugs[$locale];
+        return $this->translatedSlugs[$locale] ?? $this->slug;
     }
 }
