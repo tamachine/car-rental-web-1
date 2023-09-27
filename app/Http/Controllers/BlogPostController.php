@@ -17,20 +17,20 @@ class BlogPostController extends Controller implements ExtendsWebLayoutInterface
     protected $blogPostRepository;
 
     protected BlogPost|null $blogPost;
- 
-    public function __construct(BlogPostRepositoryInterface $blogPostRepository) {                     
-        $this->blogPostRepository = $blogPostRepository;             
+
+    public function __construct(BlogPostRepositoryInterface $blogPostRepository) {
+        $this->blogPostRepository = $blogPostRepository;
     }
 
-    public function index(string $blog_post_slug)
-    {              
-        $this->blogPost = $this->findOrfail($this->blogPostRepository->findBySlug($blog_post_slug));
+    public function index(BlogPost $blog_post)
+    {
+        $this->blogPost = $blog_post;
 
         if(!$this->blogPost->published) {
             abort(404);
         }
 
-        return $this->postView();        
+        return $this->postView();
     }
 
     public function preview(string $blog_post_slug) {
@@ -38,25 +38,25 @@ class BlogPostController extends Controller implements ExtendsWebLayoutInterface
         if(request()->has('token')) {
             $this->blogPost = $this->blogPostRepository->preview(request()->input('token'), $blog_post_slug);
 
-            if($this->blogPost) {                
+            if($this->blogPost) {
                 $this->blogPost->published_at = now();
 
-                return $this->postView(); 
+                return $this->postView();
             }
         }
 
         abort(404);
     }
 
-    protected function postView() {        
+    protected function postView() {
         return view(
             'blog.show',
             array_merge(
                 $this->webLayoutViewParams(),
                 [
                     'post' => $this->blogPost,
-                    'breadcrumbs' => getBreadcrumb(['home', 'blog', $this->blogPost->title]),    
-                    'related' => $this->blogPost->related_posts                         
+                    'breadcrumbs' => getBreadcrumb(['home', 'blog', $this->blogPost->title]),
+                    'related' => $this->blogPost->related_posts
                 ])
         );
     }
@@ -67,14 +67,14 @@ class BlogPostController extends Controller implements ExtendsWebLayoutInterface
     }
 
     public function footerImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.png');
     }
 
     public function footerWebpImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.webp');
     }
 
-   
+
 }
