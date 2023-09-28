@@ -30,6 +30,11 @@ class ContactSubmit extends Component
     public $subject;
 
     /**
+     * @var array
+     */
+    public $enquireTypes;
+
+    /**
      * @var string
      */
     public $type;
@@ -52,9 +57,10 @@ class ContactSubmit extends Component
     ***************************************************************
     */
 
-    public function mount(bool $submitButtonCentered = true)
+    public function mount(bool $submitButtonCentered = true, $types)
     {
-        $this->type = 'general';
+        $this->enquireTypes = $types;
+        $this->type = $this->enquireTypes[0];
         $this->submitButtonCentered = $submitButtonCentered;
     }
 
@@ -78,9 +84,9 @@ class ContactSubmit extends Component
         $contactFormRepository->send($params);
 
         $this->reset(['name', 'email', 'subject','message']);
-      
-        $this->type = "general";
 
+        $this->type = "amendments on my booking";
+        
         $this->emit('openModal:'.$this->modalId); 
     }
 }
