@@ -16,7 +16,21 @@ class BindingServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Route::bind('blog_post_slug', function ($value) {
+            return $this->findOrfail(app(BlogPostRepositoryInterface::class)->findBySlug($value));
+        });
+
+        Route::bind('car_hashid', function ($value) {
+            return $this->findOrfail(app(CarRepositoryInterface::class)->findByHashid($value));
+        });
+
+        Route::bind('blog_author_slug', function ($value) {
+            return $this->findOrfail(app(BlogAuthorRepositoryInterface::class)->findBySlug($value));
+        });
+
+        Route::bind('blog_category_slug', function ($value) {
+            return $this->findOrfail(app(BlogCategoryRepositoryInterface::class)->findBySlug($value));
+        });
     }
 
     /**
@@ -24,21 +38,7 @@ class BindingServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::bind('blog_post_slug', function ($value) {
-            return $this->findOrfail(app(BlogPostRepositoryInterface::class)->findBySlug($value));
-        });
-
-       /* Route::bind('blog_author_slug', function ($value) {
-            return $this->findOrfail(app(BlogAuthorRepositoryInterface::class)->findBySlug($value));
-        });*/
-
-        /*Route::bind('blog_category_slug', function ($value) {
-            return $this->findOrfail(app(BlogCategoryRepositoryInterface::class)->findBySlug($value));
-        });
-
-        Route::bind('car_hashid', function ($value) {
-            return $this->findOrfail(app(CarRepositoryInterface::class)->findBySlug($value));
-        });*/
+        //
     }
 
     protected function findOrfail($result): object {

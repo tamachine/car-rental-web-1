@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\CarRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Interfaces\InsuranceFeatureRepositoryInterface;
+use App\Models\Car;
 use App\Models\SeoConfiguration;
 use App\Traits\Nave\ExtendsWebLayout;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ class InsurancesController extends Controller implements ExtendsWebLayoutInterfa
 
     protected $carRepository;
 
-    protected $pageRepository;   
+    protected $pageRepository;
 
     protected $insuranceFeatureRepository;
 
@@ -26,24 +27,24 @@ class InsurancesController extends Controller implements ExtendsWebLayoutInterfa
         $this->carRepository = $carRepository;
         $this->insuranceFeatureRepository = $insuranceFeatureRepository;
     }
-    
-    public function index(string $car_hash_id)
-    {           
+
+    public function index(Car $car)
+    {
         if (!checkSessionInsurances()) {
             return redirect()->route('cars');
         }
 
-        $this->car = $this->findOrfail($this->carRepository->findByHashid($car_hash_id));
+        $this->car = $car;
 
         return view(
-            'insurances.index', 
+            'insurances.index',
                 array_merge(
                     $this->webLayoutViewParams(),
                 [
-                    'car' => $this->car, 'insurances' => $this->carRepository->insurances($car_hash_id), 'InsuranceFeatures' => $this->insuranceFeatureRepository->all()
+                    'car' => $this->car, 'insurances' => $this->carRepository->insurances($this->car->hashid), 'InsuranceFeatures' => $this->insuranceFeatureRepository->all()
                 ])
         );
-    
+
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -52,12 +53,12 @@ class InsurancesController extends Controller implements ExtendsWebLayoutInterfa
     }
 
     public function footerImagePath() : string
-    {       
+    {
         return asset('/images/footer/insurances.png');
     }
 
     public function footerWebpImagePath() : string
-    {       
+    {
         return asset('/images/footer/insurances.webp');
     }
 

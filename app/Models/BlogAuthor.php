@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Traits\Nave\HasResponses;
+use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
-class BlogAuthor {
+class BlogAuthor implements LocalizedUrlRoutable{
 
     use HasResponses {
         processSingleResponse as public traitProcessSingleResponse;
@@ -30,10 +31,15 @@ class BlogAuthor {
      * override processSingleResponse from HasResponses
      */
     public static function processSingleResponse(array|null $instanceData): object {
-        $blogAuthor = self::traitProcessSingleResponse($instanceData); 
+        $blogAuthor = self::traitProcessSingleResponse($instanceData);
 
         $blogAuthor->setUrl(route('blog.search.author', ['blog_author_slug' => $blogAuthor->slug]));
-      
-        return $blogAuthor;    
+
+        return $blogAuthor;
+    }
+
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->slug;
     }
 }
