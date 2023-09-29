@@ -9,7 +9,6 @@
             <div>
                 <x-read-more-block text="{!! $text !!}" />    
             </div>
-            <button class="tab hidden md:block">{!! __('home.feature-more') !!}</button>
         </div>
     </div>
 @else
@@ -23,7 +22,6 @@
             <div class="">
                 <x-read-more-block text="{!! $text !!}" :reverse-text-align=true />    
             </div>
-            <button class="tab hidden md:block">{!! __('home.feature-more') !!}</button>
         </div>
     </div>
 @endif
