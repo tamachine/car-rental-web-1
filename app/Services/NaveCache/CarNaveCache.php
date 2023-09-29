@@ -16,7 +16,8 @@ class CarNaveCache extends BaseNaveCache implements NaveCacheInterface {
     public function run() {        
         $this->setAll();    
         $this->seoConfiguration();  
-        $this->insurances();      
+        $this->insurances();     
+        $this->extras();    
     } 
     
     public function getRepository()
@@ -51,6 +52,17 @@ class CarNaveCache extends BaseNaveCache implements NaveCacheInterface {
             
         foreach($this->all as $car) {
             $this->carRepository->insurances($car->hashid);
+        }               
+    }
+
+    /**
+     * Calls the extras endpoint method for all cars
+     */
+    protected function extras() {        
+        $this->log('calling extras');
+            
+        foreach($this->all as $car) {
+            $this->carRepository->extras($car->hashid);
         }               
     }
 }
