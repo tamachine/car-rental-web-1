@@ -10,6 +10,11 @@ class BlogPost {
         processSingleResponse as public traitProcessSingleResponse;
     }
 
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->getTranslation('slug', $locale);
+    }
+
     public $hashid;
     public $slug;
     public $title;
@@ -34,6 +39,7 @@ class BlogPost {
     public $related_posts;
     public $prev_post;
     public $next_post;    
+    public $slugs = [];
 
     public function setUrl($value) {
         $this->url = $value;

@@ -42,6 +42,7 @@ class ChooseInsurance extends Component
             'id'        => json_decode($this->insurance)->hashid,
             'name'      => json_decode($this->insurance)->name,
             'caren_id'  => json_decode($this->insurance)->caren_id,
+            'hashid'    => json_decode($this->insurance)->hashid,
             'price'     => json_decode($this->insurance)->price * bookingDays()
         ];
         request()->session()->put('booking_data', $sessionData);
