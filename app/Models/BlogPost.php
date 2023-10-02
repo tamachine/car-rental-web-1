@@ -11,6 +11,11 @@ class BlogPost implements LocalizedUrlRoutable {
         processSingleResponse as public traitProcessSingleResponse;
     }
 
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->getTranslation('slug', $locale);
+    }
+
     public $hashid;
     public $slug;
     public array $translatedSlugs;
@@ -35,7 +40,8 @@ class BlogPost implements LocalizedUrlRoutable {
     public $tags;
     public $related_posts;
     public $prev_post;
-    public $next_post;
+    public $next_post;    
+    public $slugs = [];
 
     public function setUrl($value) {
         $this->url = $value;

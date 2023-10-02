@@ -25,7 +25,12 @@ class FaqController extends Controller implements ExtendsWebLayoutInterface
 
     public function index()
     {            
-        echo "faq"; die;
+        return view( 'faq.index', array_merge( $this->webLayoutViewParams(),
+                [
+                    'breadcrumbs'   => getBreadcrumb(['home', 'FAQ']),
+                ]
+            )
+        );
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,11 +40,11 @@ class FaqController extends Controller implements ExtendsWebLayoutInterface
 
     public function footerImagePath() : string
     {       
-        return asset('/images/footer/home.png');
+        return asset('/images/footer/faq.png');
     }
 
     public function footerWebpImagePath() : string
     {       
-        return asset('/images/footer/home.webp');
+        return asset('/images/footer/faq.webp');
     }
 }

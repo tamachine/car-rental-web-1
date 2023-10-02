@@ -39,16 +39,30 @@ class Car implements LocalizedUrlRoutable {
     public $daily_price;
     public $total_price;
     public $caren_settings;
+    public $vendor;
 
+    public function toArray() {
+        return get_object_vars($this);
+    }
+    
+    public function toJson() {
+        return json_encode($this);
+    }
+
+    public static function toObject(array $instanceData) {
+        return self::traitProcessSingleResponse($instanceData);  
+    }
+    
     /**
      * overrides processSingleResponse from Hasresponses trait
      */
     public static function processSingleResponse(array|null $instanceData): object {
-        $locationObject = self::traitProcessSingleResponse($instanceData);
-
-        if(isset($instanceData['getFeaturedImageModelImageInstance']))      $locationObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']);
-        if(isset($instanceData['getFeaturedImagaHoverModelImageInstance'])) $locationObject->getFeaturedImagaHoverModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImagaHoverModelImageInstance']);
-
+        $locationObject = self::traitProcessSingleResponse($instanceData);     
+            
+        if(isset($instanceData['getFeaturedImageModelImageInstance']))      $locationObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']);   
+        if(isset($instanceData['getFeaturedImagaHoverModelImageInstance'])) $locationObject->getFeaturedImagaHoverModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImagaHoverModelImageInstance']);   
+        if(isset($instanceData['vendor'])) $locationObject->vendor = Vendor::processSingleResponse($instanceData['vendor']);   
+            
         return $locationObject;
     }
 
