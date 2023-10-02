@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Interfaces\CarRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
+use App\Models\Car;
 use App\Models\SeoConfiguration;
 use App\Traits\Nave\ExtendsWebLayout;
 use Illuminate\Support\Facades\Route;
@@ -21,13 +22,13 @@ class ExtrasController extends Controller implements ExtendsWebLayoutInterface
         $this->carRepository = $carRepository;
     }
     
-    public function index(string $car_hash_id)
+    public function index(Car $car)
     {           
         if (!checkSessionExtras()) {
             return redirect()->route('cars');
         }
 
-        $this->car = $this->findOrfail($this->carRepository->findByHashid($car_hash_id));
+        $this->car = $car;
 
         return view(
             'extras.index', 
