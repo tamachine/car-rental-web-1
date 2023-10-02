@@ -14,19 +14,20 @@ class BlogSearchCategoryController extends Controller implements ExtendsWebLayou
 {
     use ExtendsWebLayout;
 
-    protected $blogCategoryRepository;
+    protected BlogCategoryRepositoryInterface $blogCategoryRepository;
 
     protected BlogCategory|null $blogCategory;
 
-    public function __construct(BlogCategoryRepositoryInterface $blogCategoryRepository) {
+    public function __construct(BlogCategoryRepositoryInterface $blogCategoryRepository)
+    {
         $this->blogCategoryRepository = $blogCategoryRepository;
     }
-    
-    public function index($blog_category_slug)
-    {               
-        $this->blogCategory = $this->findOrfail($this->blogCategoryRepository->findBySlug($blog_category_slug));
 
-        return view('blog.search.category', array_merge(['category' => $this->blogCategory], $this->webLayoutViewParams()));   
+    public function index(BlogCategory $blogCategory)
+    {
+        $this->blogCategory = $blogCategory;
+
+        return view('blog.search.category', array_merge(['category' => $this->blogCategory], $this->webLayoutViewParams()));
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,14 +36,12 @@ class BlogSearchCategoryController extends Controller implements ExtendsWebLayou
     }
 
     public function footerImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.png');
     }
 
     public function footerWebpImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.webp');
     }
-
-   
 }

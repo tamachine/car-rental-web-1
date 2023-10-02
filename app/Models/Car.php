@@ -4,9 +4,10 @@ namespace App\Models;
 
 use App\Models\Image;
 use App\Traits\Nave\HasResponses;
+use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
-class Car {
-    
+class Car implements LocalizedUrlRoutable {
+
     use HasResponses {
         processSingleResponse as traitProcessSingleResponse;
     }
@@ -29,9 +30,9 @@ class Car {
     public $transmission;
     public $vehicle_type;
     public $vehicle_brand;
-    public $f_roads_name;   
-    public $featured_image; 
-    public $featured_image_hover; 
+    public $f_roads_name;
+    public $featured_image;
+    public $featured_image_hover;
     public $getFeaturedImageModelImageInstance;
     public $getFeaturedImagaHoverModelImageInstance;
     public $fRoadAllowed;
@@ -65,5 +66,8 @@ class Car {
         return $locationObject;
     }
 
-
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->hashid;
+    }
 }

@@ -14,19 +14,20 @@ class BlogSearchAuthorController extends Controller implements ExtendsWebLayoutI
 {
     use ExtendsWebLayout;
 
-    protected $blogAuthorRepository;
+    protected BlogAuthorRepositoryInterface $blogAuthorRepository;
 
     protected BlogAuthor|null $blogAuthor;
 
-    public function __construct(BlogAuthorRepositoryInterface $blogAuthorRepository) {
+    public function __construct(BlogAuthorRepositoryInterface $blogAuthorRepository)
+    {
         $this->blogAuthorRepository = $blogAuthorRepository;
     }
-    
-    public function index($blog_author_slug)
-    {               
-        $this->blogAuthor = $this->findOrfail($this->blogAuthorRepository->findBySlug($blog_author_slug));
 
-        return view('blog.search.author', array_merge(['author' => $this->blogAuthor], $this->webLayoutViewParams()));   
+    public function index(BlogAuthor $blogAuthor)
+    {
+        $this->blogAuthor = $blogAuthor;
+
+        return view('blog.search.author', array_merge(['author' => $this->blogAuthor], $this->webLayoutViewParams()));
     }
 
     public function getSeoConfiguration(): SeoConfiguration
@@ -35,14 +36,14 @@ class BlogSearchAuthorController extends Controller implements ExtendsWebLayoutI
     }
 
     public function footerImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.png');
     }
 
     public function footerWebpImagePath() : string
-    {       
+    {
         return asset('/images/footer/blog.webp');
     }
 
-   
+
 }
