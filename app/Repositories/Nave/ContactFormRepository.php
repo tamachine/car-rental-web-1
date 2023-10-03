@@ -3,6 +3,7 @@
 namespace App\Repositories\Nave;
 
 use App\Interfaces\ContactFormRepositoryInterface;
+use App\Models\ContactFormType;
 use App\Repositories\Nave\BaseRepository;
 
 class ContactFormRepository extends BaseRepository implements ContactFormRepositoryInterface {
@@ -12,9 +13,10 @@ class ContactFormRepository extends BaseRepository implements ContactFormReposit
      */
     public function types(): array {
 
-        $endpoint = 'contact-form/types';        
-
-        return $this->processGet($endpoint, [] , self::CACHED);        
+        $endpoint = 'contact-form/types';  
+        
+        return ContactFormType::processResponse($this->processGet($endpoint, [] , self::CACHED));
+                
     } 
 
     /**

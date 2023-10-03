@@ -3,6 +3,6 @@
         <x-webp-image :image-path="asset('images/contact/contact-top.jpg')" :webp-image-path="asset('images/contact/contact-top.webp')" class="object-cover h-full rounded-xl" />
     </div>
     <div class="flex-grow">
-        <livewire:contact-form :types="$types"  />
+        <livewire:contact-form />
     </div>
 </div>

@@ -7,11 +7,6 @@ use Livewire\Component;
 class ContactForm extends Component
 {
     public $types;
-
-    public function mount($types)
-    {
-        $this->types = $types;
-    }
     
     public function render()
     {

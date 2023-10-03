@@ -31,9 +31,10 @@
                     mt-2 w-full rounded-md border-gray-200 
                     h-[60px] focus:border-1 focus:border-pink-red focus:ring-0"
             >
-                @foreach($enquireTypes as $enquiryType)
-                    <option value="{{$enquiryType}}">{{ __('contact.enquiry_' . $enquiryType) }}</option>
+                @foreach($this->enquiryTypes as $key => $enquiryType)
+                    <option value="{{$enquiryType->hashid}}">{{ $enquiryType->type }}</option>
                 @endforeach
+            
             </select>
 
             @error('type')

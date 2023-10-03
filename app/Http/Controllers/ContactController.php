@@ -29,7 +29,6 @@ class ContactController extends Controller implements ExtendsWebLayoutInterface
             'contact.index',
              array_merge( $this->webLayoutViewParams(),
                 [
-                    'types' => $this->contactFormRepository->types(),
                     'breadcrumbs'   => getBreadcrumb(['home', 'contact']),
                 ]
             )
