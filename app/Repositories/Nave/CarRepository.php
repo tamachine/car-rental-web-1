@@ -73,10 +73,16 @@ class CarRepository extends BaseRepository implements CarRepositoryInterface {
         return CarInsurance::processResponse($this->processGet($endpoint, [], self::SHORT_TIME_CACHED));
     }
 
-    public function extras($carHashId): array {
+    public function extras($carHashId, $included = null): array {
         $endpoint = 'cars/'.$carHashId.'/extras';
+
+        $params = [];
+
+        if(isset($included)) {
+            $params['included'] = $included;
+        }
         
-        return CarExtra::processResponse($this->processGet($endpoint, [], self::SHORT_TIME_CACHED));
+        return CarExtra::processResponse($this->processGet($endpoint, $params, self::SHORT_TIME_CACHED));
     }
 
     public function findCarExtraByHashid($carHashId, $extraHashid): CarExtra {
