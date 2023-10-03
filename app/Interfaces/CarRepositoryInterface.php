@@ -22,7 +22,7 @@ interface CarRepositoryInterface
 
     public function insurances($carHashId): array;
 
-    public function extras($carHashId): array;
+    public function extras($carHashId, $included = null): array;
 
     public function findCarExtraByHashid($carHashId, $extraHashid): CarExtra;
 }
