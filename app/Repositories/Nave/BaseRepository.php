@@ -56,12 +56,25 @@ class BaseRepository {
      * @param string $endpoint
      * @param array $params
      */
-    protected function processPut($endpoint, $params = []) {
+    protected function processPut($endpoint, $params = []): bool {
         $response = Nave::sendHttpRequest('put', $endpoint, $params);
 
         if(isset($response['success'])) {
             return $response['success'];
         }
+
+        return false;
+    }
+
+    /**
+     * returns the Nave::sendHttpRequest('put' ...) date response
+     * @param string $endpoint
+     * @param array $params
+     */
+    protected function processPutData($endpoint, $params = []): array {
+        $response = Nave::sendHttpRequest('put', $endpoint, $params);
+
+        return $this->processResponse($response);
     }
 
     protected function processResponse($response) {

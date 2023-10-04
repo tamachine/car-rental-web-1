@@ -31,10 +31,6 @@ Route::group(
     Route::get(LaravelLocalization::transRoute('routes.{car_hashid}/insurances'), [\App\Http\Controllers\InsurancesController::class, 'index'])->name('insurances');   
     Route::get(LaravelLocalization::transRoute('routes.{car_hashid}/extras'), [\App\Http\Controllers\ExtrasController::class, 'index'])->name('extras');
     Route::get(LaravelLocalization::transRoute('routes.payment'), [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment');   
-    
-    Route::get('/payment/{car_hashid}', function() { //revisar dichero Steps
-        echo "TODO";die;
-    })->name('payment');
 
     /* blog */        
     Route::get(LaravelLocalization::transRoute('routes.blog/post/{blog_post_slug}'), [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog.show');       
