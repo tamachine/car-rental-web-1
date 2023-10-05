@@ -113,7 +113,9 @@
     <div>
         <x-wire-spinner target="toggleExtra" />
         
-        <div wire:loading.remove wire:target="toggleExtra" >
+        <x-wire-spinner target="continue" />
+        
+        <div wire:loading.remove wire:target="toggleExtra, continue" >
             <div class="mt-2 flex justify-between">
                 <div class="font-sans-bold font-bold text-[28px] text-black-ci">
                     {!! __('summary.total') !!}
