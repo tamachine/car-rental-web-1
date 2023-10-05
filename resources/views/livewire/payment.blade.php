@@ -13,9 +13,8 @@
 
     @if($generateValitorForm)                                
         @include('payment.partial.payment-processing')
-        {{-- 
-        TODO 
-        <x-valitor-form :booking="$booking" />
-        --}}
+
+        <x-valitor-form :bookingHashid="$bookingHashid" />
+
     @endif    
 </div>

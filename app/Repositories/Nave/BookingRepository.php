@@ -4,6 +4,7 @@ namespace App\Repositories\Nave;
 
 use App\Interfaces\BookingRepositoryInterface;
 use App\Models\Booking;
+use App\Models\BookingPayment;
 use App\Repositories\Nave\BaseRepository;
 
 class BookingRepository extends BaseRepository implements BookingRepositoryInterface {
@@ -33,5 +34,15 @@ class BookingRepository extends BaseRepository implements BookingRepositoryInter
         $params['currency']   = $currency;
         
         return Booking::processSingleResponse($this->processPutData($endpoint, $params));
-    }      
+    }  
+    
+    public function update(string $bookingHashid, array $valitor_request = null) {
+        $endpoint = "bookings/". $bookingHashid;
+
+        $params = [];
+        
+        if (isset($valitor_request)) $params['valitor_request'] = $valitor_request;
+
+        return Booking::processSingleResponse($this->processPutData($endpoint,$params));
+    }
 }

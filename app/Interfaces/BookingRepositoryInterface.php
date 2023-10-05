@@ -17,5 +17,7 @@ interface BookingRepositoryInterface {
      * @var string $affiliateHashid hashid of the affiliate
      * @var string $currency 'ISK'
      */
-    public function create(string $carHashid, array $dates, array $locations, array $insurances, array $extras, array $details, string $affiliateHashid = null, string $currency ='ISK'): Booking;
+    public function create(string $carHashid, array $dates, array $locations, array $insurances, array $extras, array $details, string $affiliateHashid = null, string $currency ='ISK'): Booking;    
+
+    public function update(string $bookingHashid, array $valitor_request = null);
 }

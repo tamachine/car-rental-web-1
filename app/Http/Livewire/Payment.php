@@ -81,9 +81,9 @@ class Payment extends Component
     public $number_passengers = 0;    
 
     /**
-     * @var App/Booking|null
+     * @var string|null
      */
-    public $booking = null;
+    public $bookingHashid = null;
 
     protected $listeners = ['update_number' => 'updateNumberPassengers'];
 
@@ -148,7 +148,9 @@ class Payment extends Component
 
         $this->validate($rules);
 
-        $this->booking = $this->saveBooking();
+        $booking = $this->saveBooking();
+
+        $this->bookingHashid = $booking->hashid;
 
         $this->generateValitorForm = true;
     }
