@@ -36,12 +36,12 @@ class Currency
      */
     public static function availableCurrencies()
     {
-        return Cache::store(CacheHelper::API_STORE)->rememberForever('currencies', function () {    
-            $configRepository = app(ConfigRepositoryInterface::class);                 
+        return Cache::store(CacheHelper::API_STORE)->rememberForever('currencies', function () { 
+               
+            $configRepository = app(ConfigRepositoryInterface::class);          
 
-            $currencies = Arr::pluck($configRepository->currencies(), 'id');
+            return Arr::pluck($configRepository->currencies(), 'code');
 
-            return array_map('strtoupper', $currencies);
         });        
     }
 
