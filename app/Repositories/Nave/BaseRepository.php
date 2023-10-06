@@ -15,7 +15,7 @@ class BaseRepository {
     const SHORT_TIME_CACHED = 2;  // cached endpoint for short time CacheHelper::SHORT_TIME
 
     //set to true if the cache must be clear for the processGet method
-    protected $refreshCache = false; 
+    protected $refreshCache = false;
 
     /**
      * Set refreshCache to true in order to clear the corresponding endpoint cache before return the data
@@ -23,7 +23,7 @@ class BaseRepository {
     public function setRefreshCache($value) {
         $this->refreshCache = $value;
     }
-   
+
     /**
      * returns the Nave::sendHttpRequest('get' ...) response
      * @param string $endpoint
@@ -35,12 +35,12 @@ class BaseRepository {
         $params['locale'] ??= App::getLocale();
 
         if($this->refreshCache) {
-            Cache::store(CacheHelper::API_STORE)->forget($this->cacheKeyForEndpoint($endpoint, $params));            
+            Cache::store(CacheHelper::API_STORE)->forget($this->cacheKeyForEndpoint($endpoint, $params));
         }
 
         if(($options & self::CACHED) || ($options & self::SHORT_TIME_CACHED)) {
             $cacheTime = ($options & self::CACHED) ? CacheHelper::DEFAULT_TIME : CacheHelper::SHORT_TIME;
-            
+
             $response = Cache::store(CacheHelper::API_STORE)->remember($this->cacheKeyForEndpoint($endpoint, $params), $cacheTime, function() use($endpoint, $params) {
                 return Nave::sendHttpRequest('get', $endpoint, $params);
             });
@@ -48,21 +48,34 @@ class BaseRepository {
             $response = Nave::sendHttpRequest('get', $endpoint, $params);
         }
 
-        return $this->processResponse($response);     
-    }   
-    
+        return $this->processResponse($response);
+    }
+
     /**
      * returns the Nave::sendHttpRequest('put' ...) response
      * @param string $endpoint
-     * @param array $params     
+     * @param array $params
      */
-    protected function processPut($endpoint, $params = []) {               
+    protected function processPut($endpoint, $params = []): bool {
         $response = Nave::sendHttpRequest('put', $endpoint, $params);
-        
+
         if(isset($response['success'])) {
             return $response['success'];
-        }  
-    }  
+        }
+
+        return false;
+    }
+
+    /**
+     * returns the Nave::sendHttpRequest('put' ...) date response
+     * @param string $endpoint
+     * @param array $params
+     */
+    protected function processPutData($endpoint, $params = []): array {
+        $response = Nave::sendHttpRequest('put', $endpoint, $params);
+
+        return $this->processResponse($response);
+    }
 
     protected function processResponse($response) {
         if(isset($response['success'])) {
@@ -71,9 +84,9 @@ class BaseRepository {
             }
         }
 
-        return [];   
-    }     
-    
+        return [];
+    }
+
     /**
      * Map as objects all the items in param array as a 'className' instances
      * @param array $array the data array response
@@ -83,15 +96,15 @@ class BaseRepository {
     protected function processArrayToObjects($array, $className) {
         $response = [];
 
-        foreach($array as $value) {                        
-            $response[] = ArrayHelper::mapArrayToObject($value, $className); 
+        foreach($array as $value) {
+            $response[] = ArrayHelper::mapArrayToObject($value, $className);
         }
-        
+
         return $response;
     }
 
-    protected function cacheKeyForEndpoint($endpoint, $params) {        
+    protected function cacheKeyForEndpoint($endpoint, $params) {
         return $endpoint.http_build_query(ArrayHelper::flattenParams($params));
-    }    
+    }
 
 }

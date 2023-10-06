@@ -165,13 +165,14 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,        
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\FacadesServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TranslationServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        App\Providers\BindingServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,9 +186,9 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([        
-        'Nave' => App\Apis\Nave\ApiFacade::class,     
-        'CarSearchInitialValues' => App\Services\CarsSearch\CarSearchInitialValuesFacade::class, 
+    'aliases' => Facade::defaultAliases()->merge([
+        'Nave' => App\Apis\Nave\ApiFacade::class,
+        'CarSearchInitialValues' => App\Services\CarsSearch\CarSearchInitialValuesFacade::class,
     ])->toArray(),
 
 ];
