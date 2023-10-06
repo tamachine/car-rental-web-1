@@ -10,6 +10,6 @@ class ContactFormType extends Model
     use HasResponses;
 
     public $hashid;
-    public $type; 
+    public $name; 
 
 }

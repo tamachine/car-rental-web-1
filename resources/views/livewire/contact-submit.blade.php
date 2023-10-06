@@ -32,7 +32,7 @@
                     h-[60px] focus:border-1 focus:border-pink-red focus:ring-0"
             >
                 @foreach($this->enquiryTypes as $key => $enquiryType)
-                    <option value="{{$enquiryType->hashid}}">{{ $enquiryType->type }}</option>
+                    <option value="{{$enquiryType->hashid}}">{{ $enquiryType->name }}</option>
                 @endforeach
             
             </select>
