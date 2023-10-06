@@ -1,4 +1,7 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">        
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">    
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <x-wire-spinner /> 
+    </div>    
         @foreach(['name', 'email', 'subject'] as $input)
             <div class="w-full">
                 <label for="{{ $input }}" class="p-3">{!! __('contact.'. $input) !!}</label>
@@ -28,9 +31,10 @@
                     mt-2 w-full rounded-md border-gray-200 
                     h-[60px] focus:border-1 focus:border-pink-red focus:ring-0"
             >
-                @foreach(config('contact.enquiry_types') as $enquiryType)
-                    <option value="{{$enquiryType}}">{{ __('contact.enquiry_' . $enquiryType) }}</option>
+                @foreach($this->enquiryTypes as $key => $enquiryType)
+                    <option value="{{$enquiryType->hashid}}">{{ $enquiryType->name }}</option>
                 @endforeach
+            
             </select>
 
             @error('type')

@@ -46,16 +46,29 @@ class ContactSubmit extends Component
 
     public $modalId;
 
+    protected $contactFormRepository;
+
+
     /*
     ***************************************************************
     ** METHODS
     ***************************************************************
     */
+    public function boot(ContactFormRepositoryInterface $contactFormRepository){
+              
+        $this->contactFormRepository = $contactFormRepository;
+    }
 
     public function mount(bool $submitButtonCentered = true)
-    {
-        $this->type = 'general';
+    {   
         $this->submitButtonCentered = $submitButtonCentered;
+    }
+
+    public function getEnquiryTypesProperty()
+    {
+        $types = $this->contactFormRepository->types();
+        $this->type = $types[0]->hashid;
+        return $types;  
     }
 
     public function render()
@@ -63,7 +76,7 @@ class ContactSubmit extends Component
         return view('livewire.contact-submit');
     }
 
-    public function send(ContactFormRepositoryInterface $contactFormRepository)
+    public function send()
     {
         $this->dispatchBrowserEvent('validationError');
 
@@ -75,12 +88,10 @@ class ContactSubmit extends Component
             'message'   => ['required'],
         ]);
 
-        $contactFormRepository->send($params);
+        $this->contactFormRepository->send($params);
 
         $this->reset(['name', 'email', 'subject','message']);
-      
-        $this->type = "general";
-
+        
         $this->emit('openModal:'.$this->modalId); 
     }
 }

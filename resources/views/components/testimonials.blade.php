@@ -16,6 +16,5 @@
         <div class="leading-[30px] md:text-right md:pl-4 lg:pl-24 md:pt-3">
             {!! __('home.testimonials-text') !!}
         </div>
-        <button class="tab hidden md:block md:mt-3">{!! __('home.testimonials-all') !!}</button>
     </div>
 </div>
