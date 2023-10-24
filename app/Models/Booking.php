@@ -10,4 +10,5 @@ class Booking {
 
     public $hashid;
     public $status;
+    public $name;
 }
