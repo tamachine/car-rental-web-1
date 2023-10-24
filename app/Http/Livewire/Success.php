@@ -45,12 +45,13 @@ class Success extends Component
     ***************************************************************
     */
 
-    public function mount()
+    public function mount(CarRepositoryInterface $carRepository)
     {
         $sessionData = request()->session()->get('booking_data');
 
         $this->car = app(CarRepositoryInterface::class)->findByhashid($sessionData['car']);
         $this->booking = app(BookingRepositoryInterface::class)->findByhashid($sessionData['booking']);
+        $this->carHashid = $this->car->hashid;
 
         if($this->car->featured_image) {
             $this->mainImage = $this->car->featured_image_url;
@@ -63,7 +64,10 @@ class Success extends Component
         $this->pickupLocation = bookingPickupLocation();
         $this->dropoffLocation = bookingDropoffLocation();
         $this->insurances = bookingInsurances();
-        $this->includedExtras = $this->car->extraList()->where('included', 1);
+       // $this->includedExtras = $this->car->extraList()->where('included', 1);
+        $this->includedExtras = collect($carRepository->extras($this->car->hashid))->where('included', 1)->map(function ($item) {
+            return $item->toArray(); //convert App\Models\CarExtra into array for livewire blade
+        });
         $this->chosenExtras = $sessionData["extras"];
 
         $this->percentage = $this->car->vendor->caren_settings["online_percentage"];
