@@ -26,7 +26,7 @@ class ValitorRepository extends BaseRepository implements ValitorRepositoryInter
 
         $params['valitor_response'] = $valitor_response;
 
-        return $this->processResponse($this->processGet($endpoint, $params));
+        return $this->processGet($endpoint, $params);
 
     }
 }
