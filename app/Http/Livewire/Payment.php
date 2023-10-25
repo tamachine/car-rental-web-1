@@ -4,10 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\CarRepositoryInterface;
-use App\Models\Booking;
 use Illuminate\Support\Arr;
 use App\Traits\Livewire\SummaryTrait;
-use App\Jobs\CreateCarenBooking;
 use Livewire\Component;
 
 class Payment extends Component
@@ -135,15 +133,16 @@ class Payment extends Component
         $this->dispatchBrowserEvent('validationError');
 
         $rules = [
-            'first_name'    => ['required'],
-            'last_name'     => ['required'],
-            'email'         => ['required', 'email', 'confirmed'],
-            'telephone'     => ['required'],
-            'address'       => ['required'],
-            'postal_code'   => ['required'],
-            'city'          => ['required'],
-            'country'       => ['required'],
-            'number_passengers' => 'required|numeric|min:1|max:12'
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'email'             => 'required| email| confirmed',
+            'telephone'         => 'required',
+            'address'           => 'required',
+            'postal_code'       => 'required',
+            'city'              => 'required',
+            'country'           => 'required',
+            'number_passengers' => 'required | numeric | min:1 | max:12',
+            'agree'             => 'accepted'
         ];
 
         $this->validate($rules);
@@ -197,7 +196,8 @@ class Payment extends Component
                     'postal_code' => $this->postal_code,
                     'city' => $this->city,
                     'country' => $this->country,
-                    'number_passengers' => $this->number_passengers
+                    'number_passengers' => $this->number_passengers,
+                    'additional_info' => $this->additional
                 ],
 
                 $affiliateHashid ?? null,

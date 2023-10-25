@@ -25,6 +25,12 @@
                 {!! __('payment.t-and-c') !!}
             </a>
         </label>
+
+        @if($errors->has('agree'))
+            <p class="validation-error text-sm text-red-600 pt-2">
+                {{ $errors->first('agree') }}              
+            </p>
+        @enderror
     </div>
 
     <div class="mt-8 xl:hidden">
