@@ -19,5 +19,9 @@ interface BookingRepositoryInterface {
      */
     public function create(string $carHashid, array $dates, array $locations, array $insurances, array $extras, array $details, string $affiliateHashid = null, string $currency ='ISK'): Booking;    
 
-    public function update(string $bookingHashid, array $valitor_request = null);
+    public function update(string $bookingHashid, array $params = []);
+
+    public function findByHashid(string $ookingHashid): Booking;
+
+    public function pdf(string $ookingHashid, bool $send = false): bool;
 }

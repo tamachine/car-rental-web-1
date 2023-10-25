@@ -4,10 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\CarRepositoryInterface;
-use App\Models\Booking;
 use Illuminate\Support\Arr;
 use App\Traits\Livewire\SummaryTrait;
-use App\Jobs\CreateCarenBooking;
 use Livewire\Component;
 
 class Payment extends Component

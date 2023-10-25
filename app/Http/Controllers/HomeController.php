@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BlogPostRepositoryInterface;
+use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\PageRepositoryInterface;
 use App\Interfaces\ExtendsWebLayoutInterface;
 use App\Models\SeoConfiguration;
@@ -25,7 +26,7 @@ class HomeController extends Controller implements ExtendsWebLayoutInterface
     }
 
     public function index()
-    {                            
+    {                                 
         return view('home.index', array_merge($this->webLayoutViewParams(),['latestArticles' => $this->blogPostRepository->latest()]));
     }
 
