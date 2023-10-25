@@ -1,10 +1,10 @@
-<div class="w-11/12 xl:w-1/2 max-w-[600px] mx-auto rounded-xl bg-white border border-gray-secondary">
-    <img class="mx-auto rounded-t-xl w-full overflow-hidden" src="{{ $mainImage }}">
+<div class="w-11/12 xl:w-1/2 max-w-[600px] mx-auto rounded-xl bg-white border border-gray-secondary">    
+    <x-webp-image class="mx-auto rounded-t-xl w-full overflow-hidden" :image-path="$mainImage" />
 
     <div class="p-8">
         <div>
             <div class="font-sans-bold text-2xl">
-                {{$car->name}}
+                {{$carName}}
             </div>
 
             <div class="mt-6 flex">
