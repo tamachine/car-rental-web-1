@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\Nave\HasResponses;
+use Exception;
 use App\Models\SeoSchema;
+use App\Traits\Nave\HasResponses;
 
 class SeoConfiguration {
 
@@ -22,11 +23,15 @@ class SeoConfiguration {
     /**
      * overrides processSingleResponse from HasResponses trait
      */
-    public static function processSingleResponse(array|null $instanceData): object {
+    public static function processSingleResponse(array|null $instanceData): object
+    {
         $seoConfiguration = self::traitProcessSingleResponse($instanceData);
 
-        $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
-
-        return $seoConfiguration;
+        try {
+            $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
+            return $seoConfiguration;
+        } catch (Exception $exception) {
+            abort(401);
+        }
     }
 }

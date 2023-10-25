@@ -5,7 +5,7 @@ function timePicker(config) {
 
         time: '12:00',
 
-        meridian: 'AM',
+        meridian: 'PM',
 
         inputElementSelector: '',
 
