@@ -26,12 +26,9 @@ class SeoConfiguration {
     public static function processSingleResponse(array|null $instanceData): object
     {
         $seoConfiguration = self::traitProcessSingleResponse($instanceData);
-
-        try {
-            $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
-            return $seoConfiguration;
-        } catch (Exception $exception) {
-            abort(401);
-        }
+        
+        if (isset($instanceData['seoSchemas'])) $seoConfiguration->seoSchemas = SeoSchema::processResponse($instanceData['seoSchemas']);
+        
+        return $seoConfiguration;           
     }
 }

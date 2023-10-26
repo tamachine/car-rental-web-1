@@ -52,5 +52,8 @@ Route::group(
     Route::get(LaravelLocalization::transRoute('routes.cars/small-medium'), [\App\Http\Controllers\LandingCarsController::class, 'small'])->name('cars.small');     
     Route::get(LaravelLocalization::transRoute('routes.cars/large'), [\App\Http\Controllers\LandingCarsController::class, 'large'])->name('cars.large');     
     Route::get(LaravelLocalization::transRoute('routes.cars/premium'), [\App\Http\Controllers\LandingCarsController::class, 'premium'])->name('cars.premium');     
+
+    Route::get(LaravelLocalization::transRoute('routes.insurances/landing'), [\App\Http\Controllers\LandingInsurancesController::class, 'index'])->name('insurances.landing');         
+
 });
 
