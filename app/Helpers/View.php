@@ -58,7 +58,7 @@ if (!function_exists('formatPrice')) {
             $currency = session('currency') !== null ? session('currency') : config('settings.default_currency');
         }
 
-        $locale = session('applocale') !== null ? session('applocale') : 'en';
+        $locale = session('locale') !== null ? session('locale') : 'en';
 
         // El precio puede ser un string
         if (is_string($price)) {
