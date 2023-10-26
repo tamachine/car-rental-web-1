@@ -3,20 +3,17 @@
 namespace App\Models;
 
 use App\Traits\Nave\HasResponses;
+use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
-class BlogPost {
+class BlogPost implements LocalizedUrlRoutable {
 
     use HasResponses {
         processSingleResponse as public traitProcessSingleResponse;
     }
 
-    public function getLocalizedRouteKey($locale)
-    {
-        return $this->getTranslation('slug', $locale);
-    }
-
     public $hashid;
     public $slug;
+    public array $translatedSlugs;
     public $title;
     public $published_at;
     public $published;
@@ -43,7 +40,7 @@ class BlogPost {
 
     public function setUrl($value) {
         $this->url = $value;
-    }  
+    }
 
     /**
      * Overrides processSingleResponse from HasResponse trait
@@ -54,14 +51,19 @@ class BlogPost {
         if(isset($instanceData['author'])) $blogPostObject->author =        BlogAuthor::processSingleResponse($instanceData['author']);
         if(isset($instanceData['category'])) $blogPostObject->category =    BlogCategory::processSingleResponse($instanceData['category']);
         if(isset($instanceData['tags'])) $blogPostObject->tags =            BlogTag::processResponse($instanceData['tags'], BlogTag::class);
-        if(isset($instanceData['getFeaturedImageModelImageInstance']))      $blogPostObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']); 
+        if(isset($instanceData['getFeaturedImageModelImageInstance']))      $blogPostObject->getFeaturedImageModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageModelImageInstance']);
         if(isset($instanceData['getFeaturedImageHoverModelImageInstance'])) $blogPostObject->getFeaturedImageHoverModelImageInstance = Image::processSingleResponse($instanceData['getFeaturedImageHoverModelImageInstance']);
         if(isset($instanceData['prev_post'])) $blogPostObject->prev_post =  self::processSingleResponse($instanceData['prev_post']);
         if(isset($instanceData['next_post'])) $blogPostObject->next_post =  self::processSingleResponse($instanceData['next_post']);
         if(isset($instanceData['related_posts'])) $blogPostObject->related_posts = self::processResponse($instanceData['related_posts']);
 
         $blogPostObject->setUrl(route('blog.show', ['blog_post_slug' => $blogPostObject->slug]));
-      
-        return $blogPostObject;   
+
+        return $blogPostObject;
+    }
+
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->translatedSlugs[$locale] ?? $this->slug;
     }
 }

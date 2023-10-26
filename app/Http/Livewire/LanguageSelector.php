@@ -18,7 +18,8 @@ class LanguageSelector extends Component
      * @var string
      */
     public $route;
-
+    public $currencies;
+    
     /*
     ***************************************************************
     ** METHODS
@@ -27,6 +28,7 @@ class LanguageSelector extends Component
 
     public function mount() {
         $this->route = request()->route() ? request()->route()->getName() : null;
+        $this->currencies = Currency::availableCurrencies();
     }
 
     public function changeLanguage($code, $urlToRedirect)

@@ -16,17 +16,17 @@ class Api
     public function __construct() {
         $this->token = config('nave.token');
         $this->url   = config('nave.url');
-    }   
+    }
 
-    public function sendHttpRequest($method, $endpoint, $params = []) {        
-                               
+    public function sendHttpRequest($method, $endpoint, $params = []) {
+
         try {
-            $this->response = Http::withToken($this->token)->{$method}($this->url.$endpoint, $params);  
+            $this->response = Http::withToken($this->token)->{$method}($this->url.$endpoint, $params);
 
             if ($this->response->successful()) {
                 return $this->response->json();
             }
-            
+
             return [
                 'error' => true,
                 'message' => 'API returned an error.',
@@ -35,13 +35,13 @@ class Api
             ];
 
         } catch (RequestException $e) {
-            
+
             return [
                 'error' => true,
                 'message' => 'Failed to connect to the API.',
                 'exception' => $e->getMessage()
             ];
-        }       
+        }
     }
-    
+
 }

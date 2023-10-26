@@ -1,7 +1,7 @@
 function mobileInputs(config) {    
 
     return {
-        startTime: '12:00 AM',
+        startTime: '12:00 PM',
 
         endTime: '12:00 AM',
 

@@ -29,11 +29,9 @@ Route::group(
 
     /* booking process */    
     Route::get(LaravelLocalization::transRoute('routes.{car_hashid}/insurances'), [\App\Http\Controllers\InsurancesController::class, 'index'])->name('insurances');   
-    Route::get(LaravelLocalization::transRoute('routes.{car_hashid}/extras'), [\App\Http\Controllers\ExtrasController::class, 'index'])->name('extras');   
-    
-    Route::get('/payment/{car_hashid}', function() { //revisar dichero Steps
-        echo "TODO";die;
-    })->name('payment');
+    Route::get(LaravelLocalization::transRoute('routes.{car_hashid}/extras'), [\App\Http\Controllers\ExtrasController::class, 'index'])->name('extras');
+    Route::get(LaravelLocalization::transRoute('routes.payment'), [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment');   
+    Route::get(LaravelLocalization::transRoute('routes.success'), [\App\Http\Controllers\SuccessController::class, 'index'])->name('success');  
 
     /* blog */        
     Route::get(LaravelLocalization::transRoute('routes.blog/post/{blog_post_slug}'), [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog.show');       
@@ -49,5 +47,13 @@ Route::group(
     Route::get(LaravelLocalization::transRoute('routes.cancellation-policy'), [\App\Http\Controllers\CancellationPolicyController::class, 'index'])->name('cancellation'); 
     Route::get(LaravelLocalization::transRoute('routes.privacy-and-cookie-policy'), [\App\Http\Controllers\PrivacyAndCookiePolicyController::class, 'index'])->name('privacy'); 
     Route::get(LaravelLocalization::transRoute('routes.legal-notice'), [\App\Http\Controllers\LegalNoticeController::class, 'index'])->name('legal');     
+
+    /* Landings */    
+    Route::get(LaravelLocalization::transRoute('routes.cars/small-medium'), [\App\Http\Controllers\LandingCarsController::class, 'small'])->name('cars.small');     
+    Route::get(LaravelLocalization::transRoute('routes.cars/large'), [\App\Http\Controllers\LandingCarsController::class, 'large'])->name('cars.large');     
+    Route::get(LaravelLocalization::transRoute('routes.cars/premium'), [\App\Http\Controllers\LandingCarsController::class, 'premium'])->name('cars.premium');     
+
+    Route::get(LaravelLocalization::transRoute('routes.insurances/landing'), [\App\Http\Controllers\LandingInsurancesController::class, 'index'])->name('insurances.landing');         
+
 });
 

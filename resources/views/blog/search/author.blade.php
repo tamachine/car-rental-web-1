@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
-@section('body')    
+@section('body')
     <div class="px-5 md:px-0 max-w-6xl mx-auto">
-        <livewire:blog-search-author :blogAuthorSlug="$author->slug" />                       
+        <livewire:blog-search-author :blogAuthorSlug="$author->slug" />
     </div>
 @endsection

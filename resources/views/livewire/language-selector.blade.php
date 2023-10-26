@@ -40,7 +40,7 @@
                 w-full"
                 x-data="selectOption({ selectedOption: '{{ selectedCurrency() }}' })"
             >
-                @foreach(['USD', 'EUR', 'GBP', 'ISK'] as $currency)
+                @foreach($currencies as $currency)
                     <img class="md:pl-6 pr-2" src="{{ asset('images/currencies/'.strtolower($currency).'-red.svg') }}" />
                     <a
                         href="javascript:void(0)"

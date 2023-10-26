@@ -63,7 +63,7 @@ class Extras extends Component
         $this->carName = $car->name;    
         $this->allExtras = collect($carRepository->extras($this->getCarObject()->hashid))->map(function ($item) {
             return $item->toArray(); //convert App\Models\CarExtra into array for livewire blade
-        });;;
+        });
         $this->extras = $this->allExtras->take($this->take);
         $this->setShowMoreButton();
         
@@ -130,5 +130,12 @@ class Extras extends Component
         $this->showMoreButton = ($this->extras->count() < $this->allExtras->count());
     }
 
-    
+    public function continue()
+    {
+        $sessionData = request()->session()->get('booking_data');
+        $sessionData['extras'] = $this->chosenExtras;
+        request()->session()->put('booking_data', $sessionData);
+
+        return redirect()->route('payment');
+    }
 }

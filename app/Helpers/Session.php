@@ -177,3 +177,33 @@ if (!function_exists('bookingDropoffDate')) {
         return $sessionData['to']->isoFormat("MMMM D, Y");
     }
 }
+
+
+if (!function_exists('checkSessionPayment')) {
+    /**
+     * Extras screen: We must have dates, locations, car, insurances and extras selected
+     *
+     * @return bool
+     */
+    function checkSessionPayment()
+    {
+        if(!request()->session()->has('booking_data')) {
+            return false;
+        }
+
+        $data = request()->session()->get('booking_data');
+
+        if (!isset($data['from'])
+            || !isset($data['to'])
+            || !isset($data['pickup'])
+            || !isset($data['dropoff'])
+            || !isset($data['car'])
+            || !isset($data['insurances'])
+            || !isset($data['extras'])
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+}
