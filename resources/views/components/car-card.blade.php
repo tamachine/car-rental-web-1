@@ -12,12 +12,14 @@
             @endif
         @endif
 
+        {{-- no car detail for now
         <div
             class="absolute bottom-5 right-5 bg-white px-2 py-1 rounded-md border border-[#E7ECF3] text-xs cursor-pointer hover:bg-black hover:text-white hover:border-pink-red group">
             <span>{{ __('cars.card-quick-look') }}</span> <img class="inline group-hover:hidden"
                 src="{{ asset('images/icons/eye.svg') }}" /> <img class="hidden group-hover:inline"
                 src="{{ asset('images/icons/eye-white.svg') }}" />
         </div>
+        --}}
     </div>
     <div class="flex flex-col gap-6 p-5 md:p-6 justify-between h-full">
         <div class="font-fredoka-semibold text-2xl sm:text-xl xl:text-2xl">{!! $car->name !!}</div>

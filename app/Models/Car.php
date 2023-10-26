@@ -42,6 +42,7 @@ class Car implements LocalizedUrlRoutable {
     public $caren_settings;
     public $vendor;
     public $booking_percentage;
+    public $price_from;
 
     public function toArray() {
         return get_object_vars($this);
