@@ -2,8 +2,11 @@
 
 namespace App\Apis\Nave;
 
+use App\Exceptions\ApiException;
+use Exception;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\RequestException;
 
 class Api
 {
@@ -21,27 +24,22 @@ class Api
     public function sendHttpRequest($method, $endpoint, $params = []) {
 
         try {
+          
             $this->response = Http::withToken($this->token)->{$method}($this->url.$endpoint, $params);
 
             if ($this->response->successful()) {
                 return $this->response->json();
             }
+            
+            throw new ApiException($this->response);
 
-            return [
-                'error' => true,
-                'message' => 'API returned an error.',
-                'status' => $this->response->status(),
-                'body' => $this->response->body()
-            ];
+        }catch (ConnectionException $e){
 
-        } catch (RequestException $e) {
-
-            return [
-                'error' => true,
-                'message' => 'Failed to connect to the API.',
-                'exception' => $e->getMessage()
-            ];
+            throw new ApiException($e);
+     
         }
+       
+      
     }
 
 }
