@@ -5,6 +5,7 @@
  * This file is autoloaded by composer.json
  */
 
+use App\Helpers\Language;
 use App\Interfaces\CurrencyRatesRepositoryInterface;
 
  if (!function_exists('selectedCurrency')) {
@@ -58,7 +59,7 @@ if (!function_exists('formatPrice')) {
             $currency = session('currency') !== null ? session('currency') : config('settings.default_currency');
         }
 
-        $locale = session('locale') !== null ? session('locale') : 'en';
+        $locale = session(Language::getSessionName()) !== null ? session(Language::getSessionName()) : Language::defaultCode();
 
         // El precio puede ser un string
         if (is_string($price)) {
