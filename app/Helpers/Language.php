@@ -110,7 +110,7 @@ class Language
     }
 
     protected static function getSessionName() {
-        return 'applocale';
+        return 'locale';
     }
 
     /**
