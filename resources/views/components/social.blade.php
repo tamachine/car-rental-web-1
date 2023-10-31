@@ -1,4 +1,4 @@
-<a href="https://www.facebook.com/Reykjav%C3%ADk-Auto-934999439914117/?fref=ts" target="_blank">
+<a href="https://www.facebook.com/icelandcars.is/" target="_blank">
     <img class="w-5" src="{{ asset('images/icons/social/facebook-'.$color.'.svg') }}" />
 </a>
 <a href="https://www.youtube.com/channel/UCePalPLrrhlK2gMUPyc0PnA" target="_blank">
