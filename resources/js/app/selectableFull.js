@@ -12,11 +12,26 @@ selectableFull = function(config) {
 
         isSelected: false,
 
-        clickItem: function(selectableFullItem) {                   
+        selectedValue: config.selectedValue,
+
+        clickItemOnFullMode: function(selectableFullItem) {                                          
             this.value = selectableFullItem.value
-            this.selectedTitle = (this.value == this.allValue) ? this.title : selectableFullItem.text            
+            this.selectedValue = this.value
+            this.selectedTitle = (this.value == this.allValue) ? this.title : selectableFullItem.text                         
             this.toggleVisibility()   
-            this.setIsSelected()               
+            this.setIsSelected()                                          
+        },
+
+        clickItemOnSimpleMode: function(selectableFullItem) {                             
+            window.location.href = selectableFullItem.value                                                 
+        },
+
+        open: function() {
+            this.show = true            
+        },
+
+        close: function() {
+            this.show = false
         },
 
         toggleVisibility: function() {
