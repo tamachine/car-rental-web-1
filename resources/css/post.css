@@ -1,0 +1,13 @@
+/* To revert the styles applied by tailwind base and allow default browser styles to be applied */
+.post h1, h2, h3, h4, h5, h6, pre{
+    @apply m-revert
+}
+.post p{
+    @apply m-revert;
+}
+.post a{
+    @apply text-pink-red no-underline transition-colors duration-500 hover:text-inherit
+}
+.post ul {
+    @apply list-revert p-revert
+}
