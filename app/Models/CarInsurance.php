@@ -20,6 +20,7 @@ class CarInsurance {
     public $features;
     public $price;
     public $caren_id;
+    public $price_from;
 
     /**
      * overrides processSingleResponse from Hasresponses trait

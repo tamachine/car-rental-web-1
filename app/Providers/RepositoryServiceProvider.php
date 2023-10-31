@@ -24,12 +24,13 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Interfaces\CurrencyRatesRepositoryInterface::class, \App\Repositories\Nave\CurrencyRatesRepository::class);             
         $this->app->bind(\App\Interfaces\ExtraRepositoryInterface::class, \App\Repositories\Nave\ExtraRepository::class);             
         $this->app->bind(\App\Interfaces\FaqRepositoryInterface::class, \App\Repositories\Nave\FaqRepository::class);        
-        $this->app->bind(\App\Interfaces\FaqCategoryRepositoryInterface::class, \App\Repositories\Nave\FaqCategoryRepository::class);      
+        $this->app->bind(\App\Interfaces\FaqCategoryRepositoryInterface::class, \App\Repositories\Nave\FaqCategoryRepository::class);              
+        $this->app->bind(\App\Interfaces\InsuranceRepositoryInterface::class, \App\Repositories\Nave\InsuranceRepository::class);      
         $this->app->bind(\App\Interfaces\InsuranceFeatureRepositoryInterface::class, \App\Repositories\Nave\InsuranceFeatureRepository::class);      
         $this->app->bind(\App\Interfaces\LocationRepositoryInterface::class, \App\Repositories\Nave\LocationRepository::class);     
         $this->app->bind(\App\Interfaces\NewsletterUserRepositoryInterface::class, \App\Repositories\Nave\NewsletterUserRepository::class);             
         $this->app->bind(\App\Interfaces\PageRepositoryInterface::class, \App\Repositories\Nave\PageRepository::class);     
-        $this->app->bind(\App\Interfaces\PaymentRepositoryInterface::class, \App\Repositories\Nave\PaymentRepository::class);     
+        $this->app->bind(\App\Interfaces\ValitorRepositoryInterface::class, \App\Repositories\Nave\ValitorRepository::class);     
         $this->app->bind(\App\Interfaces\TranslationRepositoryInterface::class, \App\Repositories\Nave\TranslationRepository::class);     
         $this->app->bind(\App\Interfaces\TranslationGroupRepositoryInterface::class, \App\Repositories\Nave\TranslationGroupRepository::class);     
 
