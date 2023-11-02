@@ -3,50 +3,27 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Log;
 
 class ApiException extends Exception
 {
+ 
     /**
      * Create a new api exception instance.
      *
-     * @param  $response
+     * @param $response
      * @return void
      */
-    public function __construct($response)
+    public function __construct( $response)
     {
-        if ($response instanceof Response) {
-            $message = $this->processApiError($response);
-        } else {
-            $message = $this->processHttpRequestError($response);
+        // sometimes the error is in the body of the message and it is too long 
+        if(strlen($response)>400){
+           $response = substr($response, 0, 400);
         }
-        parent::__construct($message);
+        
+        Log::channel('api')->error('The API returned an error: '.$response);
+        
+        abort(500);
     }
 
-    /**
-     * Prepare the api exception message.
-     *
-     * @param  \Illuminate\Http\Client\Response  $response
-     * @return string
-     */
-    private function processApiError(Response $response): string
-    {
-        $message = json_decode($response->body())->message ?? $response->body();
-
-        return "API returned an error: {$message}, code: {$response->status()}";
-    }
-
-    /**
-     * Prepare the api conection message.
-     *
-     * @param  $response
-     * @return string
-     */
-    private function processHttpRequestError($response): string
-    {
-        if (is_object($response) && method_exists($response, 'getMessage')) {
-            return "Failed to connect to the API: {$response->getMessage()}";
-        }
-        return "Failed to connect to the API.";
-    }
 }
