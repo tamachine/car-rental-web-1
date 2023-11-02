@@ -5,7 +5,6 @@ namespace App\Console;
 use App\Services\NaveCache\NaveCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\App;
 
 class Kernel extends ConsoleKernel
 {
