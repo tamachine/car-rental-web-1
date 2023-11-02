@@ -17,8 +17,8 @@ class ApiException extends Exception
     public function __construct( $response)
     {
         // sometimes the error is in the body of the message and it is too long 
-        if(strlen($response)>400){
-           $response = substr($response, 0, 400);
+        if(strlen($response)>1000){
+           $response = substr($response, 0, 1000);
         }
         
         Log::channel('api')->error('The API returned an error: '.$response);

@@ -22,18 +22,20 @@ class Api
     public function sendHttpRequest($method, $endpoint, $params = [])
     {
         try {
-
             $this->response = Http::withToken($this->token)->{$method}($this->url . $endpoint, $params);
+
+            if ($this->response->successful()) {
+                return $this->response->json();
+            }
+
         } catch (Exception $e) {
 
             throw new ApiException($e->getMessage());
         }
 
-        if ($this->response->successful()) {
-            return $this->response->json();
-        }
-
         throw new ApiException($this->response->body());
+
+        
     }
 
 }
