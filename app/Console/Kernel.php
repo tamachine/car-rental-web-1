@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Services\NaveCache\NaveCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\App;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,8 +15,17 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
+            
+                app(NaveCache::class)->clearAndRun();
+           
+        })->everyTwoHours()->environments(['production']);
+
+        $schedule->call(function () {
+            
             app(NaveCache::class)->clearAndRun();
-        })->everyTwoHours();
+        
+        })->everyFiveMinutes()->environments(['staging']);
+
     }
 
     /**
