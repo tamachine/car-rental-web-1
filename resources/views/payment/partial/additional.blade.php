@@ -26,9 +26,9 @@
             </a>
         </label>
 
-        @if($errors->has('agree'))
+        @error('agree'))
             <p class="validation-error text-sm text-red-600 pt-2">
-                {{ $errors->first('agree') }}              
+                {{ $message }}              
             </p>
         @enderror
     </div>
