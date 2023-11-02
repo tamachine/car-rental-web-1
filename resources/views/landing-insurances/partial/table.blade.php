@@ -1,0 +1,1 @@
+<x-insurances-table :insurances="$insurances" :is-landing="true"/>

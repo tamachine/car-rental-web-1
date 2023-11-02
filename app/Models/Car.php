@@ -33,6 +33,7 @@ class Car implements LocalizedUrlRoutable {
     public $f_roads_name;
     public $featured_image;
     public $featured_image_hover;
+    public $featured_image_url;
     public $getFeaturedImageModelImageInstance;
     public $getFeaturedImagaHoverModelImageInstance;
     public $fRoadAllowed;
@@ -41,6 +42,7 @@ class Car implements LocalizedUrlRoutable {
     public $caren_settings;
     public $vendor;
     public $booking_percentage;
+    public $price_from;
 
     public function toArray() {
         return get_object_vars($this);

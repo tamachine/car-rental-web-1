@@ -3,9 +3,9 @@
 namespace App\View\Components;
 
 use App\Interfaces\BookingRepositoryInterface;
-use App\Interfaces\PaymentRepositoryInterface;
+use App\Interfaces\ValitorRepositoryInterface;
 use Illuminate\View\Component;
-use App\Models\Booking;
+
 
 class ValitorForm extends Component
 {    
@@ -18,14 +18,14 @@ class ValitorForm extends Component
      *
      * @return void
      */
-    public function __construct(string $bookingHashid, PaymentRepositoryInterface $paymentRepository, BookingRepositoryInterface $bookingRepository)
+    public function __construct(string $bookingHashid, ValitorRepositoryInterface $valitorRepository, BookingRepositoryInterface $bookingRepository)
     {
-        $valitor = $paymentRepository->valitor($bookingHashid);
+        $valitor = $valitorRepository->params($bookingHashid);
 
         $this->params     = $valitor->params;
         $this->formAction = $valitor->form_action;
         
-        $bookingRepository->update($bookingHashid, $this->params->toArray());        
+        $bookingRepository->update($bookingHashid, ['valitor_request' => $this->params->toArray()]);        
     }
 
     /**

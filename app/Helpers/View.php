@@ -5,6 +5,7 @@
  * This file is autoloaded by composer.json
  */
 
+use App\Helpers\Language;
 use App\Interfaces\CurrencyRatesRepositoryInterface;
 
  if (!function_exists('selectedCurrency')) {
@@ -25,9 +26,9 @@ if (!function_exists('getBreadcrumb')) {
         $breadcrumbs = new App\Services\Breadcrumbs\Breadcrumbs();
         $breadcrumb = [];
 
-        foreach($routes as $route) {            
+        foreach($routes as $route) {
             $currentBreadcrumb = $breadcrumbs->getBreadcrumbByRoute($route);
-            
+
             if (!$currentBreadcrumb) {
                 $currentBreadcrumb = new App\Services\Breadcrumbs\Breadcrumb();
                 $currentBreadcrumb->setText($route);
@@ -58,7 +59,7 @@ if (!function_exists('formatPrice')) {
             $currency = session('currency') !== null ? session('currency') : config('settings.default_currency');
         }
 
-        $locale = session('applocale') !== null ? session('applocale') : 'en';
+        $locale = session(Language::getSessionName()) !== null ? session(Language::getSessionName()) : Language::defaultCode();
 
         // El precio puede ser un string
         if (is_string($price)) {
@@ -66,28 +67,29 @@ if (!function_exists('formatPrice')) {
         }
 
         $rates = app(CurrencyRatesRepositoryInterface::class)->all();
-        
+
+        if (!extension_loaded('intl')) {
+            return round(intval($price) * $rates[$currency] / $rates["ISK"], 2);
+        }
+
         $fmt = new NumberFormatter($locale, NumberFormatter::CURRENCY);
+        $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 2);
 
         switch ($currency) {
             case 'EUR':
                 $rate = $rates["EUR"] / $rates["ISK"];
-                $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 2);
                 break;
 
             case 'GBP':
                 $rate = $rates["GBP"] / $rates["ISK"];
-                $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 2);
                 break;
 
             case 'USD':
                 $rate = 1 / $rates["ISK"];
-                $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 2);
                 break;
 
             default:
                 $rate = 1;
-                $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
                 break;
         }
 

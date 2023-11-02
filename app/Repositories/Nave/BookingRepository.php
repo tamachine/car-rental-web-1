@@ -36,13 +36,25 @@ class BookingRepository extends BaseRepository implements BookingRepositoryInter
         return Booking::processSingleResponse($this->processPutData($endpoint, $params));
     }  
     
-    public function update(string $bookingHashid, array $valitor_request = null) {
+    public function update(string $bookingHashid, array $params = []) {
         $endpoint = "bookings/". $bookingHashid;
-
-        $params = [];
         
-        if (isset($valitor_request)) $params['valitor_request'] = $valitor_request;
+        if (isset($params['valitor_request']))  $params['valitor_request']  = $params['valitor_request'];
+        if (isset($params['valitor_response'])) $params['valitor_response'] = $params['valitor_response'];
 
         return Booking::processSingleResponse($this->processPutData($endpoint,$params));
+    }
+
+    public function findbyHashid(string $bookingHashid): Booking {
+        $endpoint = "bookings/" . $bookingHashid;
+
+        return Booking::processSingleResponse($this->processGet($endpoint, [])); //we don't want to cache this one because the booking status can change fast
+    }
+
+    public function pdf(string $bookingHashid, bool $send = false): bool {        
+        $endpoint = 'bookings/pdf/'.$bookingHashid;
+
+        return $this->processPut($endpoint, ['send' => $send]);
+
     }
 }

@@ -10,4 +10,11 @@ class Booking {
 
     public $hashid;
     public $status;
+    public $name;
+    public $email;
+    public $telephone;
+    public $address;
+    public $city;
+    public $postal_code;
+    public $country;
 }
