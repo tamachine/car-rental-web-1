@@ -26,15 +26,17 @@ class CarRepository extends BaseRepository implements CarRepositoryInterface {
         return $carSearch->cars;
     }
 
-    public function search(array $types, array $specs, array $dates, array $locations): CarSearch {
+    public function search(array $types, array $specs, array $dates, array $locations, bool $forceDefaultCache = false): CarSearch {
         $endpoint = 'car-search';
 
         $params['types'] = $types;
         $params['specs'] = $specs;
         $params['dates'] = $dates;
         $params['locations'] = $locations;
+        
+        $cache = $forceDefaultCache ? self::CACHED : self::SHORT_TIME_CACHED;
 
-        return CarSearch::processSingleResponse($this->processGet($endpoint, $params, self::SHORT_TIME_CACHED)); 
+        return CarSearch::processSingleResponse($this->processGet($endpoint, $params, $cache)); 
     } 
     
     /**

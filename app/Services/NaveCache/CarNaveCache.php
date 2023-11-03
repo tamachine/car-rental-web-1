@@ -17,7 +17,8 @@ class CarNaveCache extends BaseNaveCache implements NaveCacheInterface {
         $this->setAll();    
         $this->seoConfiguration();  
         $this->insurances();     
-        $this->extras();    
+        $this->extras();  
+        $this->landings();  
     } 
     
     public function getRepository()
@@ -64,5 +65,23 @@ class CarNaveCache extends BaseNaveCache implements NaveCacheInterface {
         foreach($this->all as $car) {
             $this->carRepository->extras($car->hashid);
         }               
+    }
+
+    /**
+     * Calls the search endpoint for the cars to be shown in the landings.
+     * These cars don't have prices, they are filtered only by category so they can be saved in cache
+     */
+    protected function landings() {       
+        $this->log('calling landings');
+
+        $categories = [
+            ['premium'], 
+            ['large'], 
+            ['small', 'medium']
+        ];
+
+        foreach($categories as $categories) {                   
+            $this->carRepository->search($categories, [], [], [], true);
+        }
     }
 }
