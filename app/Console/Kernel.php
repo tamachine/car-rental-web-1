@@ -13,18 +13,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call(function () {
-            
-                app(NaveCache::class)->clearAndRun();
-           
-        })->everyTwoHours()->environments(['production']);
-
-        $schedule->call(function () {
-            
+        $clearCacheTask = function () {
             app(NaveCache::class)->clearAndRun();
+        };
         
-        })->everyFiveMinutes()->environments(['staging']);
+        $schedule->call($clearCacheTask)->everyTwoHours()->environments(['production']);
 
+        $schedule->call($clearCacheTask)->everyFiveMinutes()->environments(['staging', 'local']);
     }
 
     /**
