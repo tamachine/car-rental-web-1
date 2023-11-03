@@ -14,7 +14,7 @@ interface CarRepositoryInterface
     
     public function findByHashid($hashId, $locale = null): Car|null;
     
-    public function search(array $types, array $specs, array $dates, array $locations): CarSearch;    
+    public function search(array $types, array $specs, array $dates, array $locations, bool $forceDefaultCache = false): CarSearch;    
     
     public function prices(string $carHashid, array $dates, array $locations, array $insurances, array $extras, string $currency ='ISK'): CarPrices;
 
