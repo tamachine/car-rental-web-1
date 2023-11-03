@@ -109,7 +109,7 @@ class Language
         return !empty($currentPrefix) ? ltrim($currentPrefix,"/") : self::defaultCode();
     }
 
-    protected static function getSessionName() {
+    public static function getSessionName() {
         return 'locale';
     }
 
