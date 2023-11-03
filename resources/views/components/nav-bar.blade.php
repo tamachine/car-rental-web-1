@@ -32,10 +32,13 @@
 
     {{-- desktop --}}
     <div class="hidden md:flex items-center divide-x gap-10">
-        <div class="flex items-end justify-between flex-wrap gap-6 lg:gap-10 text-base lg:text-lg font-sans-medium">
-            <a href="{{ route('cars') }}" class="hover:text-pink-red">{!! __('navbar.cars') !!}</a>
-            <a href="{{ route('about') }}" class="hover:text-pink-red">{!! __('navbar.about') !!}</a>
+        <div class="flex items-end justify-between flex-wrap gap-6 lg:gap-10 text-base lg:text-lg font-sans-medium">             
+            <x-selectable-simple 
+                :selectable-full-component="$carsSelectableClass"                                                                              
+            />                
             <a href="{{ route('faq') }}" class="hover:text-pink-red">{!! __('navbar.faq') !!}</a>
+            <a href="{{ route('insurances.landing') }}" class="hover:text-pink-red">{!! __('navbar.insurances') !!}</a>
+            <a href="{{ route('about') }}" class="hover:text-pink-red">{!! __('navbar.about') !!}</a>
             <a href="{{ route('blog') }}" class="hover:text-pink-red">{!! __('navbar.blog') !!}</a>
             <a href="{{ route('contact') }}" class="hover:text-pink-red">{!! __('navbar.contact') !!}</a>
         </div>
@@ -87,8 +90,8 @@
                             @endforeach
                         @endif
 
-                        <div>
-                            <a href="{{ route('cars') }}" class="btn font-fredoka font-medium text-sm text-black-primary p-4 border border-gray-secondary  focus:bg-gray-secondary cursor-pointer">{!! __('navbar.cars-button') !!}</a>
+                        <div class="col-span-2 text-center">
+                            <a href="{{ route('cars') }}" class="block w-full btn font-sans-medium text-base text-black-primary p-4 border border-black-secondary focus:bg-gray-secondary cursor-pointer">{!! __('navbar.cars-button') !!}</a>
                         </div>
                     </div>
 
@@ -97,9 +100,10 @@
                     </div>
                 </div>
                 <div class="p-4">
-                    <div class="flex items-center justify-between flex-wrap text-xl font-fredoka font-medium">
-                        <a href="{{ route('about') }}">{{ __('navbar.about') }}</a>
+                    <div class="flex items-center justify-between flex-wrap font-sans-medium">                        
+                        <a href="{{ route('insurances.landing') }}">{{ __('navbar.insurances') }}</a>
                         <a href="{{ route('faq') }}">{{ __('navbar.faq') }}</a>
+                        <a href="{{ route('about') }}">{{ __('navbar.about') }}</a>
                         <a href="{{ route('blog') }}">{{ __('navbar.blog') }}</a>
                         <a href="{{ route('contact') }}">{{ __('navbar.contact') }}</a>
                     </div>
