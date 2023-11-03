@@ -7,10 +7,12 @@ use App\Services\SelectableFull\SelectableFullComponentInterface;
 
 class SelectableFull extends Component
 {
+    public $mode = 'full'; 
+    
     public $selectableFullComponent;
     public $selectedValue;
-    public $itemWireClickEvent;
-
+    public $itemWireClickEvent;    
+    public $wireModel;
     protected $items;
     protected $selectedItem;
 
@@ -27,6 +29,8 @@ class SelectableFull extends Component
 
         $this->items = $this->selectableFullComponent->getItems();
         $this->selectedItem = $this->selectableFullComponent->getSelectedItem($this->selectedValue);
+        
+        $this->wireModel = $this->selectableFullComponent->getInstance();
     }
 
     /**
@@ -36,14 +40,18 @@ class SelectableFull extends Component
      */
     public function render()
     {                        
-        return view('components.selectable-full', 
+        return view($this->getView(), 
             [
                 'items' => $this->items,
                 'title' => $this->selectableFullComponent->getTitle(),
                 'iconPath' => $this->selectableFullComponent->getIconPath(),
                 'selectedItem' => $this->selectedItem,
-                'allValue' => $this->selectableFullComponent->getAllItemValue(),
+                'allValue' => $this->selectableFullComponent->getAllItemValue(),               
             ]);
+    }
+
+    protected function getView() {
+        return 'components.selectable-full';
     }
 
     /**
