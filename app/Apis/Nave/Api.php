@@ -2,8 +2,8 @@
 
 namespace App\Apis\Nave;
 
-use App\Exceptions\ApiException;
-use Exception;
+use App\Exceptions\Apis\NaveException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
 class Api
@@ -22,20 +22,22 @@ class Api
     public function sendHttpRequest($method, $endpoint, $params = [])
     {
         try {
-            $this->response = Http::withToken($this->token)->{$method}($this->url . $endpoint, $params);
-
+           
+            $this->response = (Http::withToken($this->token)->{$method}($this->url . $endpoint, $params));
+           
             if ($this->response->successful()) {
                 return $this->response->json();
             }
-
-        } catch (Exception $e) {
-
-            throw new ApiException($e->getMessage());
-        }
-
-        throw new ApiException($this->response->body());
-
+           
+           throw new NaveException(  $this->response->json()['message'], 
+                                    $this->response->json()['code'],
+                                    $endpoint);
         
+        }catch (ConnectionException $e) {
+          
+            throw new NaveException( $e->getMessage(), 500 , $endpoint );
+        }
+     
     }
 
 }
