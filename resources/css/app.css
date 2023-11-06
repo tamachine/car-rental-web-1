@@ -5,6 +5,7 @@
 @import 'car-search-bar.css';
 @import 'animations.css';
 @import 'autofill.css';
+@import 'post.css';
 
 /**
  * This injects Tailwind's base styles, which is a combination of

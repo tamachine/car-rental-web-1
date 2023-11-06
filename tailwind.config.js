@@ -113,7 +113,15 @@ module.exports = {
             },
             maxWidth: {
                 '10xl': '1800px',
-            }
+            },
+
+            spacing: {
+                'revert': 'revert',
+            },
+
+            listStyleType: {
+                'revert': 'revert',
+              },
         },
     },
     plugins: [

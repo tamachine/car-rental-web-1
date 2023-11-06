@@ -73,6 +73,8 @@ abstract class SelectableFullAbstract implements SelectableFullComponentInterfac
     public function toJson() {
         return json_encode($this);
     }
+    
+    abstract public function getColumnName(); //the name of the column in its corresponding table
 
     protected function setInstance() {
         $this->instance = $this->getInstance();
