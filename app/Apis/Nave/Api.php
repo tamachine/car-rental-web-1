@@ -2,7 +2,7 @@
 
 namespace App\Apis\Nave;
 
-use App\Exceptions\ApiException;
+use App\Exceptions\Apis\NaveException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
@@ -29,13 +29,13 @@ class Api
                 return $this->response->json();
             }
            
-           throw new ApiException(  $this->response->json()['message'], 
+           throw new NaveException(  $this->response->json()['message'], 
                                     $this->response->json()['code'],
                                     $endpoint);
         
         }catch (ConnectionException $e) {
           
-            throw new ApiException( $e->getMessage(), 500 , $endpoint );
+            throw new NaveException( $e->getMessage(), 500 , $endpoint );
         }
      
     }

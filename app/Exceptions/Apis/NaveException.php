@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Exceptions\Apis;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class ApiException extends Exception
+class NaveException extends Exception
 {
     protected $message;
     protected $code;
@@ -29,6 +29,6 @@ class ApiException extends Exception
 
     public function render(){
        
-        return response()->view('errors.api.500');
+        return response()->view('errors.api-nave.500');
     }
 }
