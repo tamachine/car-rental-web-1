@@ -25,6 +25,12 @@
                 {!! __('payment.t-and-c') !!}
             </a>
         </label>
+
+        @error('agree'))
+            <p class="validation-error text-sm text-red-600 pt-2">
+                {{ $message }}              
+            </p>
+        @enderror
     </div>
 
     <div class="mt-8 xl:hidden">
