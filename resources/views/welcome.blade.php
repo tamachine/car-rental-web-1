@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Reykjavik Auto</title>       
-        
+        <title>Iceland Car Rental ▷ Cheapest Car Hire in Reykjavik Top❶ 2023</title>       
+          
         <link href="/css/app.css" rel="stylesheet">
         <script src="{{ url(mix('js/app.js')) }}" defer></script>
 
