@@ -11,7 +11,7 @@ function mobileInputs(config) {
 
         endHour: '12:00',
         
-        endMeridian: 'AM',
+        endMeridian: 'PM',
 
         locations: [],
 
