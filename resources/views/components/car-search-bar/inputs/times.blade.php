@@ -9,14 +9,14 @@
             <label for="hour-start">{!! __('car-search-bar.time') !!}</label>
         </div>
         <input             
-            type="text" name="hours[start]" class="search-input" id="hour-start" placeholder="12 AM"
+            type="text" name="hours[start]" class="search-input" id="hour-start" placeholder="12 PM"
             readonly="readonly" />
     </div>
     <div class="search-input-set">
         <div class="search-input-label">
             <label for="hour-end">{!! __('car-search-bar.time') !!}</label>
         </div>
-        <input type="text" name="hours[end]" class="search-input" id="hour-end" placeholder="12 AM"
+        <input type="text" name="hours[end]" class="search-input" id="hour-end" placeholder="12 PM"
             readonly="readonly" />
     </div>
 </div>
