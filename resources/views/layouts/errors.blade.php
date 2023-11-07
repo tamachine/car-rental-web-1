@@ -28,8 +28,12 @@
 
         {{-- app locale --}}
         <input type="hidden" id="app_locale" value="{{ App::getLocale() }}">
-
-        <x-nav-bar/>        
+    
+        <nav class="max-w-7xl mx-auto flex items-center justify-between flex-wrap p-3 md:px-4 md:py-5 border md:border-0 border-[#E7ECF3] bg-white sticky top-0" >
+            <a href="" class="font-fredokaOne text-pink-red font-normal text-[26px] md:text-2xl lg:text-3xl leading-9">
+                Iceland Cars
+            </a>
+        </nav> 
     </head>
 
     <body>       

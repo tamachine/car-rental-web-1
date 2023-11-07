@@ -9,17 +9,17 @@
             <div class="text-[128px] md:text-[220px] font-fredoka-semibold flex flex-col">
                 <div>500</div>
                 <div class="max-w-[240px] md:max-w-md flex md:hidden text-lg title-shadow font-fredoka-medium">
-                    {!! __('app-errors.error-500-title') !!}
+                    Our trolls are in trouble, we hope they'll be back to sleep soon.
                 </div>
             </div>
 
             <div class="max-w-[240px] md:max-w-md">
                 <div class="hidden md:flex text-lg title-shadow font-fredoka-medium">
-                    {!! __('app-errors.error-500-title') !!}
+                    Our trolls are in trouble, we hope they'll be back to sleep soon.
                 </div>
 
                 <div class="mt-6 font-sans-bold">
-                    <button class="btn btn-red font-sans-bold py-3 px-10" onclick='window.location.href="{{route("home")}}"'>{!! __('app-errors.error-500-button') !!}</button>
+                    <button class="btn btn-red font-sans-bold py-3 px-10" onclick='window.location.href="{{ config('app.url') }}"'>Go to homepage</button> 
                 </div>
             </div>
         </div>        

@@ -4,12 +4,11 @@ namespace App\Exceptions\Apis;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class NaveException extends Exception
 {
     protected $message;
-    protected $code;
-    protected $endpoint;
     /**
      * Create a new api exception instance.
      *
@@ -18,17 +17,15 @@ class NaveException extends Exception
      */
     public function __construct( $message,$code,$endpoint)
     {
-        $this->message = $message;
-        $this->code = $code;
-        $this->endpoint = $endpoint;
+        $this->message = $message.'. Endpoint: '.$endpoint.'. Code: '.$code;
+    
     }
 
     public function report(){
-        Log::error('The API returned an error. Code:'.$this->code.'.Endpoint:'.$this->endpoint.'.Error:'.$this->message);
+        Log::error('The API returned an error:'.$this->message);
     }
 
-    public function render(){
-       
-        return response()->view('errors.api-nave.500');
+    public function render(){     
+        abort(500);
     }
 }
