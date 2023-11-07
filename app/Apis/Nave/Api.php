@@ -29,13 +29,14 @@ class Api
                 return $this->response->json();
             }
            
-           throw new NaveException(  $this->response->json()['message'], 
+            throw new NaveException($this->response->json()['message'], 
                                     $this->response->json()['code'],
-                                    $endpoint);
+                                    $endpoint,
+                                    $params);
         
         }catch (ConnectionException $e) {
           
-            throw new NaveException( $e->getMessage(), 500 , $endpoint );
+            throw new NaveException($e->getMessage(), $e->getCode(), $endpoint, $params);
         }
      
     }

@@ -10,25 +10,27 @@ class NaveException extends Exception
     protected $message;
     protected $code;
     protected $endpoint;
+    protected $params;
+
     /**
      * Create a new api exception instance.
      *
      * @param $response
      * @return void
      */
-    public function __construct( $message,$code,$endpoint)
+    public function __construct( $message, $code, $endpoint, $params = [])
     {
         $this->message = $message;
         $this->code = $code;
         $this->endpoint = $endpoint;
+        $this->params = $params;
     }
 
     public function report(){
-        Log::error('The API returned an error. Code:'.$this->code.'.Endpoint:'.$this->endpoint.'.Error:'.$this->message);
+        Log::critical('There was a ' . $this->code . '  error calling: ' . $this->endpoint . ' with params: ' . implode(' / ', $this->params) . ': ' . $this->message);
     }
 
     public function render(){
-       
-        return response()->view('errors.api-nave.500');
+        abort(500);
     }
 }
