@@ -19,7 +19,7 @@ class CarSearch {
     public static function processSingleResponse(array|null $instanceData): object {
         $carSearchObject = self::traitProcessSingleResponse($instanceData);     
             
-        $carSearchObject->cars = Car::processResponse($instanceData['cars']);   
+        if(isset($instanceData['cars'])) $carSearchObject->cars = Car::processResponse($instanceData['cars']) ;   
             
         return $carSearchObject;
     }

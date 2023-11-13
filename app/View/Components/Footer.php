@@ -82,7 +82,7 @@ class Footer extends Component
         $this->hrefs[1][1] = 'https://www.road.is/'; // Road conditions
         $this->hrefs[1][2] = 'https://www.safetravel.is/'; // Safe travel
         $this->hrefs[1][3] = 'https://en.vedur.is/'; // Weather
-        $this->hrefs[1][4] = 'https://www.reykjavikauto.com/'; //Car Rental Iceland
+        $this->hrefs[1][4] = 'https://www.icelandcars.is/'; //Car Rental Iceland
         $this->hrefs[1][5] = 'https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=ISK'; // Exchange rate        
 
         //Regions
@@ -94,17 +94,17 @@ class Footer extends Component
         $this->hrefs[2][6] = 'https://www.westfjords.is/'; // Westfjords
 
         //Shortcuts
-        $this->hrefs[3][1] = 'https://www.reykjavikauto.com/car-rental-keflavik-airport'; // Keflavik airport
+        $this->hrefs[3][1] = 'https://www.icelandcars.is/car-rental-keflavik-airport'; // Keflavik airport
   
         if(App::getLocale() == 'es') {
-            $this->hrefs[3][2] = 'https://www.reykjavikauto.com/alquiler-coches-islandia'; // Reykjavik Car Rental        
+            $this->hrefs[3][2] = 'https://www.icelandcars.is/alquiler-coches-islandia'; // Iceland Car Rental        
         } elseif(App::getLocale() == 'de') {
-            $this->hrefs[3][2] = 'https://www.reykjavikauto.com/mietwagen-island'; //Reykjavik Car Rental    
+            $this->hrefs[3][2] = 'https://www.icelandcars.is/mietwagen-island'; //Iceland Car Rental    
         } else {
-            $this->hrefs[3][2] = 'https://www.reykjavikauto.com/car-rental-reykjavik'; // Reykjavik Car Rental
+            $this->hrefs[3][2] = 'https://www.icelandcars.is/car-rental-reykjavik'; // Iceland Car Rental
         }
         
-        $this->hrefs[3][3] = 'https://www.reykjavikauto.com/location-voiture-islande'; // Location Voiture
+        $this->hrefs[3][3] = 'https://www.icelandcars.is/location-voiture-islande'; // Location Voiture
 
         //Privacy & terms
         $this->hrefs[4][1] = route('cancellation'); // Cancellation policy
