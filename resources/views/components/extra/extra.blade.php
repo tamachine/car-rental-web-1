@@ -1,5 +1,5 @@
 <div
-    x-data="extraPrice()"
+    x-data="extraPrice({{ $extra['selected'] }})"
     >    
     {{-- desktop --}}
     <div
