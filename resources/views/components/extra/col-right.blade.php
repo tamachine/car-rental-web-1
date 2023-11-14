@@ -5,6 +5,9 @@
         </div>
         <div>
             @include('components.extra.button')
+
+            <x-plus-minus-input field="extra" bg="bg-black" text="text-white" :show-number="false" class="w-[109px] gap-0 px-2 py-4 rounded-md h-8 mx-auto" />
+
         </div>
     </div>
 </div>
