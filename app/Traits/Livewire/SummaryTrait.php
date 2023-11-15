@@ -59,6 +59,11 @@ trait SummaryTrait
     public $includedExtras = [];
 
     /**
+     * @var array
+     */
+    public $unitsExtras = [];
+
+    /**
      * @var float
      */
     public $rentalPrice = 0;

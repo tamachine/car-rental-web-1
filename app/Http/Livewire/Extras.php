@@ -46,7 +46,9 @@ class Extras extends Component
     /**
      * @var int
      */
-    protected $take = 4;
+    protected $take = 4;   
+
+    protected $listeners = ['update_number' => 'clickUnitExtra'];
 
     /*
     ***************************************************************
@@ -60,14 +62,18 @@ class Extras extends Component
         $this->carHashid = $car->hashid;
         $this->carName = $car->name;    
 
-        $this->chosenExtras = $this->getExtrasFromSession();
+        $this->setChosenExtrasFromSession();        
 
         $this->allExtras = collect($carRepository->extras($this->getCarObject()->hashid))->map(function ($item) {
+
+            $this->unitsExtras[$item->hashid] = 2;
 
             $item->selected = (in_array($item->hashid, array_keys($this->chosenExtras)));
             
             return $item->toArray(); //convert App\Models\CarExtra into array for livewire blade
         });
+
+        $this->setUnitsExtrasFromSession();        
 
         $this->extras = $this->allExtras->take($this->take);
 
@@ -96,24 +102,25 @@ class Extras extends Component
         return view('livewire.extras', ['car' => $this->getCarObject()]);
     }
 
+    public function clickUnitExtra($units, $hashid) {            
+        
+        $this->unitsExtras[$hashid] = $units;
+
+        $this->setExtra($hashid, $units);
+
+        $this->saveExtrasInSession();
+
+        $this->calculateTotal();
+
+        $this->dispatchBrowserEvent('stopLoading', ['spinnerId' => 'clickUnitExtra-spinner']);
+    }
+
     public function toggleExtra($hashid)
     {
         if (isset($this->chosenExtras[$hashid])) {
             unset($this->chosenExtras[$hashid]);
         } else {     
-            $extra = app(CarRepositoryInterface::class)->findCarExtraByHashid($this->getCarObject()->hashid, $hashid);
-            
-            $price = $extra->price_mode == 'per_day'
-                ? $extra->price * bookingDays()
-                : $extra->price;
-
-            $this->chosenExtras[$extra->hashid] = [
-                'name'      => $extra->name,
-                'caren_id'  => $extra->caren_id,
-                'price'     => $price,
-                'quantity'  => 1,
-                'hashid'    => $extra->hashid,
-            ];
+            $this->setExtra($hashid, 1);
         }
 
         $this->saveExtrasInSession();
@@ -151,11 +158,35 @@ class Extras extends Component
         request()->session()->put('booking_data', $sessionData);
     }
 
-    protected function getExtrasFromSession() {
+    protected function setChosenExtrasFromSession() {
         $sessionData = request()->session()->get('booking_data');
 
-        if(isset($sessionData['extras'])) return $sessionData['extras'];
+        if(isset($sessionData['extras'])) $this->chosenExtras = $sessionData['extras'];        
+    }
 
-        return [];
+    protected function setUnitsExtrasFromSession() {
+        $sessionData = request()->session()->get('booking_data');
+
+        if(isset($sessionData['extras'])) {
+            foreach($sessionData['extras'] as $extra) {
+                $this->unitsExtras[$extra['hashid']] = $extra['quantity'];
+            }
+        }
+    }
+
+    protected function setExtra($hashid, $units) {
+        $extra = app(CarRepositoryInterface::class)->findCarExtraByHashid($this->getCarObject()->hashid, $hashid);
+            
+        $price = $extra->price_mode == 'per_day'
+            ? $extra->price * bookingDays()
+            : $extra->price;
+
+        $this->chosenExtras[$extra->hashid] = [
+            'name'      => $extra->name,
+            'caren_id'  => $extra->caren_id,
+            'price'     => $price,
+            'quantity'  => $units,
+            'hashid'    => $extra->hashid,
+        ];
     }
 }
