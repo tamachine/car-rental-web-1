@@ -1,12 +1,14 @@
 <div class="w-24 md:w-44">
-    <div class="flex flex-col gap-5 justify-center items-center text-center h-full">
-        <div class="md-max:hidden">
-            @if($extra['max_units'] > 1 )                
-                <x-extra.units :name="$extra['name']" :id="$extra['hashid']" :units="$unitsExtras[$extra['hashid']]"/>
-            @else
+    <div class="flex flex-col gap-0 md:gap-5 justify-center items-center text-center h-full">
+        
+        @if($extra['max_units'] > 1 )                
+            <x-extra.units :name="$extra['name']" :id="$extra['hashid']" :units="$unitsExtras[$extra['hashid']]"/>
+        @else
+            <div class="md-max:hidden">
                 @include('components.extra.price')
-            @endif
-        </div>
+            </div>
+        @endif
+        
         <div>
 
             @if($extra['max_units'] > 1 )
