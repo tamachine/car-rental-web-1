@@ -33,7 +33,7 @@
             <div class="mx-auto lg:mx-0 w-full md:w-[280px] mt-7 flex flex-row justify-between items-center rounded-lg border border-gray-200 px-4 font-sans-medium text-lg">
                 <label class="overflow-hidden h-12 flex items-center">{{ __('payment.passengers') }}</label>            
                 
-                <x-plus-minus-input field="number_passengers" class="gap-1 px-2 py-4 text-[22px] rounded-md h-8"/>                      
+                <x-plus-minus-input field="number_passengers" :maximum="$adultPassengers" class="gap-1 px-2 py-4 text-[22px] rounded-md h-8"/>                      
             </div>
 
             @error('number_passengers')
