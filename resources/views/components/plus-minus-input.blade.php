@@ -2,11 +2,22 @@
     'bg'    => 'bg-[#B1B5C4]',
     'text'  => 'text-white',
     'showNumber' => true,
+    'livewireNumberElementId' => null, 
+    'livewireListenerParams' => null,
+    'starting' => 0,
+    'spinnerId' => null,
     'field'
 ])
 
-<div 
-    x-data="plusMinusInput()"    
+<div     
+    x-data="plusMinusInput( 
+        { 
+            starting: '{{ $starting }}' 
+            {{ $livewireListenerParams ? ', livewireListenerParams: "'. $livewireListenerParams .'" ' : '' }}
+            {{ $spinnerId ? ', spinnerId: "'. $spinnerId .'" ' : '' }}  
+            {{ $livewireNumberElementId ? ', livewireNumberElementId: "'. $livewireNumberElementId .'" ' : '' }}  
+        } 
+    )"    
     {{ $attributes->merge([
             'class' => $bg . " " . $text . "                 
                 flex flex-row items-center justify-between                
@@ -21,7 +32,7 @@
             >
             
             <svg width="18" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="1" y1="1" x2="17" y2="1" x-bind:stroke="plusDisabled ? 'gray' : 'white'" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1" y1="1" x2="17" y2="1" x-bind:stroke="minusDisabled ? 'gray' : 'white'" stroke-width="2" stroke-linecap="round"/>
             </svg>
             
         </div>
@@ -31,9 +42,9 @@
         <svg width="1" height="17" viewBox="0 0 1 17" fill="none" xmlns="http://www.w3.org/2000/svg">
             <line x1="0.5" y1="0.5" x2="0.499999" y2="16.5" stroke="#E7ECF3" stroke-linecap="round"/>
         </svg>
-    @else
-        <input type="text" class="text-center bg-transparent border-0 text-white w-12 text-[22px]" readonly x-model="number" wire:model="{{ $field }}"  />
     @endif
+        
+    <input type="text" class="text-center bg-transparent border-0 text-white w-12 text-[22px] {{ $showNumber ? 'inline-block' : 'hidden' }}" readonly x-model="number" wire:model="{{ $field }}"  />
 
     <div 
         x-on:click="plus()"

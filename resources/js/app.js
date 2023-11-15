@@ -36,3 +36,22 @@ window.addEventListener('goToTop', event => {
 window.appLocale = function() {    
     return document.getElementById('app_locale').value;
 }
+
+window.addEventListener('startLoading', event => {     
+    document.getElementById(event.detail.spinnerId).classList.remove('hidden');
+
+    const elementToHide = document.getElementById(event.detail.spinnerId+'-remove');
+
+    if(elementToHide) elementToHide.classList.add('hidden');
+});
+
+
+window.addEventListener('stopLoading', event => {
+    
+    document.getElementById(event.detail.spinnerId).classList.add('hidden');
+
+    const elementToShow = document.getElementById(event.detail.spinnerId+'-remove');
+
+    if(elementToShow) elementToShow.classList.remove('hidden');
+});
+
