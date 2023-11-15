@@ -66,7 +66,7 @@ class Extras extends Component
 
         $this->allExtras = collect($carRepository->extras($this->getCarObject()->hashid))->map(function ($item) {
 
-            $this->unitsExtras[$item->hashid] = 2;
+            $this->unitsExtras[$item->hashid] = 0;
 
             $item->selected = (in_array($item->hashid, array_keys($this->chosenExtras)));
             
@@ -184,9 +184,11 @@ class Extras extends Component
         $this->chosenExtras[$extra->hashid] = [
             'name'      => $extra->name,
             'caren_id'  => $extra->caren_id,
-            'price'     => $price,
+            'price'     => $price * $units,
             'quantity'  => $units,
             'hashid'    => $extra->hashid,
         ];
+
+        if($units == 0) unset($this->chosenExtras[$extra->hashid]);
     }
 }
