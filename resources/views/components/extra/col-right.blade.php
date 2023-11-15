@@ -14,6 +14,7 @@
                     :livewire-listener-params="$extra['hashid']"
                     :field="'unitsExtras'.'.'.$extra['hashid']"    
                     :starting="$unitsExtras[$extra['hashid']]" 
+                    :maximum="$extra['max_units']"
                     :livewire-number-element-id="'extra-units-'. $extra['hashid']"  
                     spinner-id="clickUnitExtra-spinner"              
                     bg="bg-black" 

@@ -5,6 +5,7 @@
     'livewireNumberElementId' => null, 
     'livewireListenerParams' => null,
     'starting' => 0,
+    'maximum' => 12,
     'spinnerId' => null,
     'field'
 ])
@@ -16,6 +17,7 @@
             {{ $livewireListenerParams ? ', livewireListenerParams: "'. $livewireListenerParams .'" ' : '' }}
             {{ $spinnerId ? ', spinnerId: "'. $spinnerId .'" ' : '' }}  
             {{ $livewireNumberElementId ? ', livewireNumberElementId: "'. $livewireNumberElementId .'" ' : '' }}  
+            {{ $maximum ? ', maximum: "'. $maximum .'" ' : '' }}  
         } 
     )"    
     {{ $attributes->merge([
