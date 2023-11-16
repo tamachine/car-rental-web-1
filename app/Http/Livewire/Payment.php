@@ -83,6 +83,8 @@ class Payment extends Component
      */
     public $bookingHashid = null;
 
+    public $adultPassengers;
+
     protected $listeners = ['update_number' => 'updateNumberPassengers'];
 
     /*
@@ -98,6 +100,8 @@ class Payment extends Component
         $this->car = $carRepository->findByHashid($sessionData['car'])->toJson();
         $this->carHashid = $this->getCarObject()->hashid;
 
+        $this->adultPassengers = $this->getCarObject()->adult_passengers;
+        
         if($this->getCarObject()->featured_image) {
             $this->mainImage = $this->getCarObject()->getFeaturedImageModelImageInstance?->url;
         } else {

@@ -65,7 +65,7 @@
                 px-3 sm:px-8 md:px-[14px] pb-10 md:pb-7"
                 >
                 <div class="flex flex-col">
-                    <div class="font-fredokaOne text-3xl text-pink-red">{{ __('general.brand') }}</div>
+                    <div><img class="max-w-[150px]" src="{{ asset('images/iceland-cars-logo.svg') }}" /></div>
                     <div class="text-sm text-[#8c8c8c] hidden md:block">{!! __('footer.copyright') !!}</div>
                 </div>
                 <div class="flex gap-2 2sm:gap-4 justify-end md:justify-center">

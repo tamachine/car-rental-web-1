@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta name="theme-color" content="#E11166" >
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <!-- Favicon -->
 		<link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
