@@ -103,8 +103,7 @@ if (!function_exists('checkSessionExtras')) {
         ) {
             return false;
         }
-
-        unset($data['extras']);
+        
         request()->session()->put('booking_data', $data);
 
         return true;

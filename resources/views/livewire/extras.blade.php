@@ -11,7 +11,7 @@
             class="w-full flex flex-col gap-3 max-w-[780px]"
         >
             @foreach($extras as $extra)
-                <x-extra.extra :extra=$extra />
+                <x-extra.extra :extra=$extra :unitsExtras="$unitsExtras" />
             @endforeach
 
             <x-wire-spinner target="more" />
