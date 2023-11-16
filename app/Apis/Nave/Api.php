@@ -2,8 +2,9 @@
 
 namespace App\Apis\Nave;
 
+use App\Exceptions\Apis\NaveException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\RequestException;
 
 class Api
 {
@@ -18,30 +19,26 @@ class Api
         $this->url   = config('nave.url');
     }
 
-    public function sendHttpRequest($method, $endpoint, $params = []) {
-
+    public function sendHttpRequest($method, $endpoint, $params = [])
+    {
         try {
-            $this->response = Http::withToken($this->token)->{$method}($this->url.$endpoint, $params);
-
+           
+            $this->response = (Http::withToken($this->token)->{$method}($this->url . $endpoint, $params));
+           
             if ($this->response->successful()) {
                 return $this->response->json();
             }
-
-            return [
-                'error' => true,
-                'message' => 'API returned an error.',
-                'status' => $this->response->status(),
-                'body' => $this->response->body()
-            ];
-
-        } catch (RequestException $e) {
-
-            return [
-                'error' => true,
-                'message' => 'Failed to connect to the API.',
-                'exception' => $e->getMessage()
-            ];
+           
+            throw new NaveException($this->response->json()['message'], 
+                                    $this->response->json()['code'],
+                                    $endpoint,
+                                    $params);
+        
+        }catch (ConnectionException $e) {
+          
+            throw new NaveException($e->getMessage(), $e->getCode(), $endpoint, $params);
         }
+     
     }
     
 }
