@@ -23,7 +23,7 @@
     </div>
     <div class="relative w-[85%] lg:w-[80%] mx-auto">
         <div             
-            class="absolute top-[-2px] text-white text-base leading-[1.6em] text-center w-[80px] pointer-events-none z-10"
+            class="absolute top-[-2px] left-[50%] translate-x-[-47%] block text-white text-base leading-[1.6em] text-center w-[80px] pointer-events-none z-10"
             x-ref="bulletValueElement"
         >
             <span 

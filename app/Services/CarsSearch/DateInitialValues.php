@@ -108,7 +108,7 @@ class DateInitialValues
 
                     if($type == 'date') {                       
 
-                        $this->dates[$dateType] = $carbon->setTimeFromTimeString('12:00 AM');   
+                        $this->dates[$dateType] = $carbon->setTimeFromTimeString('12:00 PM');   
                               
                     } else { //time
 
