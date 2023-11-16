@@ -127,7 +127,12 @@
             </div>
         </div>
         <div class="w-[80%] text-center mx-auto">
-            <button class="z-20 w-full btn btn-red px-16 py-3">{!! __('car-search-bar.mobile-continue-button') !!}</button>
+            <button 
+                x-on:click="mobileSubmit()"
+                class="z-20 w-full btn btn-red px-16 py-3"
+                >
+                {!! __('car-search-bar.mobile-continue-button') !!}
+            </button>
         </div>
     </div>
 
