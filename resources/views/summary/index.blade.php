@@ -115,7 +115,11 @@
         
         <x-wire-spinner target="continue" />
         
-        <div wire:loading.remove wire:target="toggleExtra, continue" >
+        <div id="clickUnitExtra-spinner" class="hidden">
+            <x-spinner />
+        </div>
+        
+        <div id="clickUnitExtra-spinner-remove" wire:loading.remove wire:target="toggleExtra, continue">
             <div class="mt-2 flex justify-between">
                 <div class="font-sans-bold font-bold text-[28px] text-black-ci">
                     {!! __('summary.total') !!}

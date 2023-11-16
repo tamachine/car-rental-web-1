@@ -1,6 +1,6 @@
-extraPrice = function () {
+extraPrice = function (selected = false) {
     return {
-        selected: false,
+        selected: selected,        
 
         toggle: function() {
             this.selected = !this.selected

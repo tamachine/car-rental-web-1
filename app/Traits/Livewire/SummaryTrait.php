@@ -59,6 +59,11 @@ trait SummaryTrait
     public $includedExtras = [];
 
     /**
+     * @var array
+     */
+    public $unitsExtras = [];
+
+    /**
      * @var float
      */
     public $rentalPrice = 0;
@@ -112,8 +117,8 @@ trait SummaryTrait
         $sessionData = request()->session()->get('booking_data');
         $extras = [];
 
-        if (count($this->chosenExtras)) {
-            foreach ($this->chosenExtras as $chosenExtra) {
+        if (isset($sessionData['extras'])) {
+            foreach ($sessionData['extras'] as $chosenExtra) {
                 $extras[$chosenExtra['hashid']] = $chosenExtra['quantity'];
             }
         }
@@ -134,7 +139,7 @@ trait SummaryTrait
                 count($sessionData["insurances"])
                 ? array_column($sessionData["insurances"], 'hashid')
                 : [],
-                count($this->chosenExtras) ? $extras : [],
+                $extras,
             );
 
         $this->rentalPrice = $carenPrices->carPrice;
