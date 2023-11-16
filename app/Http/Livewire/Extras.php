@@ -147,6 +147,8 @@ class Extras extends Component
 
     public function continue()
     {        
+        $this->saveExtrasInSession();
+        
         return redirect()->route('payment');
     }
 
